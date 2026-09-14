@@ -1,0 +1,20 @@
+/* Code never adopts the page theme. These values are identical in dark and light,
+   so a screenshot of a post reads the same wherever it lands. Dracula syntax. */
+:root {
+  --code-bg: #111216;
+  --code-chrome: #232428;
+  --code-fg: #F8F8F2;
+
+  --code-keyword: #FF79C6;
+  --code-type: #8BE9FD;
+  --code-function: #50FA7B;
+  --code-param: #FFB86C;
+  --code-literal: #BD93F9;
+  --code-comment: #6272A4;
+
+  --code-light-close: #FF5555;
+  --code-light-min: #F1FA8C;
+  --code-light-max: #50FA7B;
+
+  --code-shadow: 0 14px 40px rgba(0, 0, 0, 0.32);
+}

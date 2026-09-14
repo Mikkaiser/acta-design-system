@@ -1,0 +1,48 @@
+/* Three families, no serif ever. Poppins names things, Roboto is what you scan,
+   JetBrains Mono is anything countable and every code snippet. */
+:root {
+  --font-title: 'Poppins', sans-serif;
+  --font-body: 'Roboto', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --weight-body: 400;
+  --weight-medium: 500;
+  --weight-title: 600;
+  --weight-code: 600;
+
+  --size-display: clamp(32px, 5.6vw, 60px);
+  --lh-display: 1.04;
+  --ls-display: -0.035em;
+
+  --size-page-title: clamp(24px, 3.4vw, 38px);
+  --lh-page-title: 1.08;
+  --ls-page-title: -0.03em;
+
+  --size-entry-title: clamp(18px, 2.2vw, 24px);
+  --lh-entry-title: 1.2;
+  --ls-entry-title: -0.02em;
+
+  --size-section-head: 10px;
+  --ls-section-head: 0.18em;
+
+  --size-lead: 20px;
+  --lh-lead: 1.5;
+  --ls-lead: -0.01em;
+
+  --size-body: 15px;
+  --lh-body: 1.7;
+
+  --size-small: 13px;
+  --lh-small: 1.6;
+
+  --size-meta: 11px;
+  --size-micro: 10px;
+  --ls-micro: 0.16em;
+
+  --size-code: 13px;
+  --lh-code: 1.75;
+
+  --measure-body: 64ch;
+  --measure-lead: 44ch;
+  --measure-display: 22ch;
+}

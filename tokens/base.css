@@ -1,0 +1,41 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+:root { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--size-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--ink); text-decoration: none; }
+a:hover { color: var(--muted); }
+::selection { background: var(--ink); color: var(--on-ink); }
+
+/* One focus treatment everywhere. Never the browser default blue. */
+input:focus, textarea:focus, select:focus {
+  border-color: var(--ink);
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+/* Photographs: grayscale in the chrome, colour on hover. */
+[data-photo] {
+  filter: grayscale(1) contrast(1.04);
+  transition: filter var(--dur-photo) var(--ease);
+}
+[data-photo]:hover { filter: grayscale(0) contrast(1); }
+
+/* Code keeps its ligatures on. */
+[data-code] {
+  font-feature-settings: "calt" 1, "liga" 1;
+  font-variant-ligatures: contextual common-ligatures;
+}

@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<script src="./image-slot.js"></script>
+<style>
+  *{box-sizing:border-box}
+  :root{
+    scroll-behavior:smooth;
+    color-scheme:dark;
+    --bg:#0A0A0A; --raised:#171717; --sunken:#1F1F1F; --rule:#2E2E2E;
+    --faint:#8F8F8F; --muted:#A1A1A1; --ink-soft:#D4D4D4; --ink:#FFFFFF;
+    --ink-hover:#E5E5E5; --on-ink:#0A0A0A; --signal:#FF6166;
+  }
+  :root:has([data-theme="light"]){
+    color-scheme:light;
+    --bg:#FFFFFF; --raised:#FAFAFA; --sunken:#F5F5F5; --rule:#EBEBEB;
+    --faint:#737373; --muted:#525252; --ink-soft:#404040; --ink:#000000;
+    --ink-hover:#333333; --on-ink:#FFFFFF; --signal:#CC0000;
+  }
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Roboto',system-ui,sans-serif;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+  a{color:var(--ink);text-decoration:none}
+  a:hover{color:var(--muted)}
+  ::selection{background:var(--ink);color:var(--on-ink)}
+  [data-rail],[data-toclist]{scroll-behavior:smooth}
+  [data-artgrid]{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(20px,3vw,40px);align-items:start}
+  [data-toclist]{position:static;min-width:0;order:-1}
+  [data-toc]{display:block;padding:7px 0 7px 13px;border-left:1px solid var(--rule);font-size:12px;line-height:1.45;color:var(--muted);transition:color 120ms,border-color 120ms}
+  [data-toc]:hover{color:var(--ink);border-color:var(--ink)}
+  [data-toc][aria-current="true"]{color:var(--ink);border-color:var(--ink);font-weight:500}
+  @media (min-width:1180px){
+    [data-artgrid]{grid-template-columns:minmax(0,68ch) minmax(0,196px)}
+    [data-toclist]{position:sticky;top:24px;order:0}
+  }
+  input:focus,textarea:focus{border-color:var(--ink);outline:2px solid var(--ink);outline-offset:2px}
+  a:focus-visible,button:focus-visible,[data-seg]:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+  [data-photo]{filter:grayscale(1) contrast(1.04);transition:filter 300ms}
+  [data-photo]:hover{filter:grayscale(0) contrast(1)}
+  [data-code]{font-feature-settings:"calt" 1,"liga" 1;font-variant-ligatures:contextual common-ligatures}
+  [data-seg]{appearance:none;border:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;padding:7px 13px}
+  [data-seg][aria-pressed="true"]{background:var(--ink);color:var(--on-ink)}
+  [data-seg][aria-pressed="false"]{background:transparent;color:var(--muted)}
+  [data-seg][aria-pressed="false"]:hover{color:var(--ink)}
+  @keyframes om-reveal{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  @keyframes om-bar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  @keyframes om-rule{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  [data-reveal]{animation:om-reveal 1s linear both;animation-timeline:view();animation-range:entry 0% cover 26%}
+  [data-progress]{animation:om-bar 1s linear both;animation-timeline:scroll(root)}
+  [data-rule]{animation:om-rule 1s linear both;animation-timeline:view();animation-range:entry 0% cover 18%}
+  @media (max-width:620px){
+    [data-shell]{grid-template-columns:minmax(0,1fr)!important}
+    [data-rail]{position:static!important;max-height:none!important;overflow:visible!important;border-right:none!important;border-bottom:1px solid var(--rule)!important}
+  }
+  @media (prefers-reduced-motion:reduce){
+    :root,body,[data-rail],[data-toclist]{scroll-behavior:auto!important}
+    [data-photo]{transition:none!important}
+    [data-reveal],[data-progress],[data-rule]{animation:none!important;opacity:1!important;transform:none!important}
+  }
+</style>
+</helmet>
+
+<div data-shell="data-shell" data-theme="{{ theme }}" style="background:var(--bg);min-height:100vh;display:grid;grid-template-columns:268px minmax(0,1fr);align-items:start;gap:0">
+
+  <div style="position:fixed;top:0;left:0;height:2px;width:100%;background:var(--ink);transform-origin:0 50%;z-index:60" data-progress="data-progress"></div>
+
+  <aside data-rail="data-rail" style="position:sticky;top:0;padding:clamp(20px,2.4vw,32px);border-right:1px solid var(--rule);align-self:start;max-height:100vh;overflow:auto">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px">
+      <div data-photo="data-photo" style="position:relative;width:56px;height:56px;flex:0 0 auto;border-radius:50%;overflow:hidden"><img src="images/burj-view.jpg" alt="Mikael Ribeiro" style="position:absolute;width:248%;height:auto;left:-121%;top:-36%;display:block" /></div>
+      <div style="min-width:0">
+        <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:22px;line-height:1.15;letter-spacing:-0.02em">Mikael Ribeiro</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint);letter-spacing:0.04em">@mikkaiser</div>
+      </div>
+    </div>
+
+    <p style="margin:0 0 20px;font-size:13px;line-height:1.6;color:var(--muted)">Design system for the portfolio and blog. Senior Software Developer, Abu Dhabi Government · ADVETI.</p>
+
+    <div style="height:1px;background:var(--rule);margin-bottom:16px;transform-origin:0 50%" data-rule="data-rule"></div>
+
+    <nav style="display:flex;flex-direction:column;gap:1px;margin-bottom:20px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin-bottom:7px">Foundations</div>
+      <a href="#color" style="display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--muted);padding:5px 0" style-hover="color:var(--ink)"><span>Color</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint)">01</span></a>
+      <a href="#type" style="display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--muted);padding:5px 0" style-hover="color:var(--ink)"><span>Typography</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint)">02</span></a>
+      <a href="#space" style="display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--muted);padding:5px 0" style-hover="color:var(--ink)"><span>Space &amp; rules</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint)">03</span></a>
+
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin:16px 0 7px">Components</div>
+      <a href="#buttons" style="display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--muted);padding:5px 0" style-hover="color:var(--ink)"><span>Buttons</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint)">04</span></a>
+      <a href="#links" style="display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--muted);padding:5px 0" style-hover="color:var(--ink)"><span>Links &amp; tags</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint)">05</span></a>
+      <a href="#fields" style="display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--muted);padding:5px 0" style-hover="color:var(--ink)"><span>Form fields</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint)">06</span></a>
+      <a href="#rows" style="display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--muted);padding:5px 0" style-hover="color:var(--ink)"><span>Entry rows</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint)">07</span></a>
+      <a href="#media" style="display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--muted);padding:5px 0" style-hover="color:var(--ink)"><span>Media</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint)">08</span></a>
+      <a href="#code" style="display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--muted);padding:5px 0" style-hover="color:var(--ink)"><span>Code</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint)">09</span></a>
+
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin:16px 0 7px">Patterns</div>
+      <a href="#article" style="display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--muted);padding:5px 0" style-hover="color:var(--ink)"><span>Article</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint)">10</span></a>
+      <a href="#motion" style="display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--muted);padding:5px 0" style-hover="color:var(--ink)"><span>Motion</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint)">11</span></a>
+      <a href="#diagrams" style="display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--muted);padding:5px 0" style-hover="color:var(--ink)"><span>Diagrams</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint)">12</span></a>
+      <a href="#audit" style="display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--muted);padding:5px 0" style-hover="color:var(--ink)"><span>Contrast audit</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint)">13</span></a>
+    </nav>
+
+    <div style="height:1px;background:var(--rule);margin-bottom:14px"></div>
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <a href="https://www.linkedin.com/in/mikael-ribeiro" style="font-size:12px;color:var(--muted)" style-hover="color:var(--ink)">LinkedIn ↗</a>
+      <a href="#" style="font-size:12px;color:var(--muted)" style-hover="color:var(--ink)">GitHub ↗</a>
+      <a href="https://techknowledge.blog" style="font-size:12px;color:var(--muted)" style-hover="color:var(--ink)">techknowledge.blog ↗</a>
+    </div>
+    <div style="display:flex;border:1px solid var(--rule);border-radius:4px;overflow:hidden;width:max-content;margin-top:16px">
+      <button type="button" data-seg="data-seg" aria-pressed="{{ isDark }}" onClick="{{ setDark }}">Dark</button>
+      <button type="button" data-seg="data-seg" aria-pressed="{{ isLight }}" onClick="{{ setLight }}">Light</button>
+    </div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint);margin-top:12px;letter-spacing:0.04em">v0.3 · Abu Dhabi UTC+4</div>
+  </aside>
+
+  <main style="padding:clamp(24px,3.5vw,44px);min-width:0">
+
+    <section style="margin-bottom:clamp(40px,6vw,72px)" data-reveal="data-reveal">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--faint);margin-bottom:14px">Ledger · Design system</div>
+      <h1 style="margin:0 0 18px;font-family:'Poppins',sans-serif;font-weight:600;font-size:clamp(32px,5.6vw,60px);line-height:1.04;letter-spacing:-0.035em;max-width:22ch">The parts this site is built from.</h1>
+      <p style="margin:0;font-size:15px;line-height:1.7;color:var(--ink-soft);max-width:64ch">Every token, type step and component state used across the portfolio and the blog. Poppins for names and titles, Roboto for everything you scan, JetBrains Mono for anything countable. Monochrome throughout: no hue carries meaning, so hierarchy comes from weight, size and a single background step. Dark is the default; every token has a light counterpart and the rail switches between them.</p>
+    </section>
+
+    <section id="color" style="margin-bottom:clamp(40px,6vw,72px)" data-reveal="data-reveal">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding-bottom:10px;border-bottom:1px solid var(--ink);margin-bottom:22px">
+        <h2 style="margin:0;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600">01 · Color</h2>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint)">10 tokens · 2 themes</span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));border-top:1px solid var(--rule);border-left:1px solid var(--rule)">
+        <div style="padding:14px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+          <div style="height:52px;background:var(--bg);border:1px solid var(--rule);margin-bottom:10px"></div>
+          <div style="font-size:12px;font-weight:500">Ground</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint);margin-top:2px">#0A0A0A / #FFFFFF</div>
+          <div style="font-size:11px;color:var(--muted);line-height:1.45;margin-top:6px">Page background</div>
+        </div>
+        <div style="padding:14px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+          <div style="height:52px;background:var(--raised);border:1px solid var(--rule);margin-bottom:10px"></div>
+          <div style="font-size:12px;font-weight:500">Ground raised</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint);margin-top:2px">#171717 / #FAFAFA</div>
+          <div style="font-size:11px;color:var(--muted);line-height:1.45;margin-top:6px">Row hover, code blocks</div>
+        </div>
+        <div style="padding:14px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+          <div style="height:52px;background:var(--sunken);border:1px solid var(--rule);margin-bottom:10px"></div>
+          <div style="font-size:12px;font-weight:500">Ground sunken</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint);margin-top:2px">#1F1F1F / #F5F5F5</div>
+          <div style="font-size:11px;color:var(--muted);line-height:1.45;margin-top:6px">Disabled fills</div>
+        </div>
+        <div style="padding:14px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+          <div style="height:52px;background:var(--rule);margin-bottom:10px"></div>
+          <div style="font-size:12px;font-weight:500">Rule</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint);margin-top:2px">#2E2E2E / #EBEBEB</div>
+          <div style="font-size:11px;color:var(--muted);line-height:1.45;margin-top:6px">All 1px dividers, borders</div>
+        </div>
+        <div style="padding:14px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+          <div style="height:52px;background:var(--faint);margin-bottom:10px"></div>
+          <div style="font-size:12px;font-weight:500">Faint</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint);margin-top:2px">#8F8F8F / #737373</div>
+          <div style="font-size:11px;color:var(--muted);line-height:1.45;margin-top:6px">Mono meta at 10–11px</div>
+        </div>
+        <div style="padding:14px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+          <div style="height:52px;background:var(--muted);margin-bottom:10px"></div>
+          <div style="font-size:12px;font-weight:500">Muted</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint);margin-top:2px">#A1A1A1 / #525252</div>
+          <div style="font-size:11px;color:var(--muted);line-height:1.45;margin-top:6px">Secondary copy, rail links</div>
+        </div>
+        <div style="padding:14px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+          <div style="height:52px;background:var(--ink-soft);margin-bottom:10px"></div>
+          <div style="font-size:12px;font-weight:500">Ink soft</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint);margin-top:2px">#D4D4D4 / #404040</div>
+          <div style="font-size:11px;color:var(--muted);line-height:1.45;margin-top:6px">Body copy</div>
+        </div>
+        <div style="padding:14px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+          <div style="height:52px;background:var(--ink);margin-bottom:10px"></div>
+          <div style="font-size:12px;font-weight:500">Ink</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint);margin-top:2px">#FFFFFF / #000000</div>
+          <div style="font-size:11px;color:var(--muted);line-height:1.45;margin-top:6px">Titles, primary fill, focus</div>
+        </div>
+        <div style="padding:14px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+          <div style="height:52px;background:var(--ink-hover);margin-bottom:10px"></div>
+          <div style="font-size:12px;font-weight:500">Ink hover</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint);margin-top:2px">#E5E5E5 / #333333</div>
+          <div style="font-size:11px;color:var(--muted);line-height:1.45;margin-top:6px">Primary button hover only</div>
+        </div>
+        <div style="padding:14px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+          <div style="height:52px;background:var(--signal);margin-bottom:10px"></div>
+          <div style="font-size:12px;font-weight:500">Signal</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint);margin-top:2px">#FF6166 / #CC0000</div>
+          <div style="font-size:11px;color:var(--muted);line-height:1.45;margin-top:6px">Field errors only. Nothing else is coloured.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="type" style="margin-bottom:clamp(40px,6vw,72px)" data-reveal="data-reveal">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding-bottom:10px;border-bottom:1px solid var(--ink);margin-bottom:22px">
+        <h2 style="margin:0;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600">02 · Typography</h2>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint)">Poppins · Roboto · JetBrains Mono</span>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:0;border-top:1px solid var(--rule)">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:6px 24px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--rule)">
+          <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:clamp(32px,5.6vw,60px);line-height:1.04;letter-spacing:-0.035em;min-width:0">Display</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.7;color:var(--faint);letter-spacing:0.04em">POPPINS 600<br />clamp(32px, 5.6vw, 60px)<br />LH 1.04 · LS −0.035em<br />max 22ch</div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:6px 24px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--rule)">
+          <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:clamp(24px,3.4vw,38px);line-height:1.08;letter-spacing:-0.03em;min-width:0">Page title</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.7;color:var(--faint);letter-spacing:0.04em">POPPINS 600<br />clamp(24px, 3.4vw, 38px)<br />LH 1.08 · LS −0.03em</div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:6px 24px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--rule)">
+          <div style="font-family:'Poppins',sans-serif;font-weight:500;font-size:clamp(18px,2.2vw,24px);line-height:1.2;letter-spacing:-0.02em;min-width:0">Entry title</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.7;color:var(--faint);letter-spacing:0.04em">POPPINS 500<br />clamp(18px, 2.2vw, 24px)<br />LH 1.2 · LS −0.02em</div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:6px 24px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--rule)">
+          <div style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;min-width:0">Section head</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.7;color:var(--faint);letter-spacing:0.04em">ROBOTO 600<br />10px · LS 0.18em · upper<br />sits on a 1px ink rule</div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:6px 24px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--rule)">
+          <div style="font-family:'Poppins',sans-serif;font-weight:400;font-size:20px;line-height:1.5;letter-spacing:-0.01em;min-width:0">Lead paragraph sets in Poppins at twenty over 1.5.</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.7;color:var(--faint);letter-spacing:0.04em">POPPINS 400<br />20px / 1.5 · LS −0.01em<br />max 44ch · one per page</div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:6px 24px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--rule)">
+          <div style="font-size:15px;line-height:1.7;color:var(--ink-soft);min-width:0">Body copy sets in Roboto at fifteen over 1.7, capped near sixty-four characters so the measure stays readable next to a wide rail.</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.7;color:var(--faint);letter-spacing:0.04em">ROBOTO 400<br />15px / 1.7 · Ink soft<br />max 64ch</div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:6px 24px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--rule)">
+          <div style="font-size:13px;line-height:1.6;color:var(--muted);min-width:0">Small copy for captions, rail text and row summaries.</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.7;color:var(--faint);letter-spacing:0.04em">ROBOTO 400<br />13px / 1.6 · Muted</div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:6px 24px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--rule)">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint);font-variant-numeric:tabular-nums;letter-spacing:0.04em;min-width:0">2023 to 2026 &nbsp; 03·26 &nbsp; 8 min &nbsp; v0.2</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.7;color:var(--faint);letter-spacing:0.04em">JETBRAINS MONO 400<br />11px · Faint<br />tabular-nums · dates,<br />counts, versions, labels</div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:6px 24px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--rule)">
+          <div data-code="data-code" style="font-family:'JetBrains Mono',monospace;font-weight:600;font-size:13px;line-height:1.65;color:var(--ink);min-width:0">t =&gt; t.Id != id &amp;&amp; x &lt;= y</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.7;color:var(--faint);letter-spacing:0.04em">JETBRAINS MONO 600<br />13px / 1.65 · calt + liga<br />every snippet. Ligatures on,<br />so =&gt; != &lt;= render as one mark.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="space" style="margin-bottom:clamp(40px,6vw,72px)" data-reveal="data-reveal">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding-bottom:10px;border-bottom:1px solid var(--ink);margin-bottom:22px">
+        <h2 style="margin:0;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600">03 · Space &amp; rules</h2>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint)">Base 4 · 3 fonts</span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:clamp(24px,3vw,44px)">
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin-bottom:14px">Scale</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;align-items:center;gap:12px"><div style="height:9px;width:4px;background:var(--ink);flex:0 0 auto"></div><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint);letter-spacing:0.06em">4 · icon to label</span></div>
+            <div style="display:flex;align-items:center;gap:12px"><div style="height:9px;width:8px;background:var(--ink);flex:0 0 auto"></div><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint);letter-spacing:0.06em">8 · inside a tag</span></div>
+            <div style="display:flex;align-items:center;gap:12px"><div style="height:9px;width:12px;background:var(--ink);flex:0 0 auto"></div><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint);letter-spacing:0.06em">12 · title to summary</span></div>
+            <div style="display:flex;align-items:center;gap:12px"><div style="height:9px;width:16px;background:var(--ink);flex:0 0 auto"></div><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint);letter-spacing:0.06em">16 · row padding (14 inline)</span></div>
+            <div style="display:flex;align-items:center;gap:12px"><div style="height:9px;width:24px;background:var(--ink);flex:0 0 auto"></div><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint);letter-spacing:0.06em">24 · gutter</span></div>
+            <div style="display:flex;align-items:center;gap:12px"><div style="height:9px;width:32px;background:var(--ink);flex:0 0 auto"></div><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint);letter-spacing:0.06em">32 · head to content</span></div>
+            <div style="display:flex;align-items:center;gap:12px"><div style="height:9px;width:48px;background:var(--ink);flex:0 0 auto"></div><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint);letter-spacing:0.06em">48 · rail padding</span></div>
+            <div style="display:flex;align-items:center;gap:12px"><div style="height:9px;width:72px;background:var(--ink);flex:0 0 auto"></div><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint);letter-spacing:0.06em">72 · section break</span></div>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin-bottom:14px">Rule weights</div>
+          <div style="margin-bottom:8px;height:1px;background:var(--ink)"></div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint);margin-bottom:18px;letter-spacing:0.04em">1px Ink, under a section head</div>
+          <div style="margin-bottom:8px;height:1px;background:var(--rule)"></div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint);margin-bottom:18px;letter-spacing:0.04em">1px Rule, between rows in a set</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin-bottom:14px">Radius</div>
+          <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+            <div style="width:52px;height:34px;border:1px solid var(--rule);flex:0 0 auto"></div>
+            <div style="width:52px;height:34px;border:1px solid var(--rule);border-radius:4px;flex:0 0 auto"></div>
+            <div style="width:34px;height:34px;border:1px solid var(--rule);border-radius:50%;flex:0 0 auto"></div>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint);letter-spacing:0.04em">0 · 4 · 50% (portraits only)</span>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin-bottom:14px">Rules of the page</div>
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <p style="margin:0;font-size:13px;line-height:1.6;color:var(--ink-soft)"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint)">01</span> &nbsp;The rail never scrolls away. It carries the name, the map and the contact.</p>
+            <p style="margin:0;font-size:13px;line-height:1.6;color:var(--ink-soft)"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint)">02</span> &nbsp;Every entry is a row with a mono date gutter. Work and posts share the row.</p>
+            <p style="margin:0;font-size:13px;line-height:1.6;color:var(--ink-soft)"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint)">03</span> &nbsp;Poppins for names and titles. Roboto for what you scan. JetBrains Mono for what you count.</p>
+            <p style="margin:0;font-size:13px;line-height:1.6;color:var(--ink-soft)"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint)">04</span> &nbsp;No shadows. Boundaries are 1px rules, depth is one background step.</p>
+            <p style="margin:0;font-size:13px;line-height:1.6;color:var(--ink-soft)"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint)">05</span> &nbsp;Nothing is coloured except a field error. Emphasis is weight and size.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="buttons" style="margin-bottom:clamp(40px,6vw,72px)" data-reveal="data-reveal">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding-bottom:10px;border-bottom:1px solid var(--ink);margin-bottom:22px">
+        <h2 style="margin:0;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600">04 · Buttons</h2>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint)">3 variants · 5 states</span>
+      </div>
+
+      <p style="margin:0 0 20px;font-size:13px;line-height:1.6;color:var(--muted);max-width:64ch">Live specimens respond to the pointer. The matrix renders each state statically so it can be checked without hovering, and scrolls sideways when the pane is narrow. Minimum target 44px tall on touch.</p>
+
+      <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:26px">
+        <a href="#" style="background:var(--ink);color:var(--on-ink);font-size:13px;font-weight:500;padding:13px 20px;border-radius:4px;white-space:nowrap;flex:0 0 auto;transition:background 120ms" style-hover="background:var(--ink-hover)" style-active="background:var(--ink)">Primary</a>
+        <a href="#" style="border:1px solid var(--rule);color:var(--ink);font-size:13px;padding:12px 19px;border-radius:4px;white-space:nowrap;flex:0 0 auto;transition:border-color 120ms,background 120ms" style-hover="border-color:var(--ink)" style-active="background:var(--raised);border-color:var(--ink)">Secondary</a>
+        <a href="#" style="color:var(--ink);font-size:13px;padding-bottom:2px;border-bottom:1px solid var(--rule);white-space:nowrap;flex:0 0 auto;transition:border-color 120ms,color 120ms" style-hover="border-color:var(--ink)" style-active="color:var(--muted);border-color:var(--muted)">Ghost</a>
+      </div>
+
+      <sc-if value="{{ showStates }}" hint-placeholder-val="{{ true }}">
+        <div style="overflow-x:auto;border-top:1px solid var(--rule);border-left:1px solid var(--rule)">
+          <div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));min-width:680px">
+            <div style="padding:10px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);background:var(--raised)"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted)">Default</span></div>
+            <div style="padding:10px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);background:var(--raised)"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted)">Hover</span></div>
+            <div style="padding:10px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);background:var(--raised)"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted)">Active</span></div>
+            <div style="padding:10px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);background:var(--raised)"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted)">Focus</span></div>
+            <div style="padding:10px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);background:var(--raised)"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted)">Disabled</span></div>
+
+            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;background:var(--ink);color:var(--on-ink);font-size:13px;font-weight:500;padding:13px 20px;border-radius:4px;white-space:nowrap">Primary</span></div>
+            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;background:var(--ink-hover);color:var(--on-ink);font-size:13px;font-weight:500;padding:13px 20px;border-radius:4px;white-space:nowrap">Primary</span></div>
+            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;background:var(--ink);color:var(--on-ink);font-size:13px;font-weight:500;padding:13px 20px;border-radius:4px;white-space:nowrap;transform:translateY(1px)">Primary</span></div>
+            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;background:var(--ink);color:var(--on-ink);font-size:13px;font-weight:500;padding:13px 20px;border-radius:4px;white-space:nowrap;outline:2px solid var(--ink);outline-offset:2px">Primary</span></div>
+            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;background:var(--sunken);color:var(--muted);font-size:13px;font-weight:500;padding:13px 20px;border-radius:4px;white-space:nowrap;cursor:not-allowed">Primary</span></div>
+
+            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;border:1px solid var(--rule);color:var(--ink);font-size:13px;padding:12px 19px;border-radius:4px;white-space:nowrap">Secondary</span></div>
+            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;border:1px solid var(--ink);color:var(--ink);font-size:13px;padding:12px 19px;border-radius:4px;white-space:nowrap">Secondary</span></div>
+            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;border:1px solid var(--ink);background:var(--raised);color:var(--ink);font-size:13px;padding:12px 19px;border-radius:4px;white-space:nowrap">Secondary</span></div>
+            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;border:1px solid var(--rule);color:var(--ink);font-size:13px;padding:12px 19px;border-radius:4px;white-space:nowrap;outline:2px solid var(--ink);outline-offset:2px">Secondary</span></div>
+            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;border:1px solid var(--rule);color:var(--faint);font-size:13px;padding:12px 19px;border-radius:4px;white-space:nowrap;cursor:not-allowed">Secondary</span></div>
+
+            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;color:var(--ink);font-size:13px;padding-bottom:2px;border-bottom:1px solid var(--rule);white-space:nowrap">Ghost</span></div>
+            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;color:var(--ink);font-size:13px;padding-bottom:2px;border-bottom:1px solid var(--ink);white-space:nowrap">Ghost</span></div>
+            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;color:var(--muted);font-size:13px;padding-bottom:2px;border-bottom:1px solid var(--muted);white-space:nowrap">Ghost</span></div>
+            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;color:var(--ink);font-size:13px;padding-bottom:2px;border-bottom:1px solid var(--rule);white-space:nowrap;outline:2px solid var(--ink);outline-offset:3px">Ghost</span></div>
+            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;color:var(--faint);font-size:13px;padding-bottom:2px;border-bottom:1px solid transparent;white-space:nowrap;cursor:not-allowed">Ghost</span></div>
+          </div>
+        </div>
+      </sc-if>
+    </section>
+
+    <section id="links" style="margin-bottom:clamp(40px,6vw,72px)" data-reveal="data-reveal">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding-bottom:10px;border-bottom:1px solid var(--ink);margin-bottom:22px">
+        <h2 style="margin:0;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600">05 · Links &amp; tags</h2>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint)">Hover to test</span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:clamp(24px,3vw,44px)">
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin-bottom:14px">Links</div>
+          <p style="margin:0 0 14px;font-size:15px;line-height:1.7;color:var(--ink-soft);max-width:48ch">Body copy with an <a href="#" style="color:var(--ink);border-bottom:1px solid var(--rule);padding-bottom:1px" style-hover="border-color:var(--ink)">inline link</a> sitting in it, and an <a href="https://www.linkedin.com/in/mikael-ribeiro" style="color:var(--ink);border-bottom:1px solid var(--rule);padding-bottom:1px" style-hover="border-color:var(--ink)">external one ↗</a> that carries the arrow.</p>
+          <div style="display:flex;flex-direction:column;gap:9px">
+            <a href="#" style="font-size:13px;color:var(--muted);width:max-content" style-hover="color:var(--ink)">Rail link ↗</a>
+            <a href="#" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);width:max-content;border-bottom:1px solid var(--rule);padding-bottom:2px" style-hover="color:var(--ink);border-color:var(--ink)">All 34 posts</a>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin-bottom:14px">Tags</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);border:1px solid var(--rule);border-radius:4px;padding:5px 9px">.NET</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);border:1px solid var(--rule);border-radius:4px;padding:5px 9px">Next.js</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);border:1px solid var(--rule);border-radius:4px;padding:5px 9px">Oracle</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--on-ink);background:var(--ink);border:1px solid var(--ink);border-radius:4px;padding:5px 9px">Selected</span>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin-bottom:12px">Availability badge</div>
+          <div style="border:1px solid var(--rule);border-radius:4px;padding:13px;width:max-content;max-width:100%">
+            <div style="display:flex;align-items:center;gap:7px;margin-bottom:6px">
+              <div style="width:6px;height:6px;border-radius:50%;background:var(--ink);flex:0 0 auto"></div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted)">Open to work</div>
+            </div>
+            <div style="font-size:13px;line-height:1.5">Abu Dhabi · UTC+4 · remote</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="fields" style="margin-bottom:clamp(40px,6vw,72px)" data-reveal="data-reveal">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding-bottom:10px;border-bottom:1px solid var(--ink);margin-bottom:22px">
+        <h2 style="margin:0;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600">06 · Form fields</h2>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint)">6 states</span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:20px">
+        <div>
+          <label for="mk-f1" style="display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:7px">Default</label>
+          <input id="mk-f1" type="text" placeholder="you@company.com" style="width:100%;background:var(--bg);border:1px solid var(--rule);color:var(--ink);font-family:'Roboto',sans-serif;font-size:14px;padding:12px 13px;border-radius:4px" />
+          <div style="font-size:11px;color:var(--muted);margin-top:6px;line-height:1.45">Helper text sits here.</div>
+        </div>
+        <div>
+          <label for="mk-f2" style="display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:7px">Focus</label>
+          <input id="mk-f2" type="text" value="mikael" style="width:100%;background:var(--bg);border:1px solid var(--ink);color:var(--ink);font-family:'Roboto',sans-serif;font-size:14px;padding:12px 13px;border-radius:4px;outline:2px solid var(--ink);outline-offset:2px" />
+          <div style="font-size:11px;color:var(--muted);margin-top:6px;line-height:1.45">Ink border plus a 2px ring, offset 2px.</div>
+        </div>
+        <div>
+          <label for="mk-f3" style="display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:7px">Filled</label>
+          <input id="mk-f3" type="text" value="mikaelrsimoes19@gmail.com" style="width:100%;background:var(--bg);border:1px solid var(--rule);color:var(--ink);font-family:'Roboto',sans-serif;font-size:14px;padding:12px 13px;border-radius:4px" />
+          <div style="font-size:11px;color:var(--muted);margin-top:6px;line-height:1.45">Value in full ink.</div>
+        </div>
+        <div>
+          <label for="mk-f4" style="display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:7px">Error</label>
+          <input id="mk-f4" type="text" value="not-an-email" style="width:100%;background:var(--bg);border:1px solid var(--signal);color:var(--ink);font-family:'Roboto',sans-serif;font-size:14px;padding:12px 13px;border-radius:4px" />
+          <div style="font-size:11px;color:var(--signal);margin-top:6px;line-height:1.45">Enter a valid address.</div>
+        </div>
+        <div>
+          <label for="mk-f5" style="display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:7px">Disabled</label>
+          <input id="mk-f5" type="text" value="locked" disabled="disabled" style="width:100%;background:var(--sunken);border:1px solid var(--rule);color:var(--muted);font-family:'Roboto',sans-serif;font-size:14px;padding:12px 13px;border-radius:4px;cursor:not-allowed" />
+          <div style="font-size:11px;color:var(--muted);margin-top:6px;line-height:1.45">Sunken ground, muted ink.</div>
+        </div>
+        <div>
+          <label for="mk-f6" style="display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:7px">Textarea</label>
+          <textarea id="mk-f6" rows="3" placeholder="What are you building?" style="width:100%;background:var(--bg);border:1px solid var(--rule);color:var(--ink);font-family:'Roboto',sans-serif;font-size:14px;line-height:1.6;padding:12px 13px;border-radius:4px;resize:vertical"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section id="rows" style="margin-bottom:clamp(40px,6vw,72px)" data-reveal="data-reveal">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding-bottom:10px;border-bottom:1px solid var(--ink);margin-bottom:22px">
+        <h2 style="margin:0;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600">07 · Entry rows</h2>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint)">Work · posts</span>
+      </div>
+
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin-bottom:10px">Work row</div>
+      <div style="border-top:1px solid var(--rule);margin-bottom:26px">
+        <a href="#" style="display:grid;grid-template-columns:52px minmax(0,1fr);gap:clamp(12px,2vw,24px);padding:16px 14px;border-bottom:1px solid var(--rule);transition:background 120ms" style-hover="background:var(--raised)">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint);font-variant-numeric:tabular-nums;padding-top:4px">2025</div>
+          <div style="min-width:0">
+            <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:5px">
+              <span style="font-family:'Poppins',sans-serif;font-weight:500;font-size:clamp(18px,2.2vw,24px);line-height:1.2;letter-spacing:-0.02em">Student Management Platform</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--faint)">ADVETI</span>
+            </div>
+            <p style="margin:0;font-size:13px;line-height:1.55;color:var(--muted);max-width:60ch">Training tracking, performance monitoring and reporting for Emirates Skills and WorldSkills competitors. Next.js and MariaDB.</p>
+          </div>
+        </a>
+        <a href="#" style="display:grid;grid-template-columns:52px minmax(0,1fr);gap:clamp(12px,2vw,24px);padding:16px 14px;border-bottom:1px solid var(--rule);background:var(--raised)">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint);font-variant-numeric:tabular-nums;padding-top:4px">2023</div>
+          <div style="min-width:0">
+            <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:5px">
+              <span style="font-family:'Poppins',sans-serif;font-weight:500;font-size:clamp(18px,2.2vw,24px);line-height:1.2;letter-spacing:-0.02em">SotreqLink</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--faint)">Radix · hover state</span>
+            </div>
+            <p style="margin:0;font-size:13px;line-height:1.55;color:var(--muted);max-width:60ch">Roughly 15 microservices over RabbitMQ, Docker and Kubernetes, with Grafana, Loki and Prometheus for observability.</p>
+          </div>
+        </a>
+      </div>
+
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin-bottom:10px">Post row</div>
+      <div style="border-top:1px solid var(--rule)">
+        <a href="#" style="display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:clamp(10px,1.6vw,20px);align-items:baseline;padding:13px 14px;border-bottom:1px solid var(--rule);transition:background 120ms" style-hover="background:var(--raised)">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint);font-variant-numeric:tabular-nums">03·26</div>
+          <div style="min-width:0">
+            <div style="font-family:'Poppins',sans-serif;font-weight:500;font-size:clamp(16px,1.9vw,20px);line-height:1.25;letter-spacing:-0.015em;margin-bottom:3px">Clean architecture in a government codebase</div>
+            <div style="font-size:12px;line-height:1.5;color:var(--muted);max-width:58ch">What survives contact with a ten-year-old Oracle schema.</div>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint);white-space:nowrap">8 min</div>
+        </a>
+        <a href="#" style="display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:clamp(10px,1.6vw,20px);align-items:baseline;padding:13px 14px;border-bottom:1px solid var(--rule);background:var(--raised)">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint);font-variant-numeric:tabular-nums">01·26</div>
+          <div style="min-width:0">
+            <div style="font-family:'Poppins',sans-serif;font-weight:500;font-size:clamp(16px,1.9vw,20px);line-height:1.25;letter-spacing:-0.015em;margin-bottom:3px">Preparing for WorldSkills as an expert</div>
+            <div style="font-size:12px;line-height:1.5;color:var(--muted);max-width:58ch">Hover state. Coaching the module you once competed in.</div>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint);white-space:nowrap">6 min</div>
+        </a>
+      </div>
+    </section>
+
+    <section id="media" style="margin-bottom:clamp(40px,6vw,72px)" data-reveal="data-reveal">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding-bottom:10px;border-bottom:1px solid var(--ink);margin-bottom:22px">
+        <h2 style="margin:0;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600">08 · Media</h2>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint)">Two tiers · portrait first</span>
+      </div>
+
+      <p style="margin:0 0 8px;font-size:13px;line-height:1.6;color:var(--muted);max-width:64ch">Photographs are the one place this system meets colour, so the treatment depends on the job the image is doing. Interface photography converts to grayscale and returns to colour on hover. Photography that carries evidence stays in full colour inside a frame.</p>
+      <p style="margin:0 0 22px;font-size:13px;line-height:1.6;color:var(--muted);max-width:64ch">Everything shot on a phone is portrait, so portrait is the default orientation. Landscape is reserved for screenshots and diagrams, which are landscape by nature. A portrait photograph is never cropped to a banner.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,232px),1fr));gap:clamp(22px,2.8vw,36px)">
+        <div style="min-width:0">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin-bottom:12px">Chrome · hover it</div>
+          <div style="display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap">
+            <div data-photo="data-photo" style="position:relative;width:132px;height:132px;flex:0 0 auto;border-radius:50%;overflow:hidden"><img src="images/burj-view.jpg" alt="Mikael Ribeiro" style="position:absolute;width:248%;height:auto;left:-121%;top:-36%;display:block" /></div>
+            <div data-photo="data-photo" style="position:relative;width:56px;height:56px;flex:0 0 auto;border-radius:50%;overflow:hidden"><img src="images/burj-view.jpg" alt="" style="position:absolute;width:248%;height:auto;left:-121%;top:-36%;display:block" /></div>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint);margin-top:12px;line-height:1.75;letter-spacing:0.04em">132px AND 56px · CIRCLE<br />GRAYSCALE(1) CONTRAST(1.04)<br />COLOUR ON HOVER, 300ms<br />INNER IMG AT 248%, ANCHORED<br />ON THE FACE NOT THE FRAME</div>
+        </div>
+
+        <div style="min-width:0">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin-bottom:12px">Evidence · full colour</div>
+          <figure style="margin:0">
+            <div style="border:1px solid var(--rule);padding:7px">
+              <img src="images/worldskills-lyon-2024.jpg" alt="WorldSkills Lyon 2024" style="display:block;width:100%;aspect-ratio:3/4;object-fit:cover;object-position:50% 22%" />
+            </div>
+            <figcaption style="font-size:12px;color:var(--muted);line-height:1.5;margin-top:10px;padding-left:11px;border-left:2px solid var(--rule)">WorldSkills Lyon, September 2024. Evidence keeps its colour.</figcaption>
+          </figure>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint);margin-top:12px;line-height:1.75;letter-spacing:0.04em">3:4 · 1px FRAME, 7px INSET<br />NO FILTER, NO RADIUS<br />CAPTION ALWAYS REQUIRED</div>
+        </div>
+
+        <div style="min-width:0">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin-bottom:12px">Mood · section break</div>
+          <img data-photo="data-photo" src="images/burj-view.jpg" alt="Looking out over the Dubai skyline" style="display:block;width:100%;aspect-ratio:3/4;object-fit:cover;object-position:50% 50%" />
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint);margin-top:12px;line-height:1.75;letter-spacing:0.04em">3:4 NATIVE · NO CROP<br />NO FRAME, NO CAPTION<br />GRAYSCALE UNTIL HOVERED<br />ONE PER PAGE AT MOST</div>
+        </div>
+
+        <div style="min-width:0">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin-bottom:12px">Screenshots · landscape</div>
+          <div style="position:relative;width:100%;aspect-ratio:16/9">
+            <image-slot id="mk-cover" shape="rect" placeholder="Drop a 16:9 screenshot"></image-slot>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint);margin-top:12px;line-height:1.75;letter-spacing:0.04em">16:9 · SQUARE CORNERS<br />FULL MEASURE WIDTH<br />UI AND DIAGRAMS ONLY<br />NEVER A CROPPED PORTRAIT</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:clamp(22px,2.8vw,36px);margin-top:clamp(24px,3vw,34px);padding-top:20px;border-top:1px solid var(--rule)">
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin-bottom:14px">Which tier</div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <p style="margin:0;font-size:12px;line-height:1.6;color:var(--ink-soft)"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint)">01</span> &nbsp;Does the photograph prove something? Full colour, framed, captioned.</p>
+            <p style="margin:0;font-size:12px;line-height:1.6;color:var(--ink-soft)"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint)">02</span> &nbsp;Is it interface, a portrait or a thumbnail? Grayscale, colour on hover.</p>
+            <p style="margin:0;font-size:12px;line-height:1.6;color:var(--ink-soft)"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint)">03</span> &nbsp;Is it atmosphere? Grayscale, unframed, and only where a page needs air.</p>
+            <p style="margin:0;font-size:12px;line-height:1.6;color:var(--ink-soft)"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint)">04</span> &nbsp;Personal photographs live on About and Now. Never inside a case study.</p>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin-bottom:14px">Crop</div>
+          <p style="margin:0 0 12px;font-size:13px;line-height:1.6;color:var(--ink-soft);max-width:44ch">Figures use the 3:4 frame as shot, with no crop at all. A circular portrait cannot be reached with object-fit when the subject sits off to one side, so the image is scaled inside the circle and offset until the face lands on the centre.</p>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.75;color:var(--faint);letter-spacing:0.04em">SOURCE 3000×4000 · 3:4<br />FIGURE 3:4 · NO CROP<br />CIRCLE 1:1 · INNER IMG 248%<br />NEVER 16:9 FROM A PORTRAIT</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="code" style="margin-bottom:clamp(40px,6vw,72px)" data-reveal="data-reveal">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding-bottom:10px;border-bottom:1px solid var(--ink);margin-bottom:22px">
+        <h2 style="margin:0;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600">09 · Code</h2>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint)">JetBrains Mono 600 · Dracula</span>
+      </div>
+
+      <p style="margin:0 0 22px;font-size:13px;line-height:1.6;color:var(--muted);max-width:64ch">Code never adopts the page theme. Every snippet is a dark Dracula card with window chrome, set in JetBrains Mono SemiBold with ligatures on, identical in light and dark mode, so a screenshot of a post reads the same wherever it lands.</p>
+
+      <figure style="margin:0 0 clamp(24px,3vw,32px);border-radius:12px;overflow:hidden;background:#111216;border:1px solid #232428;box-shadow:0 14px 40px rgba(0,0,0,0.32)">
+        <div style="display:flex;align-items:center;gap:16px;padding:13px 16px;flex-wrap:wrap">
+          <div style="display:flex;gap:8px;flex:0 0 auto">
+            <div style="width:12px;height:12px;border-radius:50%;background:#FF5555"></div>
+            <div style="width:12px;height:12px;border-radius:50%;background:#F1FA8C"></div>
+            <div style="width:12px;height:12px;border-radius:50%;background:#50FA7B"></div>
+          </div>
+          <div style="display:flex;gap:4px;align-items:center;flex-wrap:wrap;min-width:0">
+                <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#F8F8F2;background:#232428;border-radius:7px;padding:6px 12px;white-space:nowrap">score.action.ts</span>
+                <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6272A4;padding:6px 12px;white-space:nowrap">schema.ts</span>
+                <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6272A4;padding:6px 12px;white-space:nowrap">route.ts</span>
+          </div>
+        </div>
+        <div style="overflow-x:auto;padding:4px 20px 22px">
+          <pre data-code="data-code" style="margin:0;min-width:max-content;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:13px;line-height:1.75;color:#F8F8F2"><span style="color:#6272A4">// revalidate the trainee list after a score is filed
+</span><span style="color:#FF79C6">export async function</span> <span style="color:#50FA7B">fileScore</span>(<span style="color:#FFB86C;font-style:italic">input</span>: <span style="color:#8BE9FD">ScoreInput</span>) {
+  <span style="color:#FF79C6">const</span> parsed = <span style="color:#8BE9FD">scoreSchema</span>.<span style="color:#50FA7B">parse</span>(<span style="color:#FFB86C;font-style:italic">input</span>);
+  <span style="color:#FF79C6">await</span> <span style="color:#50FA7B">db</span>.<span style="color:#50FA7B">insert</span>(scores).<span style="color:#50FA7B">values</span>(parsed);
+
+  <span style="color:#50FA7B">revalidateTag</span>(<span style="color:#BD93F9">`trainee:${parsed.traineeId}`</span>);
+  <span style="color:#FF79C6">return</span> { ok: <span style="color:#BD93F9">true</span> };
+}</pre>
+        </div>
+      </figure>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:clamp(24px,3vw,40px)">
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin-bottom:14px">Syntax tokens</div>
+          <div style="display:flex;flex-direction:column;gap:9px">
+            <div style="display:flex;align-items:baseline;gap:10px"><span style="width:11px;height:11px;flex:0 0 auto;background:#FF79C6;border-radius:2px"></span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)">#FF79C6</span><span style="font-size:12px;color:var(--muted)">Keyword, operator</span></div>
+            <div style="display:flex;align-items:baseline;gap:10px"><span style="width:11px;height:11px;flex:0 0 auto;background:#8BE9FD;border-radius:2px"></span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)">#8BE9FD</span><span style="font-size:12px;color:var(--muted)">Type, class</span></div>
+            <div style="display:flex;align-items:baseline;gap:10px"><span style="width:11px;height:11px;flex:0 0 auto;background:#50FA7B;border-radius:2px"></span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)">#50FA7B</span><span style="font-size:12px;color:var(--muted)">Function, method</span></div>
+            <div style="display:flex;align-items:baseline;gap:10px"><span style="width:11px;height:11px;flex:0 0 auto;background:#FFB86C;border-radius:2px"></span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)">#FFB86C</span><span style="font-size:12px;color:var(--muted)">Parameter, italic</span></div>
+            <div style="display:flex;align-items:baseline;gap:10px"><span style="width:11px;height:11px;flex:0 0 auto;background:#BD93F9;border-radius:2px"></span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)">#BD93F9</span><span style="font-size:12px;color:var(--muted)">Number, string</span></div>
+            <div style="display:flex;align-items:baseline;gap:10px"><span style="width:11px;height:11px;flex:0 0 auto;background:#6272A4;border-radius:2px"></span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)">#6272A4</span><span style="font-size:12px;color:var(--muted)">Comment</span></div>
+            <div style="display:flex;align-items:baseline;gap:10px"><span style="width:11px;height:11px;flex:0 0 auto;background:#F8F8F2;border-radius:2px"></span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)">#F8F8F2</span><span style="font-size:12px;color:var(--muted)">Plain text</span></div>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin-bottom:14px">Card &amp; chrome</div>
+          <div style="display:flex;flex-direction:column;gap:9px">
+            <div style="display:flex;align-items:baseline;gap:10px"><span style="width:11px;height:11px;flex:0 0 auto;background:#111216;border-radius:2px;outline:1px solid var(--rule)"></span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)">#111216</span><span style="font-size:12px;color:var(--muted)">Card ground</span></div>
+            <div style="display:flex;align-items:baseline;gap:10px"><span style="width:11px;height:11px;flex:0 0 auto;background:#232428;border-radius:2px"></span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)">#232428</span><span style="font-size:12px;color:var(--muted)">Active tab chip</span></div>
+            <div style="display:flex;align-items:baseline;gap:8px"><span style="width:11px;height:11px;flex:0 0 auto;background:#FF5555;border-radius:50%"></span><span style="width:11px;height:11px;flex:0 0 auto;background:#F1FA8C;border-radius:50%"></span><span style="width:11px;height:11px;flex:0 0 auto;background:#50FA7B;border-radius:50%"></span><span style="font-size:12px;color:var(--muted);margin-left:2px">Traffic lights, 12px</span></div>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.8;color:var(--faint);letter-spacing:0.04em;margin-top:16px">RADIUS 12px · TAB CHIP 7px<br />BORDER 1px #232428<br />SHADOW 0 14px 40px rgba(0,0,0,.32)<br />CODE 13px / 1.75 · W600 · CALT<br />PAD 4px 20px 22px<br />SCROLLS X, NEVER WRAPS</div>
+        </div>
+
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin-bottom:14px">Inline code</div>
+          <p style="margin:0 0 16px;font-size:15px;line-height:1.9;color:var(--ink-soft)">Set <code data-code="data-code" style="font-family:'JetBrains Mono',monospace;font-weight:600;font-size:13px;background:#111216;color:#F8F8F2;border:1px solid #232428;border-radius:4px;padding:2px 6px">border-radius</code> to zero and the card stops reading as a window.</p>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.8;color:var(--faint);letter-spacing:0.04em">13px · #F8F8F2 ON #111216<br />BORDER 1px #232428<br />RADIUS 4px · PAD 2px 6px<br />HOST LINE-HEIGHT 1.9<br />TO CLEAR THE CHIP</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin:22px 0 12px">Rules</div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <p style="margin:0;font-size:12px;line-height:1.6;color:var(--ink-soft)"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint)">01</span> &nbsp;Dracula regardless of page theme. Code is a foreign object.</p>
+            <p style="margin:0;font-size:12px;line-height:1.6;color:var(--ink-soft)"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint)">02</span> &nbsp;Always a real filename in the tab. Never "example" or "snippet".</p>
+            <p style="margin:0;font-size:12px;line-height:1.6;color:var(--ink-soft)"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint)">03</span> &nbsp;Traffic lights are decoration and carry no interaction.</p>
+            <p style="margin:0;font-size:12px;line-height:1.6;color:var(--ink-soft)"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint)">04</span> &nbsp;Twelve lines maximum. Longer belongs in a gist.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <sc-if value="{{ showArticle }}" hint-placeholder-val="{{ true }}">
+      <section id="article" style="margin-bottom:clamp(40px,6vw,72px)" data-reveal="data-reveal">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding-bottom:10px;border-bottom:1px solid var(--ink);margin-bottom:22px">
+          <h2 style="margin:0;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600">10 · Article</h2>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint)">Blog post in situ</span>
+        </div>
+
+        <div data-artgrid="data-artgrid">
+        <article style="min-width:0">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:14px;font-variant-numeric:tabular-nums">14 March 2026 · 8 min · Architecture</div>
+          <h3 style="margin:0 0 16px;font-family:'Poppins',sans-serif;font-weight:600;font-size:clamp(24px,3.4vw,38px);line-height:1.08;letter-spacing:-0.03em">Clean architecture in a government codebase</h3>
+          <p style="margin:0 0 22px;font-family:'Poppins',sans-serif;font-weight:400;font-size:20px;line-height:1.5;letter-spacing:-0.01em;max-width:44ch">What survives contact with a ten-year-old Oracle schema, and what you quietly give up.</p>
+
+          <h4 id="a-contract" style="margin:0 0 12px;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;scroll-margin-top:24px">The schema is the contract</h4>
+
+          <p style="margin:0 0 18px;font-size:15px;line-height:1.7;color:var(--ink-soft)">Every layered-architecture diagram assumes you own the data model. In a system that has been running since before you arrived, you do not. The schema is the contract, and the domain has to be reconstructed around it rather than derived from it.</p>
+
+          <p style="margin:0 0 18px;font-size:15px;line-height:1.7;color:var(--ink-soft)">The pragmatic version keeps the boundary at the repository and lets <code data-code="data-code" style="font-family:'JetBrains Mono',monospace;font-weight:600;font-size:13px;background:#111216;color:#F8F8F2;border:1px solid #232428;border-radius:4px;padding:2px 6px">Entity Framework</code> map to views instead of tables. Reads go through projections, writes go through stored procedures that already encode two years of business rules nobody documented.</p>
+
+          <h4 id="a-boundary" style="margin:32px 0 12px;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;scroll-margin-top:24px">Where the boundary lands</h4>
+
+          <figure style="margin:0 0 18px;border-radius:12px;overflow:hidden;background:#111216;border:1px solid #232428;box-shadow:0 14px 40px rgba(0,0,0,0.32)">
+            <div style="display:flex;align-items:center;gap:16px;padding:13px 16px;flex-wrap:wrap">
+              <div style="display:flex;gap:8px;flex:0 0 auto">
+                <div style="width:12px;height:12px;border-radius:50%;background:#FF5555"></div>
+                <div style="width:12px;height:12px;border-radius:50%;background:#F1FA8C"></div>
+                <div style="width:12px;height:12px;border-radius:50%;background:#50FA7B"></div>
+              </div>
+              <div style="display:flex;gap:4px;align-items:center;flex-wrap:wrap;min-width:0">
+                <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#F8F8F2;background:#232428;border-radius:7px;padding:6px 12px;white-space:nowrap">TraineeRepository.cs</span>
+                <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6272A4;padding:6px 12px;white-space:nowrap">ITraineeRepository.cs</span>
+              </div>
+            </div>
+            <div style="overflow-x:auto;padding:4px 20px 22px">
+              <pre data-code="data-code" style="margin:0;min-width:max-content;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:13px;line-height:1.75;color:#F8F8F2"><span style="color:#FF79C6">public sealed class</span> <span style="color:#8BE9FD">TraineeRepository</span> : <span style="color:#8BE9FD">ITraineeRepository</span>
+{
+    <span style="color:#FF79C6">private readonly</span> <span style="color:#8BE9FD">AdvetiContext</span> _db;
+
+    <span style="color:#FF79C6">public</span> <span style="color:#8BE9FD">Task</span>&lt;<span style="color:#8BE9FD">Trainee</span>?&gt; <span style="color:#50FA7B">FindAsync</span>(<span style="color:#8BE9FD">TraineeId</span> <span style="color:#FFB86C;font-style:italic">id</span>, <span style="color:#8BE9FD">CancellationToken</span> <span style="color:#FFB86C;font-style:italic">ct</span>) <span style="color:#FF79C6">=&gt;</span>
+        _db.TraineeView
+           .<span style="color:#50FA7B">Where</span>(<span style="color:#FFB86C;font-style:italic">t</span> <span style="color:#FF79C6">=&gt;</span> <span style="color:#FFB86C;font-style:italic">t</span>.Id <span style="color:#FF79C6">==</span> <span style="color:#FFB86C;font-style:italic">id</span>.Value)
+           .<span style="color:#50FA7B">Select</span>(<span style="color:#8BE9FD">TraineeMapping</span>.ToDomain)
+           .<span style="color:#50FA7B">SingleOrDefaultAsync</span>(<span style="color:#FFB86C;font-style:italic">ct</span>);
+}</pre>
+            </div>
+          </figure>
+
+          <h4 id="a-buys" style="margin:32px 0 12px;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;scroll-margin-top:24px">What it buys you</h4>
+
+          <ul style="margin:0 0 18px;padding-left:20px;font-size:15px;line-height:1.7;color:var(--ink-soft)">
+            <li style="margin-bottom:7px">The domain type never sees an Oracle column name.</li>
+            <li style="margin-bottom:7px">The view absorbs schema drift; the mapping is the only thing that changes.</li>
+            <li style="margin-bottom:0">Integration tests run against a real Oracle container, not an in-memory fake.</li>
+          </ul>
+
+          <blockquote style="margin:0 0 18px;padding-left:18px;border-left:2px solid var(--ink)">
+            <p style="margin:0;font-family:'Poppins',sans-serif;font-weight:400;font-size:19px;line-height:1.55;letter-spacing:-0.01em;color:var(--ink)">You are not refactoring towards a diagram. You are buying the ability to change one thing without reading everything.</p>
+          </blockquote>
+
+          <div style="margin:0 0 10px;position:relative;width:100%;aspect-ratio:16/9">
+            <image-slot id="mk-article-fig" shape="rect" placeholder="Drop a diagram or screenshot"></image-slot>
+          </div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:22px;padding-left:11px;border-left:2px solid var(--rule)">The read path after the change. Writes still land in the procedures on the right.</div>
+
+          <h4 id="a-after" style="margin:32px 0 12px;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;scroll-margin-top:24px">Two years on</h4>
+
+          <p style="margin:0 0 28px;font-size:15px;line-height:1.7;color:var(--ink-soft)">Two years in, the boundary has held. The parts that broke were the ones where we let a controller reach past it because a deadline made the shortcut look cheap.</p>
+
+          <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;padding-top:20px;border-top:1px solid var(--rule)">
+            <a href="#" style="background:var(--ink);color:var(--on-ink);font-size:13px;font-weight:500;padding:13px 20px;border-radius:4px;white-space:nowrap;flex:0 0 auto;transition:background 120ms" style-hover="background:var(--ink-hover)">Read next ↗</a>
+            <a href="#" style="border:1px solid var(--rule);color:var(--ink);font-size:13px;padding:12px 19px;border-radius:4px;white-space:nowrap;flex:0 0 auto;transition:border-color 120ms" style-hover="border-color:var(--ink)">All posts</a>
+          </div>
+        </article>
+
+        <aside data-toclist="data-toclist">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin-bottom:12px">On this page</div>
+          <nav style="display:flex;flex-direction:column">
+            <a data-toc="data-toc" aria-current="{{ tocContract }}" href="#a-contract">The schema is the contract</a>
+            <a data-toc="data-toc" aria-current="{{ tocBoundary }}" href="#a-boundary">Where the boundary lands</a>
+            <a data-toc="data-toc" aria-current="{{ tocBuys }}" href="#a-buys">What it buys you</a>
+            <a data-toc="data-toc" aria-current="{{ tocAfter }}" href="#a-after">Two years on</a>
+          </nav>
+          <div style="height:1px;background:var(--rule);margin:16px 0 13px"></div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint);letter-spacing:0.04em;line-height:1.8">4 SECTIONS · 8 MIN<br />ACTIVE MARK FOLLOWS SCROLL<br />BESIDE THE TEXT FROM 1180px,<br />ABOVE IT BELOW THAT</div>
+        </aside>
+        </div>
+      </section>
+    </sc-if>
+
+    <section id="motion" style="margin-bottom:clamp(40px,6vw,72px)" data-reveal="data-reveal">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding-bottom:10px;border-bottom:1px solid var(--ink);margin-bottom:22px">
+        <h2 style="margin:0;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600">11 · Motion</h2>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint)">Scroll-driven</span>
+      </div>
+
+      <p style="margin:0 0 22px;font-size:13px;line-height:1.6;color:var(--muted);max-width:64ch">Nothing animates on a timer. Every motion in the system is tied to scroll position, so it is reversible and never blocks reading. Four primitives, and a hard stop for anyone who asks for reduced motion.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));border-top:1px solid var(--rule);border-left:1px solid var(--rule);margin-bottom:26px">
+        <div style="padding:16px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+          <div style="font-size:13px;font-weight:500;margin-bottom:8px">Section reveal</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.75;color:var(--faint);letter-spacing:0.04em">opacity 0 → 1<br />translateY 16px → 0<br />timeline: view()<br />range: entry 0% cover 26%</div>
+        </div>
+        <div style="padding:16px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+          <div style="font-size:13px;font-weight:500;margin-bottom:8px">Read progress</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.75;color:var(--faint);letter-spacing:0.04em">scaleX 0 → 1<br />timeline: scroll(root)<br />2px, ink, fixed top<br />the only fixed element</div>
+        </div>
+        <div style="padding:16px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+          <div style="font-size:13px;font-weight:500;margin-bottom:8px">Rule draw</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.75;color:var(--faint);letter-spacing:0.04em">scaleX 0 → 1<br />transform-origin 0 50%<br />range: entry 0% cover 18%<br />dividers only</div>
+        </div>
+        <div style="padding:16px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+          <div style="font-size:13px;font-weight:500;margin-bottom:8px">Smooth scroll</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.75;color:var(--faint);letter-spacing:0.04em">scroll-behavior: smooth<br />on :root, body and both rails<br />native, so scroll() timelines<br />stay in sync · auto on reduce</div>
+        </div>
+        <div style="padding:16px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+          <div style="font-size:13px;font-weight:500;margin-bottom:8px">Pointer response</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.75;color:var(--faint);letter-spacing:0.04em">120ms linear<br />background or border only<br />nothing scales<br />nothing lifts</div>
+        </div>
+      </div>
+
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin-bottom:12px">Live: scroll past this</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:12px">
+        <div style="border:1px solid var(--rule);border-radius:4px;padding:20px 16px" data-reveal="data-reveal">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint);margin-bottom:8px">01</div>
+          <div style="font-size:13px;line-height:1.5;color:var(--ink-soft)">Each card carries the reveal independently.</div>
+        </div>
+        <div style="border:1px solid var(--rule);border-radius:4px;padding:20px 16px" data-reveal="data-reveal">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint);margin-bottom:8px">02</div>
+          <div style="font-size:13px;line-height:1.5;color:var(--ink-soft)">Scroll back up and it plays in reverse.</div>
+        </div>
+        <div style="border:1px solid var(--rule);border-radius:4px;padding:20px 16px" data-reveal="data-reveal">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint);margin-bottom:8px">03</div>
+          <div style="font-size:13px;line-height:1.5;color:var(--ink-soft)">No observers, no JavaScript, no jank.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="diagrams" style="margin-bottom:clamp(40px,6vw,72px)" data-reveal="data-reveal">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding-bottom:10px;border-bottom:1px solid var(--ink);margin-bottom:22px">
+        <h2 style="margin:0;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600">12 · Diagrams</h2>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint)">Canvas · loops in view</span>
+      </div>
+
+      <p style="margin:0 0 20px;font-size:13px;line-height:1.6;color:var(--muted);max-width:64ch">For the posts where a paragraph cannot carry the idea. One canvas, the page palette, no colour except the signal for failure. It draws only while it is on screen and holds a single static frame under reduced motion.</p>
+
+      <figure style="margin:0 0 14px">
+        <div style="position:relative;width:100%;aspect-ratio:16/7;min-height:200px;max-height:320px;border:1px solid var(--rule);border-radius:4px;overflow:hidden;background:var(--bg)">
+          <canvas ref="{{ lbCanvas }}" style="display:block;width:100%;height:100%"></canvas>
+        </div>
+        <figcaption style="font-size:12px;color:var(--muted);line-height:1.5;margin-top:10px;padding-left:11px;border-left:2px solid var(--rule)">One node takes every request until its queue overflows and it starts dropping. The balancer splits the same arrival rate across two, and both queues settle below capacity.</figcaption>
+      </figure>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:clamp(24px,3vw,40px);margin-top:clamp(20px,2.6vw,28px)">
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin-bottom:14px">Spec</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.85;color:var(--faint);letter-spacing:0.04em">ASPECT 16:7 · 200–320px TALL<br />LOOP 13s · 4 PHASES<br />PARTICLE 2.4px · TRANSIT 2.2s<br />DPR CAPPED AT 2<br />SKIPS DRAW WHEN OFFSCREEN<br />STATIC FRAME ON REDUCE</div>
+        </div>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin-bottom:14px">Reads the theme</div>
+          <p style="margin:0 0 12px;font-size:13px;line-height:1.6;color:var(--ink-soft);max-width:44ch">The canvas pulls Ink, Faint, Rule and Signal straight off the root at paint time, so it follows the Dark and Light switch with no second palette to maintain.</p>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.85;color:var(--faint);letter-spacing:0.04em">INK · nodes, active queue<br />FAINT · idle strokes, labels<br />RULE · paths, capacity track<br />SIGNAL · overflow only</div>
+        </div>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin-bottom:14px">Rules</div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <p style="margin:0;font-size:12px;line-height:1.6;color:var(--ink-soft)"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint)">01</span> &nbsp;One idea per diagram. If it needs a legend, it needs splitting.</p>
+            <p style="margin:0;font-size:12px;line-height:1.6;color:var(--ink-soft)"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint)">02</span> &nbsp;The loop must be readable from any entry point, with no start button.</p>
+            <p style="margin:0;font-size:12px;line-height:1.6;color:var(--ink-soft)"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint)">03</span> &nbsp;Labels in JetBrains Mono at 10px, never smaller.</p>
+            <p style="margin:0;font-size:12px;line-height:1.6;color:var(--ink-soft)"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint)">04</span> &nbsp;Always a caption. The diagram supports the prose, it does not replace it.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <sc-if value="{{ showContrast }}" hint-placeholder-val="{{ true }}">
+      <section id="audit" style="margin-bottom:clamp(40px,6vw,72px)" data-reveal="data-reveal">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding-bottom:10px;border-bottom:1px solid var(--ink);margin-bottom:22px">
+          <h2 style="margin:0;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600">13 · Contrast audit</h2>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint)">WCAG AA · 4.5:1 floor</span>
+        </div>
+
+        <div style="border-top:1px solid var(--rule)">
+          <div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,0.8fr) minmax(0,1.8fr);padding:9px 0;border-bottom:1px solid var(--rule);background:var(--raised)">
+            <div style="padding:0 12px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted)">Pair</div>
+            <div style="padding:0 12px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted)">Dark / light</div>
+            <div style="padding:0 12px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted)">Used at</div>
+          </div>
+          <div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,0.8fr) minmax(0,1.8fr);padding:11px 0;border-bottom:1px solid var(--rule)">
+            <div style="padding:0 12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink)">ink on ground</div>
+            <div style="padding:0 12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums">19.8 / 21.0</div>
+            <div style="padding:0 12px;font-size:12px;color:var(--muted)">Titles, all sizes</div>
+          </div>
+          <div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,0.8fr) minmax(0,1.8fr);padding:11px 0;border-bottom:1px solid var(--rule)">
+            <div style="padding:0 12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink)">ink-soft on ground</div>
+            <div style="padding:0 12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums">13.8 / 10.4</div>
+            <div style="padding:0 12px;font-size:12px;color:var(--muted)">Body, 15px</div>
+          </div>
+          <div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,0.8fr) minmax(0,1.8fr);padding:11px 0;border-bottom:1px solid var(--rule)">
+            <div style="padding:0 12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink)">muted on ground</div>
+            <div style="padding:0 12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums">7.8 / 7.4</div>
+            <div style="padding:0 12px;font-size:12px;color:var(--muted)">Small copy, 12–13px</div>
+          </div>
+          <div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,0.8fr) minmax(0,1.8fr);padding:11px 0;border-bottom:1px solid var(--rule)">
+            <div style="padding:0 12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink)">faint on ground</div>
+            <div style="padding:0 12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums">6.1 / 4.7</div>
+            <div style="padding:0 12px;font-size:12px;color:var(--muted)">Mono meta, 10–11px. Floor of the scale in both themes.</div>
+          </div>
+          <div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,0.8fr) minmax(0,1.8fr);padding:11px 0;border-bottom:1px solid var(--rule)">
+            <div style="padding:0 12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink)">faint on raised</div>
+            <div style="padding:0 12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums">5.6 / 4.5</div>
+            <div style="padding:0 12px;font-size:12px;color:var(--muted)">Meta inside a hovered row</div>
+          </div>
+          <div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,0.8fr) minmax(0,1.8fr);padding:11px 0;border-bottom:1px solid var(--rule)">
+            <div style="padding:0 12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink)">on-ink on ink</div>
+            <div style="padding:0 12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums">19.8 / 21.0</div>
+            <div style="padding:0 12px;font-size:12px;color:var(--muted)">Primary button, selected tag</div>
+          </div>
+          <div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,0.8fr) minmax(0,1.8fr);padding:11px 0;border-bottom:1px solid var(--rule)">
+            <div style="padding:0 12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink)">on-ink on ink-hover</div>
+            <div style="padding:0 12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums">15.7 / 12.6</div>
+            <div style="padding:0 12px;font-size:12px;color:var(--muted)">Primary button hover</div>
+          </div>
+          <div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,0.8fr) minmax(0,1.8fr);padding:11px 0;border-bottom:1px solid var(--rule)">
+            <div style="padding:0 12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink)">muted on sunken</div>
+            <div style="padding:0 12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums">6.5 / 7.0</div>
+            <div style="padding:0 12px;font-size:12px;color:var(--muted)">Disabled button and field text</div>
+          </div>
+          <div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,0.8fr) minmax(0,1.8fr);padding:11px 0;border-bottom:1px solid var(--rule)">
+            <div style="padding:0 12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink)">signal on ground</div>
+            <div style="padding:0 12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums">6.7 / 5.9</div>
+            <div style="padding:0 12px;font-size:12px;color:var(--muted)">Error border and message, 11px</div>
+          </div>
+        </div>
+
+        <p style="margin:20px 0 0;font-size:13px;line-height:1.6;color:var(--muted);max-width:64ch">The rule token never carries text. Because the palette has no hue, no state depends on colour perception alone. Every state also changes weight, fill or border. Both themes clear 4.5:1 on every pair above.</p>
+      </section>
+    </sc-if>
+
+    <footer style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:16px;border-top:1px solid var(--ink)">
+      <a href="#" style="font-size:13px;font-weight:500" style-hover="color:var(--muted)">mikaelrsimoes19@gmail.com</a>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint);letter-spacing:0.08em;text-transform:uppercase">Ledger v0.3 · Mikael Ribeiro</span>
+    </footer>
+
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;dark&quot;,&quot;light&quot;],&quot;default&quot;:&quot;dark&quot;,&quot;tsType&quot;:&quot;'dark' | 'light'&quot;,&quot;section&quot;:&quot;Theme&quot;,&quot;label&quot;:&quot;Default theme&quot;},&quot;showStates&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Sections&quot;,&quot;label&quot;:&quot;Button state matrix&quot;},&quot;showArticle&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Sections&quot;,&quot;label&quot;:&quot;Article specimen&quot;},&quot;showContrast&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Sections&quot;,&quot;label&quot;:&quot;Contrast audit&quot;}}">
+class Component extends DCLogic {
+  state = { theme: null, active: 'a-contract' };
+  _lb = React.createRef();
+
+  _readColors() {
+    const cs = getComputedStyle(document.documentElement);
+    const g = (n, fb) => (cs.getPropertyValue(n) || '').trim() || fb;
+    this._c = {
+      ink: g('--ink', '#ffffff'), faint: g('--faint', '#8F8F8F'),
+      rule: g('--rule', '#2E2E2E'), muted: g('--muted', '#A1A1A1'),
+      signal: g('--signal', '#FF6166'), bg: g('--bg', '#0A0A0A')
+    };
+  }
+
+  _startDiagram() {
+    const ss = (a, b, x) => { const u = Math.max(0, Math.min(1, (x - a) / (b - a))); return u * u * (3 - 2 * u); };
+    const lerp = (a, b, u) => a + (b - a) * u;
+    const LOOP = 13000, TRANSIT = 2200;
+    this._parts = [];
+    this._spawn = 0;
+    this._dropped = 0;
+    this._prev = 0;
+
+    const rr = (ctx, x, y, w, h, r) => {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.arcTo(x + w, y, x + w, y + h, r);
+      ctx.arcTo(x + w, y + h, x, y + h, r);
+      ctx.arcTo(x, y + h, x, y, r);
+      ctx.arcTo(x, y, x + w, y, r);
+      ctx.closePath();
+    };
+
+    const draw = (t, dt) => {
+      const cv = this._lb.current;
+      if (!cv) return;
+      const ctx = cv.getContext('2d');
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const w = cv.clientWidth, h = cv.clientHeight;
+      if (!w || !h) return;
+      if (cv.width !== Math.round(w * dpr) || cv.height !== Math.round(h * dpr)) {
+        cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+      }
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, w, h);
+      const C = this._c;
+
+      const bal = ss(6000, 7400, t);
+      const ovr = ss(1400, 4400, t) * (1 - bal);
+      const qA = lerp(0.14 + ovr * 1.16, 0.42, bal);
+      const qB = bal * 0.42;
+      const over = qA > 1;
+
+      const k = Math.max(0.85, Math.min(1.5, h / 240));
+      const sx = w * 0.09, sy = h * 0.5;
+      const bx = w * 0.41;
+      const nx = w * 0.75, nw = Math.min(104 * k, w * 0.18), nh = 46 * k;
+      const ayA = lerp(h * 0.5, h * 0.3, bal), ayB = h * 0.72;
+
+      // paths
+      ctx.strokeStyle = C.rule; ctx.lineWidth = 1;
+      const path = (ty, a) => {
+        ctx.globalAlpha = a; ctx.beginPath(); ctx.moveTo(sx + 9, sy);
+        ctx.quadraticCurveTo(bx, sy, nx - nw / 2, ty); ctx.stroke(); ctx.globalAlpha = 1;
+      };
+      path(ayA, 1); path(ayB, bal);
+
+      // balancer
+      if (bal > 0.01) {
+        ctx.globalAlpha = bal;
+        ctx.fillStyle = C.bg; ctx.strokeStyle = C.ink; ctx.lineWidth = 1;
+        rr(ctx, bx - 17 * k, sy - 17 * k, 34 * k, 34 * k, 5); ctx.fill(); ctx.stroke();
+        ctx.fillStyle = C.ink; ctx.font = "600 11px 'JetBrains Mono', monospace";
+        ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.fillText('lb', bx, sy + 1);
+        ctx.globalAlpha = 1;
+      }
+
+      // source
+      ctx.fillStyle = C.ink; ctx.beginPath(); ctx.arc(sx, sy, 5, 0, 6.2832); ctx.fill();
+      ctx.fillStyle = C.faint; ctx.font = "400 10px 'JetBrains Mono', monospace";
+      ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+      ctx.save(); ctx.translate(sx - 9, sy); ctx.rotate(-Math.PI / 2);
+      ctx.textAlign = 'center'; ctx.fillText('REQUESTS', 0, -4); ctx.restore();
+
+      // particles
+      this._spawn -= dt;
+      if (this._spawn <= 0) {
+        this._spawn = 105;
+        const toB = bal > 0.5 ? (Math.random() < bal * 0.52) : false;
+        this._parts.push({ u: 0, b: toB, drop: !toB && over, a: 1 });
+      }
+      for (const p of this._parts) {
+        p.u += dt / TRANSIT;
+        const ty = p.b ? ayB : ayA;
+        const cut = p.drop ? 0.9 : 1;
+        const u = Math.min(p.u, cut);
+        const iv = 1 - u;
+        const px = iv * iv * (sx + 9) + 2 * iv * u * bx + u * u * (nx - nw / 2);
+        const py = iv * iv * sy + 2 * iv * u * sy + u * u * ty;
+        if (p.drop && p.u > cut) { p.a -= dt / 520; }
+        const fall = p.drop && p.u > cut ? (p.u - cut) * TRANSIT * 0.16 : 0;
+        if (p.a <= 0) continue;
+        ctx.globalAlpha = Math.max(0, p.a);
+        ctx.fillStyle = p.drop ? C.signal : C.ink;
+        ctx.beginPath(); ctx.arc(px, py + fall, 2.4, 0, 6.2832); ctx.fill();
+        ctx.globalAlpha = 1;
+      }
+      this._parts = this._parts.filter(p => p.a > 0 && (p.drop || p.u < 1));
+
+      // nodes
+      const node = (y, q, label, alpha, hot) => {
+        if (alpha <= 0.01) return;
+        ctx.globalAlpha = alpha;
+        ctx.fillStyle = C.bg; ctx.strokeStyle = hot ? C.signal : C.faint; ctx.lineWidth = 1;
+        rr(ctx, nx - nw / 2, y - nh / 2, nw, nh, 5); ctx.fill(); ctx.stroke();
+        ctx.fillStyle = hot ? C.signal : C.muted;
+        ctx.font = "400 10px 'JetBrains Mono', monospace";
+        ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
+        ctx.fillText(label, nx, y - 7);
+        const bw = nw - 22 * k, bx0 = nx - bw / 2, by0 = y + 6 * k;
+        ctx.fillStyle = C.rule; rr(ctx, bx0, by0, bw, 5 * k, 2.5); ctx.fill();
+        ctx.fillStyle = hot ? C.signal : C.ink;
+        rr(ctx, bx0, by0, bw * Math.max(0, Math.min(1, q)), 5 * k, 2.5); ctx.fill();
+        ctx.fillStyle = hot ? C.signal : C.faint;
+        ctx.font = "400 10px 'JetBrains Mono', monospace";
+        ctx.fillText(Math.round(Math.min(q, 1) * 100) + '%', nx, y + nh / 2 + 15);
+        ctx.globalAlpha = 1;
+      };
+      node(ayA, qA, 'web-01', 1, over);
+      node(ayB, qB, 'web-02', bal, false);
+
+      // phase label + drop counter
+      if (over) this._dropped += dt / 105 * 0.5;
+      if (t < 400) this._dropped = 0;
+      ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
+      ctx.font = "400 10px 'JetBrains Mono', monospace";
+      ctx.globalAlpha = 1 - bal;
+      ctx.fillStyle = C.faint; ctx.fillText('ONE NODE', 14, 22);
+      ctx.globalAlpha = bal;
+      ctx.fillStyle = C.faint; ctx.fillText('BALANCED ACROSS TWO', 14, 22);
+      ctx.globalAlpha = 1;
+      if (over) {
+        ctx.fillStyle = C.signal;
+        ctx.fillText('DROPPING · ' + Math.floor(this._dropped), 14, 38);
+      }
+    };
+
+    const el = this._lbNode || document.querySelector('#diagrams canvas');
+    if (!el) throw new Error('diagram canvas not in the DOM');
+    this._lb.current = el;
+    if (this._stopDiagram) this._stopDiagram();
+
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      this._readColors();
+      requestAnimationFrame(() => draw(9000, 16));
+      this._reduced = true;
+      return;
+    }
+
+    // a rect test, not IntersectionObserver: an implicit-root observer reports
+    // rootBounds null and never intersects inside a cross-origin iframe
+    let raf = 0, t0 = 0, last = 0, fc = 0, vis = true;
+    const tick = (now) => {
+      if (!t0) { t0 = now; last = now; }
+      const dt = Math.min(now - last, 48); last = now;
+      if ((fc++ % 6) === 0) {
+        const r = el.getBoundingClientRect();
+        vis = r.bottom > 0 && r.top < (window.innerHeight || document.documentElement.clientHeight);
+      }
+      if (vis) draw((now - t0) % LOOP, dt);
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    this._stopDiagram = () => { if (raf) cancelAnimationFrame(raf); raf = 0; };
+  }
+
+  componentDidUpdate() { this._readColors(); }
+
+  componentDidMount() {
+    this._readColors();
+    this._ids = ['a-contract', 'a-boundary', 'a-buys', 'a-after'];
+    // offsetTop is immune to the reveal transform, unlike getBoundingClientRect
+    const absTop = (n) => { let y = 0; while (n) { y += n.offsetTop; n = n.offsetParent; } return y; };
+    this._onScroll = () => {
+      const line = window.scrollY + 120;
+      let active = this._ids[0];
+      for (const id of this._ids) {
+        const el = document.getElementById(id);
+        if (el && absTop(el) <= line) active = id;
+      }
+      if (active !== this.state.active) this.setState({ active });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    this._onScroll();
+  }
+  componentWillUnmount() {
+    if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
+  }
+  renderVals() {
+    // renderVals is the only hook that provably runs in this runtime, so the
+    // diagram boots from here and retries without a bound until the node exists
+    if (!this._kicked) {
+      this._kicked = true;
+      const boot = () => {
+        const el = this._lbNode || document.querySelector('#diagrams canvas');
+        if (!el) { setTimeout(boot, 150); return; }
+        try {
+          this._lbNode = el;
+          this._readColors();
+          this._startDiagram();
+        } catch (e) {
+          console.error('diagram failed to start', e);
+        }
+      };
+      setTimeout(boot, 0);
+    }
+    const theme = this.state.theme ?? this.props.theme ?? 'dark';
+    const at = (id) => (this.state.active === id ? 'true' : 'false');
+    return {
+      theme,
+      lbCanvas: (node) => { if (node) this._lbNode = node; },
+      tocContract: at('a-contract'),
+      tocBoundary: at('a-boundary'),
+      tocBuys: at('a-buys'),
+      tocAfter: at('a-after'),
+      isDark: theme === 'dark' ? 'true' : 'false',
+      isLight: theme === 'light' ? 'true' : 'false',
+      setDark: () => this.setState({ theme: 'dark' }),
+      setLight: () => this.setState({ theme: 'light' }),
+      showStates: this.props.showStates ?? true,
+      showArticle: this.props.showArticle ?? true,
+      showContrast: this.props.showContrast ?? true
+    };
+  }
+}
+</script>
+</body>
+</html>

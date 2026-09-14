@@ -1,0 +1,35 @@
+<!-- @dsCard group="Components" viewport="700x300" name="Content" subtitle="Entry rows, avatar and photography tiers" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{padding:18px}</style>
+</head>
+<body>
+<div id="root"></div>
+<script>function ds(){var n=[].slice.call(arguments);for(var k in window){try{var v=window[k];if(v&&typeof v==='object'&&n.every(function(x){return typeof v[x]==='function'}))return v}catch(e){}}return {}}</script>
+<script type="text/babel">
+const { EntryRow, Avatar } = ds('EntryRow', 'Avatar');
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <div style={{display:'flex',flexDirection:'column',gap:18}}>
+    <div style={{display:'flex',gap:14,alignItems:'center'}}>
+      <Avatar src="../../assets/burj-view.jpg" alt="Mikael Ribeiro" size={56} />
+      <Avatar src="../../assets/burj-view.jpg" alt="" size={40} />
+      <span style={{fontFamily:'var(--font-mono)',fontSize:10,letterSpacing:'0.14em',textTransform:'uppercase',color:'var(--faint)'}}>Hover for colour</span>
+    </div>
+    <div style={{borderTop:'1px solid var(--rule)'}}>
+      <EntryRow date="2025" kicker="ADVETI" title="Student Management Platform"
+        summary="Training tracking and reporting for Emirates Skills competitors. Next.js and MariaDB." />
+      <EntryRow date="03·26" duration="8 min" title="Clean architecture in a government codebase"
+        summary="What survives contact with a ten-year-old Oracle schema." />
+    </div>
+  </div>
+);
+</script>
+</body>
+</html>

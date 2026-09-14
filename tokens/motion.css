@@ -1,0 +1,48 @@
+/* All motion is scroll-driven and reversible. Nothing runs on a timer.
+   Everything stops under prefers-reduced-motion. */
+:root {
+  --dur-pointer: 120ms;
+  --dur-photo: 300ms;
+  --ease: linear;
+
+  --reveal-offset: 16px;
+  --reveal-range: entry 0% cover 26%;
+  --rule-range: entry 0% cover 18%;
+  --progress-height: 2px;
+}
+
+@keyframes ds-reveal {
+  from { opacity: 0; transform: translateY(var(--reveal-offset)); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes ds-bar {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+[data-reveal] {
+  animation: ds-reveal 1s var(--ease) both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 26%;
+}
+[data-progress] {
+  animation: ds-bar 1s var(--ease) both;
+  animation-timeline: scroll(root);
+  transform-origin: 0 50%;
+}
+[data-rule] {
+  animation: ds-bar 1s var(--ease) both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 18%;
+  transform-origin: 0 50%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root, body { scroll-behavior: auto !important; }
+  [data-reveal], [data-progress], [data-rule] {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  [data-photo] { transition: none !important; }
+}

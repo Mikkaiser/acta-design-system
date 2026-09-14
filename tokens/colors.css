@@ -1,0 +1,45 @@
+/* Monochrome by rule. No hue carries meaning anywhere in the interface.
+   Dark is the default; light is opt-in via [data-theme="light"] on the root. */
+:root {
+  color-scheme: dark;
+
+  --bg: #0A0A0A;
+  --raised: #171717;
+  --sunken: #1F1F1F;
+  --rule: #2E2E2E;
+  --faint: #8F8F8F;
+  --muted: #A1A1A1;
+  --ink-soft: #D4D4D4;
+  --ink: #FFFFFF;
+  --ink-hover: #E5E5E5;
+  --on-ink: #0A0A0A;
+  --signal: #FF6166;
+
+  --surface-page: var(--bg);
+  --surface-hover: var(--raised);
+  --surface-disabled: var(--sunken);
+  --border-hairline: var(--rule);
+  --border-strong: var(--ink);
+  --text-heading: var(--ink);
+  --text-body: var(--ink-soft);
+  --text-secondary: var(--muted);
+  --text-meta: var(--faint);
+  --text-error: var(--signal);
+}
+
+:root:has([data-theme="light"]),
+[data-theme="light"] {
+  color-scheme: light;
+
+  --bg: #FFFFFF;
+  --raised: #FAFAFA;
+  --sunken: #F5F5F5;
+  --rule: #EBEBEB;
+  --faint: #737373;
+  --muted: #525252;
+  --ink-soft: #404040;
+  --ink: #000000;
+  --ink-hover: #333333;
+  --on-ink: #FFFFFF;
+  --signal: #CC0000;
+}

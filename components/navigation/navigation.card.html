@@ -1,0 +1,31 @@
+<!-- @dsCard group="Components" viewport="700x190" name="Navigation" subtitle="Article contents with the active mark" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{padding:18px}</style>
+</head>
+<body>
+<div id="root"></div>
+<script>function ds(){var n=[].slice.call(arguments);for(var k in window){try{var v=window[k];if(v&&typeof v==='object'&&n.every(function(x){return typeof v[x]==='function'}))return v}catch(e){}}return {}}</script>
+<script type="text/babel">
+const { TocList } = ds('TocList');
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <TocList
+    activeId="a-boundary"
+    items={[
+      { id: 'a-contract', label: 'The schema is the contract' },
+      { id: 'a-boundary', label: 'Where the boundary lands' },
+      { id: 'a-buys', label: 'What it buys you' },
+      { id: 'a-after', label: 'Two years on' }
+    ]}
+  />
+);
+</script>
+</body>
+</html>

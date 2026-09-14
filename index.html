@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ledger Design System</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+  [data-shell] { display: grid; grid-template-columns: var(--rail-width) minmax(0, 1fr); align-items: start; min-height: 100vh; }
+  [data-rail] { position: sticky; top: 0; align-self: start; max-height: 100vh; overflow: auto; padding: clamp(20px, 2.4vw, 32px); border-right: 1px solid var(--rule); }
+  main { padding: clamp(24px, 3.5vw, 44px); min-width: 0; }
+  [data-seg] { appearance: none; border: 0; cursor: pointer; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; padding: 7px 13px; background: transparent; color: var(--muted); transition: background var(--dur-pointer) var(--ease), color var(--dur-pointer) var(--ease); }
+  [data-seg][aria-pressed="true"] { background: var(--ink); color: var(--on-ink); }
+  [data-seg][aria-pressed="false"]:hover { color: var(--ink); }
+  @media (max-width: 620px) {
+    [data-shell] { grid-template-columns: minmax(0, 1fr); }
+    [data-rail] { position: static; max-height: none; overflow: visible; border-right: none; border-bottom: 1px solid var(--rule); }
+  }
+</style>
+</head>
+<body>
+
+<div data-shell="data-shell">
+
+  <div data-progress="data-progress" style="position:fixed;top:0;left:0;height:var(--progress-height);width:100%;background:var(--ink);z-index:60"></div>
+
+  <aside data-rail="data-rail">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px">
+      <div data-photo="data-photo" style="position:relative;width:56px;height:56px;flex:0 0 auto;border-radius:50%;overflow:hidden">
+        <img src="assets/burj-view.jpg" alt="Mikael Ribeiro" style="position:absolute;width:248%;height:auto;left:-121%;top:-36%;display:block" />
+      </div>
+      <div style="min-width:0">
+        <div style="font-family:var(--font-title);font-weight:600;font-size:22px;line-height:1.15;letter-spacing:-0.02em">Mikael Ribeiro</div>
+        <div style="font-family:var(--font-mono);font-size:11px;color:var(--faint);letter-spacing:0.04em">@mikkaiser</div>
+      </div>
+    </div>
+
+    <p style="margin:0 0 20px;font-size:13px;line-height:1.6;color:var(--muted)">Design system for the portfolio and blog. Senior Software Developer, Abu Dhabi Government · ADVETI.</p>
+
+    <div style="height:1px;background:var(--rule);margin-bottom:4px" data-rule="data-rule"></div>
+
+    <nav style="display:flex;flex-direction:column;gap:1px;margin-bottom:20px">
+        <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin:var(--space-4) 0 7px">Foundations</div>
+        <a href="#colors" style="display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--muted);padding:5px 0" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--muted)'"><span>Colors</span><span style="font-family:var(--font-mono);font-size:10px;color:var(--faint)">01</span></a>
+        <a href="#type" style="display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--muted);padding:5px 0" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--muted)'"><span>Type</span><span style="font-family:var(--font-mono);font-size:10px;color:var(--faint)">02</span></a>
+        <a href="#spacing" style="display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--muted);padding:5px 0" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--muted)'"><span>Spacing</span><span style="font-family:var(--font-mono);font-size:10px;color:var(--faint)">03</span></a>
+        <a href="#tokens" style="display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--muted);padding:5px 0" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--muted)'"><span>Tokens</span><span style="font-family:var(--font-mono);font-size:10px;color:var(--faint)">04</span></a>
+        <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin:var(--space-4) 0 7px">Library</div>
+        <a href="#brand" style="display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--muted);padding:5px 0" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--muted)'"><span>Brand</span><span style="font-family:var(--font-mono);font-size:10px;color:var(--faint)">05</span></a>
+        <a href="#components" style="display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--muted);padding:5px 0" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--muted)'"><span>Components</span><span style="font-family:var(--font-mono);font-size:10px;color:var(--faint)">06</span></a>
+        <a href="#assets" style="display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--muted);padding:5px 0" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--muted)'"><span>Assets</span><span style="font-family:var(--font-mono);font-size:10px;color:var(--faint)">07</span></a>
+        <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin:var(--space-4) 0 7px">Read</div>
+        <a href="#start" style="display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--muted);padding:5px 0" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--muted)'"><span>Start here</span><span style="font-family:var(--font-mono);font-size:10px;color:var(--faint)">08</span></a>
+        <a href="#rules" style="display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--muted);padding:5px 0" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--muted)'"><span>The absolutes</span><span style="font-family:var(--font-mono);font-size:10px;color:var(--faint)">09</span></a>
+    </nav>
+
+    <div style="height:1px;background:var(--rule);margin-bottom:14px"></div>
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <a href="foundations.dc.html" style="font-size:12px;color:var(--muted)">Foundations page ↗</a>
+      <a href="readme.md" style="font-size:12px;color:var(--muted)">Design guide ↗</a>
+      <a href="https://www.linkedin.com/in/mikael-ribeiro" style="font-size:12px;color:var(--muted)">LinkedIn ↗</a>
+      <a href="https://techknowledge.blog" style="font-size:12px;color:var(--muted)">techknowledge.blog ↗</a>
+    </div>
+
+    <div style="display:flex;border:1px solid var(--rule);border-radius:var(--radius-control);overflow:hidden;width:max-content;margin-top:16px">
+      <button type="button" data-seg="data-seg" aria-pressed="true" data-set="dark">Dark</button>
+      <button type="button" data-seg="data-seg" aria-pressed="false" data-set="light">Light</button>
+    </div>
+    <div style="font-family:var(--font-mono);font-size:11px;color:var(--faint);letter-spacing:0.04em;margin-top:12px">v0.3 · Abu Dhabi UTC+4</div>
+  </aside>
+
+  <main>
+
+    <section style="margin-bottom:var(--gap-section)" data-reveal="data-reveal">
+      <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin-bottom:14px">Ledger · Design system</div>
+      <h1 style="margin:0 0 18px;font-family:var(--font-title);font-weight:600;font-size:clamp(32px,5.6vw,60px);line-height:1.04;letter-spacing:-0.035em;max-width:var(--measure-display)">The parts this site is built from.</h1>
+      <p style="margin:0 0 var(--space-4);font-size:var(--size-body);line-height:var(--lh-body);color:var(--ink-soft);max-width:var(--measure-body)">Every token, type step and component state used across the portfolio and the blog. Poppins for names and titles, Roboto for everything you scan, JetBrains Mono for anything countable. Monochrome throughout: no hue carries meaning, so hierarchy comes from weight, size and a single background step. Dark is the default; every token has a light counterpart and the rail switches between them.</p>
+    </section>
+
+    <section id="colors" style="margin-bottom:var(--gap-section)" data-reveal="data-reveal">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-4);padding-bottom:var(--space-3);border-bottom:1px solid var(--ink);margin-bottom:var(--space-6)">
+        <h2 style="margin:0;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600">01 · Colors</h2>
+        <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint)">10 tokens · 2 themes</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(22px,2.8vw,36px)">
+        <div style="min-width:0">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-3);margin-bottom:var(--space-2)">
+            <span style="font-family:var(--font-title);font-weight:500;font-size:14px;letter-spacing:-0.01em;color:var(--ink)">Surfaces</span>
+            <a href="guidelines/colors-surfaces.html" style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint)">Card ↗</a>
+          </div>
+          <div style="font-size:12px;line-height:1.5;color:var(--muted);margin-bottom:var(--space-3)">Page, raised and sunken, dark then light</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(76px,1fr));gap:10px"><div><div style="height:46px;background:#0A0A0A;border:1px solid var(--rule)"></div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px;color:var(--ink-soft)">Ground</div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px;margin-top:2px">#0A0A0A</div></div><div><div style="height:46px;background:#171717;border:1px solid var(--rule)"></div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px;color:var(--ink-soft)">Raised</div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px;margin-top:2px">#171717</div></div><div><div style="height:46px;background:#1F1F1F;border:1px solid var(--rule)"></div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px;color:var(--ink-soft)">Sunken</div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px;margin-top:2px">#1F1F1F</div></div><div><div style="height:46px;background:#FFFFFF;border:1px solid var(--rule)"></div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px;color:var(--ink-soft)">Ground</div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px;margin-top:2px">#FFFFFF</div></div><div><div style="height:46px;background:#FAFAFA;border:1px solid var(--rule)"></div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px;color:var(--ink-soft)">Raised</div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px;margin-top:2px">#FAFAFA</div></div><div><div style="height:46px;background:#F5F5F5;border:1px solid var(--rule)"></div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px;color:var(--ink-soft)">Sunken</div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px;margin-top:2px">#F5F5F5</div></div></div>
+        </div>
+        <div style="min-width:0">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-3);margin-bottom:var(--space-2)">
+            <span style="font-family:var(--font-title);font-weight:500;font-size:14px;letter-spacing:-0.01em;color:var(--ink)">Ink scale</span>
+            <a href="guidelines/colors-ink.html" style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint)">Card ↗</a>
+          </div>
+          <div style="font-size:12px;line-height:1.5;color:var(--muted);margin-bottom:var(--space-3)">Four text weights and the hairline</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(76px,1fr));gap:10px"><div><div style="height:46px;background:#FFFFFF;border:1px solid var(--rule)"></div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px;color:var(--ink-soft)">Ink</div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px;margin-top:2px">#FFFFFF</div></div><div><div style="height:46px;background:#D4D4D4;border:1px solid var(--rule)"></div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px;color:var(--ink-soft)">Ink soft</div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px;margin-top:2px">#D4D4D4</div></div><div><div style="height:46px;background:#A1A1A1;border:1px solid var(--rule)"></div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px;color:var(--ink-soft)">Muted</div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px;margin-top:2px">#A1A1A1</div></div><div><div style="height:46px;background:#8F8F8F;border:1px solid var(--rule)"></div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px;color:var(--ink-soft)">Faint</div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px;margin-top:2px">#8F8F8F</div></div><div><div style="height:46px;background:#2E2E2E;border:1px solid var(--rule)"></div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px;color:var(--ink-soft)">Rule</div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px;margin-top:2px">#2E2E2E</div></div></div>
+        </div>
+        <div style="min-width:0">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-3);margin-bottom:var(--space-2)">
+            <span style="font-family:var(--font-title);font-weight:500;font-size:14px;letter-spacing:-0.01em;color:var(--ink)">Signal</span>
+            <a href="guidelines/colors-signal.html" style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint)">Card ↗</a>
+          </div>
+          <div style="font-size:12px;line-height:1.5;color:var(--muted);margin-bottom:var(--space-3)">Field errors only, nothing else is coloured</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(76px,1fr));gap:10px"><div><div style="height:46px;background:#FF6166;border:1px solid var(--rule)"></div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px;color:var(--ink-soft)">Signal dark</div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px;margin-top:2px">#FF6166</div></div><div><div style="height:46px;background:#CC0000;border:1px solid var(--rule)"></div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px;color:var(--ink-soft)">Signal light</div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px;margin-top:2px">#CC0000</div></div></div>
+        </div>
+        <div style="min-width:0">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-3);margin-bottom:var(--space-2)">
+            <span style="font-family:var(--font-title);font-weight:500;font-size:14px;letter-spacing:-0.01em;color:var(--ink)">Contrast floor</span>
+            <a href="guidelines/colors-contrast.html" style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint)">Card ↗</a>
+          </div>
+          <div style="font-size:12px;line-height:1.5;color:var(--muted);margin-bottom:var(--space-3)">Every pair clears AA in both themes</div>
+          <div style="display:flex;flex-direction:column;gap:7px"><div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline"><span style="font-size:13px;color:var(--ink)">Ink on ground</span><span style="font-family:var(--font-mono);font-size:11px;color:var(--faint);font-variant-numeric:tabular-nums">19.8 / 21.0</span></div><div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline"><span style="font-size:13px;color:var(--ink-soft)">Ink soft on ground</span><span style="font-family:var(--font-mono);font-size:11px;color:var(--faint);font-variant-numeric:tabular-nums">13.8 / 10.4</span></div><div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline"><span style="font-size:13px;color:var(--muted)">Muted on ground</span><span style="font-family:var(--font-mono);font-size:11px;color:var(--faint);font-variant-numeric:tabular-nums">7.8 / 7.4</span></div><div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline"><span style="font-size:13px;color:var(--faint)">Faint on ground</span><span style="font-family:var(--font-mono);font-size:11px;color:var(--faint);font-variant-numeric:tabular-nums">6.1 / 4.7</span></div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px">DARK / LIGHT · FAINT AT 10–11px IS THE FLOOR</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="type" style="margin-bottom:var(--gap-section)" data-reveal="data-reveal">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-4);padding-bottom:var(--space-3);border-bottom:1px solid var(--ink);margin-bottom:var(--space-6)">
+        <h2 style="margin:0;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600">02 · Type</h2>
+        <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint)">Poppins · Roboto · JetBrains Mono</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(22px,2.8vw,36px)">
+        <div style="min-width:0">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-3);margin-bottom:var(--space-2)">
+            <span style="font-family:var(--font-title);font-weight:500;font-size:14px;letter-spacing:-0.01em;color:var(--ink)">Display</span>
+            <a href="guidelines/type-display.html" style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint)">Card ↗</a>
+          </div>
+          <div style="font-size:12px;line-height:1.5;color:var(--muted);margin-bottom:var(--space-3)">Poppins 600, tracked tight</div>
+          <div style="font-family:var(--font-title);font-weight:600;font-size:clamp(32px,4vw,46px);line-height:1.04;letter-spacing:-0.035em;color:var(--ink)">The parts this</div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px">POPPINS 600 · CLAMP(32px, 5.6vw, 60px) · LH 1.04 · LS −0.035em · MAX 22ch</div>
+        </div>
+        <div style="min-width:0">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-3);margin-bottom:var(--space-2)">
+            <span style="font-family:var(--font-title);font-weight:500;font-size:14px;letter-spacing:-0.01em;color:var(--ink)">Titles</span>
+            <a href="guidelines/type-titles.html" style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint)">Card ↗</a>
+          </div>
+          <div style="font-size:12px;line-height:1.5;color:var(--muted);margin-bottom:var(--space-3)">Page title and entry title</div>
+          <div style="font-family:var(--font-title);font-weight:600;font-size:30px;line-height:1.08;letter-spacing:-0.03em;color:var(--ink)">Page title</div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px">POPPINS 600 · 24–38px · LH 1.08 · LS −0.03em</div><div style="font-family:var(--font-title);font-weight:500;font-size:21px;line-height:1.2;letter-spacing:-0.02em;color:var(--ink);margin-top:14px">Entry title</div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px">POPPINS 500 · 18–24px · LH 1.2 · LS −0.02em</div>
+        </div>
+        <div style="min-width:0">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-3);margin-bottom:var(--space-2)">
+            <span style="font-family:var(--font-title);font-weight:500;font-size:14px;letter-spacing:-0.01em;color:var(--ink)">Body</span>
+            <a href="guidelines/type-body.html" style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint)">Card ↗</a>
+          </div>
+          <div style="font-size:12px;line-height:1.5;color:var(--muted);margin-bottom:var(--space-3)">Roboto, two steps</div>
+          <div style="font-size:15px;line-height:1.7;color:var(--ink-soft)">Body copy sets in Roboto at fifteen over 1.7, capped near sixty-four characters.</div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px">ROBOTO 400 · 15px / 1.7 · INK SOFT · MAX 64ch</div><div style="font-size:13px;line-height:1.6;color:var(--muted);margin-top:12px">Small copy for captions, rail text and row summaries.</div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px">ROBOTO 400 · 13px / 1.6 · MUTED</div>
+        </div>
+        <div style="min-width:0">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-3);margin-bottom:var(--space-2)">
+            <span style="font-family:var(--font-title);font-weight:500;font-size:14px;letter-spacing:-0.01em;color:var(--ink)">Mono</span>
+            <a href="guidelines/type-mono.html" style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint)">Card ↗</a>
+          </div>
+          <div style="font-size:12px;line-height:1.5;color:var(--muted);margin-bottom:var(--space-3)">Anything countable, tabular figures</div>
+          <div style="font-family:var(--font-mono);font-size:11px;color:var(--faint);font-variant-numeric:tabular-nums;letter-spacing:0.04em">2023 to 2026 &nbsp; 03·26 &nbsp; 8 min &nbsp; v0.3</div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px">JETBRAINS MONO 400 · 11px · TABULAR-NUMS</div><div style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;color:var(--ink);margin-top:14px">Section head</div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px">ROBOTO 600 · 10px · LS 0.18em · ON A 1px INK RULE</div>
+        </div>
+        <div style="min-width:0">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-3);margin-bottom:var(--space-2)">
+            <span style="font-family:var(--font-title);font-weight:500;font-size:14px;letter-spacing:-0.01em;color:var(--ink)">Code type</span>
+            <a href="guidelines/type-code.html" style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint)">Card ↗</a>
+          </div>
+          <div style="font-size:12px;line-height:1.5;color:var(--muted);margin-bottom:var(--space-3)">JetBrains Mono 600, ligatures on</div>
+          <div data-code="data-code" style="font-family:var(--font-mono);font-weight:600;font-size:15px;line-height:1.65;color:var(--ink)">t =&gt; t.Id != id &amp;&amp; x &lt;= y</div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px">JETBRAINS MONO 600 · 13px / 1.75 · CALT + LIGA</div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px;margin-top:2px">=&gt; != &lt;= &amp;&amp; RENDER AS SINGLE MARKS</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="spacing" style="margin-bottom:var(--gap-section)" data-reveal="data-reveal">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-4);padding-bottom:var(--space-3);border-bottom:1px solid var(--ink);margin-bottom:var(--space-6)">
+        <h2 style="margin:0;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600">03 · Spacing</h2>
+        <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint)">Base 4 · two rule weights</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(22px,2.8vw,36px)">
+        <div style="min-width:0">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-3);margin-bottom:var(--space-2)">
+            <span style="font-family:var(--font-title);font-weight:500;font-size:14px;letter-spacing:-0.01em;color:var(--ink)">Base 4 scale</span>
+            <a href="guidelines/spacing-scale.html" style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint)">Card ↗</a>
+          </div>
+          <div style="font-size:12px;line-height:1.5;color:var(--muted);margin-bottom:var(--space-3)">Eight steps, every gap in the system</div>
+          <div style="display:flex;flex-direction:column;gap:7px"><div style="display:flex;align-items:center;gap:12px"><div style="height:9px;width:4px;background:var(--ink);flex:0 0 auto"></div><span style="font-family:var(--font-mono);font-size:10px;color:var(--faint);letter-spacing:0.06em">4 · ICON TO LABEL</span></div><div style="display:flex;align-items:center;gap:12px"><div style="height:9px;width:8px;background:var(--ink);flex:0 0 auto"></div><span style="font-family:var(--font-mono);font-size:10px;color:var(--faint);letter-spacing:0.06em">8 · INSIDE A TAG</span></div><div style="display:flex;align-items:center;gap:12px"><div style="height:9px;width:12px;background:var(--ink);flex:0 0 auto"></div><span style="font-family:var(--font-mono);font-size:10px;color:var(--faint);letter-spacing:0.06em">12 · TITLE TO SUMMARY</span></div><div style="display:flex;align-items:center;gap:12px"><div style="height:9px;width:16px;background:var(--ink);flex:0 0 auto"></div><span style="font-family:var(--font-mono);font-size:10px;color:var(--faint);letter-spacing:0.06em">16 · ROW PADDING</span></div><div style="display:flex;align-items:center;gap:12px"><div style="height:9px;width:24px;background:var(--ink);flex:0 0 auto"></div><span style="font-family:var(--font-mono);font-size:10px;color:var(--faint);letter-spacing:0.06em">24 · GUTTER</span></div><div style="display:flex;align-items:center;gap:12px"><div style="height:9px;width:32px;background:var(--ink);flex:0 0 auto"></div><span style="font-family:var(--font-mono);font-size:10px;color:var(--faint);letter-spacing:0.06em">32 · HEAD TO CONTENT</span></div><div style="display:flex;align-items:center;gap:12px"><div style="height:9px;width:48px;background:var(--ink);flex:0 0 auto"></div><span style="font-family:var(--font-mono);font-size:10px;color:var(--faint);letter-spacing:0.06em">48 · RAIL PADDING</span></div><div style="display:flex;align-items:center;gap:12px"><div style="height:9px;width:72px;background:var(--ink);flex:0 0 auto"></div><span style="font-family:var(--font-mono);font-size:10px;color:var(--faint);letter-spacing:0.06em">72 · SECTION BREAK</span></div></div>
+        </div>
+        <div style="min-width:0">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-3);margin-bottom:var(--space-2)">
+            <span style="font-family:var(--font-title);font-weight:500;font-size:14px;letter-spacing:-0.01em;color:var(--ink)">Rules and radii</span>
+            <a href="guidelines/spacing-rules.html" style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint)">Card ↗</a>
+          </div>
+          <div style="font-size:12px;line-height:1.5;color:var(--muted);margin-bottom:var(--space-3)">Two weights, four radii, no shadows</div>
+          <div style="height:1px;background:var(--ink);margin-bottom:6px"></div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px;margin-top:0">1px INK · UNDER A SECTION HEAD</div><div style="height:1px;background:var(--rule);margin:14px 0 6px"></div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px;margin-top:0">1px RULE · BETWEEN ROWS IN A SET</div><div style="display:flex;gap:10px;align-items:center;margin-top:16px;flex-wrap:wrap"><div style="width:40px;height:28px;border:1px solid var(--rule)"></div><div style="width:40px;height:28px;border:1px solid var(--rule);border-radius:4px"></div><div style="width:40px;height:28px;border:1px solid var(--rule);border-radius:12px"></div><div style="width:28px;height:28px;border:1px solid var(--rule);border-radius:50%"></div><span style="font-family:var(--font-mono);font-size:10px;color:var(--faint);letter-spacing:0.06em">0 · 4 · 12 · 50%</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tokens" style="margin-bottom:var(--gap-section)" data-reveal="data-reveal">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-4);padding-bottom:var(--space-3);border-bottom:1px solid var(--ink);margin-bottom:var(--space-6)">
+        <h2 style="margin:0;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600">04 · Tokens</h2>
+        <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint)">6 files · styles.css imports all</span>
+      </div>
+      <div style="border-top:1px solid var(--rule)">
+        <a href="tokens/colors.css" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:var(--space-6);padding:var(--pad-row) var(--pad-row-inline);border-bottom:1px solid var(--rule);transition:background var(--dur-pointer) var(--ease)" onmouseover="this.style.background='var(--raised)'" onmouseout="this.style.background='transparent'">
+          <span style="font-family:var(--font-mono);font-size:12px;color:var(--ink);word-break:break-all">tokens/colors.css</span>
+          <span style="font-size:12px;line-height:1.5;color:var(--muted)">Ten neutrals and one signal, dark and light, plus semantic aliases.</span>
+        </a>
+        <a href="tokens/typography.css" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:var(--space-6);padding:var(--pad-row) var(--pad-row-inline);border-bottom:1px solid var(--rule);transition:background var(--dur-pointer) var(--ease)" onmouseover="this.style.background='var(--raised)'" onmouseout="this.style.background='transparent'">
+          <span style="font-family:var(--font-mono);font-size:12px;color:var(--ink);word-break:break-all">tokens/typography.css</span>
+          <span style="font-size:12px;line-height:1.5;color:var(--muted)">Three families, nine type steps, three measures.</span>
+        </a>
+        <a href="tokens/spacing.css" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:var(--space-6);padding:var(--pad-row) var(--pad-row-inline);border-bottom:1px solid var(--rule);transition:background var(--dur-pointer) var(--ease)" onmouseover="this.style.background='var(--raised)'" onmouseout="this.style.background='transparent'">
+          <span style="font-family:var(--font-mono);font-size:12px;color:var(--ink);word-break:break-all">tokens/spacing.css</span>
+          <span style="font-size:12px;line-height:1.5;color:var(--muted)">Base-4 scale, radii, hairline, layout constants and breakpoints.</span>
+        </a>
+        <a href="tokens/code.css" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:var(--space-6);padding:var(--pad-row) var(--pad-row-inline);border-bottom:1px solid var(--rule);transition:background var(--dur-pointer) var(--ease)" onmouseover="this.style.background='var(--raised)'" onmouseout="this.style.background='transparent'">
+          <span style="font-family:var(--font-mono);font-size:12px;color:var(--ink);word-break:break-all">tokens/code.css</span>
+          <span style="font-size:12px;line-height:1.5;color:var(--muted)">Dracula syntax roles and the code card chrome. Theme-independent.</span>
+        </a>
+        <a href="tokens/motion.css" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:var(--space-6);padding:var(--pad-row) var(--pad-row-inline);border-bottom:1px solid var(--rule);transition:background var(--dur-pointer) var(--ease)" onmouseover="this.style.background='var(--raised)'" onmouseout="this.style.background='transparent'">
+          <span style="font-family:var(--font-mono);font-size:12px;color:var(--ink);word-break:break-all">tokens/motion.css</span>
+          <span style="font-size:12px;line-height:1.5;color:var(--muted)">Scroll-driven keyframes and the reduced-motion stop.</span>
+        </a>
+        <a href="tokens/base.css" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:var(--space-6);padding:var(--pad-row) var(--pad-row-inline);border-bottom:1px solid var(--rule);transition:background var(--dur-pointer) var(--ease)" onmouseover="this.style.background='var(--raised)'" onmouseout="this.style.background='transparent'">
+          <span style="font-family:var(--font-mono);font-size:12px;color:var(--ink);word-break:break-all">tokens/base.css</span>
+          <span style="font-size:12px;line-height:1.5;color:var(--muted)">Resets, link colours, the single focus treatment, photo and code behaviour.</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="brand" style="margin-bottom:var(--gap-section)" data-reveal="data-reveal">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-4);padding-bottom:var(--space-3);border-bottom:1px solid var(--ink);margin-bottom:var(--space-6)">
+        <h2 style="margin:0;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600">05 · Brand</h2>
+        <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint)">Code, photography, motion</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(22px,2.8vw,36px)">
+        <div style="min-width:0">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-3);margin-bottom:var(--space-2)">
+            <span style="font-family:var(--font-title);font-weight:500;font-size:14px;letter-spacing:-0.01em;color:var(--ink)">Code card</span>
+            <a href="guidelines/brand-code.html" style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint)">Card ↗</a>
+          </div>
+          <div style="font-size:12px;line-height:1.5;color:var(--muted);margin-bottom:var(--space-3)">Dracula, never adopts the page theme</div>
+          <div style="border-radius:12px;overflow:hidden;background:var(--code-bg);border:1px solid var(--code-chrome);box-shadow:var(--code-shadow)"><div style="display:flex;align-items:center;gap:14px;padding:11px 14px;flex-wrap:wrap"><div style="display:flex;gap:8px"><span style="width:11px;height:11px;border-radius:50%;background:var(--code-light-close)"></span><span style="width:11px;height:11px;border-radius:50%;background:var(--code-light-min)"></span><span style="width:11px;height:11px;border-radius:50%;background:var(--code-light-max)"></span></div><span style="font-family:var(--font-mono);font-size:12px;color:var(--code-fg);background:var(--code-chrome);border-radius:7px;padding:5px 11px">score.action.ts</span><span style="font-family:var(--font-mono);font-size:12px;color:var(--code-comment);padding:5px 11px">schema.ts</span></div><div style="padding:2px 18px 16px;overflow-x:auto"><pre data-code="data-code" style="margin:0;min-width:max-content;font-family:var(--font-mono);font-weight:600;font-size:13px;line-height:1.75;color:var(--code-fg)"><span style="color:var(--code-comment)">// revalidate after a score is filed
+</span><span style="color:var(--code-keyword)">export async function</span> <span style="color:var(--code-function)">fileScore</span>(<span style="color:var(--code-param);font-style:italic">input</span>) {
+  <span style="color:var(--code-keyword)">return</span> { ok: <span style="color:var(--code-literal)">true</span> };
+}</pre></div></div>
+        </div>
+        <div style="min-width:0">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-3);margin-bottom:var(--space-2)">
+            <span style="font-family:var(--font-title);font-weight:500;font-size:14px;letter-spacing:-0.01em;color:var(--ink)">Syntax tokens</span>
+            <a href="guidelines/brand-syntax.html" style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint)">Card ↗</a>
+          </div>
+          <div style="font-size:12px;line-height:1.5;color:var(--muted);margin-bottom:var(--space-3)">Dracula, six roles</div>
+          <div style="display:flex;flex-direction:column;gap:7px"><div style="display:flex;align-items:baseline;gap:10px"><span style="width:11px;height:11px;background:#FF79C6;border-radius:2px;flex:0 0 auto"></span><span style="font-family:var(--font-mono);font-size:11px;color:var(--muted)">#FF79C6</span><span style="font-size:12px;color:var(--muted)">Keyword, operator</span></div><div style="display:flex;align-items:baseline;gap:10px"><span style="width:11px;height:11px;background:#8BE9FD;border-radius:2px;flex:0 0 auto"></span><span style="font-family:var(--font-mono);font-size:11px;color:var(--muted)">#8BE9FD</span><span style="font-size:12px;color:var(--muted)">Type, class</span></div><div style="display:flex;align-items:baseline;gap:10px"><span style="width:11px;height:11px;background:#50FA7B;border-radius:2px;flex:0 0 auto"></span><span style="font-family:var(--font-mono);font-size:11px;color:var(--muted)">#50FA7B</span><span style="font-size:12px;color:var(--muted)">Function, method</span></div><div style="display:flex;align-items:baseline;gap:10px"><span style="width:11px;height:11px;background:#FFB86C;border-radius:2px;flex:0 0 auto"></span><span style="font-family:var(--font-mono);font-size:11px;color:var(--muted)">#FFB86C</span><span style="font-size:12px;color:var(--muted)">Parameter, italic</span></div><div style="display:flex;align-items:baseline;gap:10px"><span style="width:11px;height:11px;background:#BD93F9;border-radius:2px;flex:0 0 auto"></span><span style="font-family:var(--font-mono);font-size:11px;color:var(--muted)">#BD93F9</span><span style="font-size:12px;color:var(--muted)">Number, string</span></div><div style="display:flex;align-items:baseline;gap:10px"><span style="width:11px;height:11px;background:#6272A4;border-radius:2px;flex:0 0 auto"></span><span style="font-family:var(--font-mono);font-size:11px;color:var(--muted)">#6272A4</span><span style="font-size:12px;color:var(--muted)">Comment</span></div></div>
+        </div>
+        <div style="min-width:0">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-3);margin-bottom:var(--space-2)">
+            <span style="font-family:var(--font-title);font-weight:500;font-size:14px;letter-spacing:-0.01em;color:var(--ink)">Photography tiers</span>
+            <a href="guidelines/brand-photo-tiers.html" style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint)">Card ↗</a>
+          </div>
+          <div style="font-size:12px;line-height:1.5;color:var(--muted);margin-bottom:var(--space-3)">Chrome, evidence and mood. Hover them.</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;align-items:start"><div><div data-photo="data-photo" style="position:relative;width:100%;aspect-ratio:1;border-radius:50%;overflow:hidden"><img src="assets/burj-view.jpg" alt="" style="position:absolute;width:248%;height:auto;left:-121%;top:-36%;display:block" /></div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px">CHROME<br />GRAYSCALE</div></div><div><div style="border:1px solid var(--rule);padding:5px"><img src="assets/worldskills-lyon-2024.jpg" alt="" style="display:block;width:100%;aspect-ratio:3/4;object-fit:cover;object-position:50% 22%" /></div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px">EVIDENCE<br />FULL COLOUR</div></div><div><img data-photo="data-photo" src="assets/burj-view.jpg" alt="" style="display:block;width:100%;aspect-ratio:3/4;object-fit:cover" /><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px">MOOD<br />NO FRAME</div></div></div>
+        </div>
+        <div style="min-width:0">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-3);margin-bottom:var(--space-2)">
+            <span style="font-family:var(--font-title);font-weight:500;font-size:14px;letter-spacing:-0.01em;color:var(--ink)">Motion</span>
+            <a href="guidelines/brand-motion.html" style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint)">Card ↗</a>
+          </div>
+          <div style="font-size:12px;line-height:1.5;color:var(--muted);margin-bottom:var(--space-3)">Scroll-driven, reversible, native CSS</div>
+          <div style="display:flex;flex-direction:column;gap:10px"><div><div style="font-size:13px;font-weight:500;color:var(--ink)">Section reveal</div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px;margin-top:3px">OPACITY 0→1, TRANSLATEY 16PX→0 · VIEW()</div></div><div><div style="font-size:13px;font-weight:500;color:var(--ink)">Read progress</div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px;margin-top:3px">SCALEX 0→1 · SCROLL(ROOT) · 2PX INK</div></div><div><div style="font-size:13px;font-weight:500;color:var(--ink)">Rule draw</div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px;margin-top:3px">SCALEX 0→1 · ORIGIN 0 50% · DIVIDERS ONLY</div></div><div><div style="font-size:13px;font-weight:500;color:var(--ink)">Pointer</div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px;margin-top:3px">120MS LINEAR · BACKGROUND OR BORDER ONLY</div></div><div><div style="font-size:13px;font-weight:500;color:var(--ink)">Smooth scroll</div><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px;margin-top:3px">SCROLL-BEHAVIOR ON :ROOT · NEVER A JS LIBRARY</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="components" style="margin-bottom:var(--gap-section)" data-reveal="data-reveal">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-4);padding-bottom:var(--space-3);border-bottom:1px solid var(--ink);margin-bottom:var(--space-6)">
+        <h2 style="margin:0;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600">06 · Components</h2>
+        <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint)">10 primitives · 4 groups</span>
+      </div>
+      <p style="margin:0 0 var(--space-6);font-size:var(--size-small);line-height:var(--lh-small);color:var(--muted);max-width:var(--measure-body)">Each primitive is a <code data-code="data-code" style="font-family:var(--font-mono);font-weight:600;font-size:12px;background:var(--code-bg);color:var(--code-fg);border:1px solid var(--code-chrome);border-radius:4px;padding:2px 6px">.jsx</code> with a sibling <code data-code="data-code" style="font-family:var(--font-mono);font-weight:600;font-size:12px;background:var(--code-bg);color:var(--code-fg);border:1px solid var(--code-chrome);border-radius:4px;padding:2px 6px">.d.ts</code> props contract and a <code data-code="data-code" style="font-family:var(--font-mono);font-weight:600;font-size:12px;background:var(--code-bg);color:var(--code-fg);border:1px solid var(--code-chrome);border-radius:4px;padding:2px 6px">.prompt.md</code> with usage. Read the prompt files first; they carry the rules that matter. The per-group card HTML renders only once a design-system compile has produced the component bundle, so from this folder the files are source to read rather than a live preview.</p>
+      <div style="border-top:1px solid var(--rule)">
+        <a href="components/core/" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:var(--space-6);padding:var(--pad-row) var(--pad-row-inline);border-bottom:1px solid var(--rule);transition:background var(--dur-pointer) var(--ease)" onmouseover="this.style.background='var(--raised)'" onmouseout="this.style.background='transparent'">
+          <span style="font-family:var(--font-mono);font-size:12px;color:var(--ink);word-break:break-all">components/core/</span>
+          <span style="font-size:12px;line-height:1.5;color:var(--muted)">Button (3 variants, 5 states), Tag, SectionHead.</span>
+        </a>
+        <a href="components/forms/" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:var(--space-6);padding:var(--pad-row) var(--pad-row-inline);border-bottom:1px solid var(--rule);transition:background var(--dur-pointer) var(--ease)" onmouseover="this.style.background='var(--raised)'" onmouseout="this.style.background='transparent'">
+          <span style="font-family:var(--font-mono);font-size:12px;color:var(--ink);word-break:break-all">components/forms/</span>
+          <span style="font-size:12px;line-height:1.5;color:var(--muted)">Field, covering input and textarea across six states.</span>
+        </a>
+        <a href="components/content/" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:var(--space-6);padding:var(--pad-row) var(--pad-row-inline);border-bottom:1px solid var(--rule);transition:background var(--dur-pointer) var(--ease)" onmouseover="this.style.background='var(--raised)'" onmouseout="this.style.background='transparent'">
+          <span style="font-family:var(--font-mono);font-size:12px;color:var(--ink);word-break:break-all">components/content/</span>
+          <span style="font-size:12px;line-height:1.5;color:var(--muted)">CodeSnap and Syn, EntryRow, Figure and MoodImage, Avatar.</span>
+        </a>
+        <a href="components/navigation/" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:var(--space-6);padding:var(--pad-row) var(--pad-row-inline);border-bottom:1px solid var(--rule);transition:background var(--dur-pointer) var(--ease)" onmouseover="this.style.background='var(--raised)'" onmouseout="this.style.background='transparent'">
+          <span style="font-family:var(--font-mono);font-size:12px;color:var(--ink);word-break:break-all">components/navigation/</span>
+          <span style="font-size:12px;line-height:1.5;color:var(--muted)">TocList, the article contents with its active mark.</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="assets" style="margin-bottom:var(--gap-section)" data-reveal="data-reveal">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-4);padding-bottom:var(--space-3);border-bottom:1px solid var(--ink);margin-bottom:var(--space-6)">
+        <h2 style="margin:0;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600">07 · Assets</h2>
+        <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint)">Photography · no logo</span>
+      </div>
+      <p style="margin:0 0 var(--space-6);font-size:var(--size-small);line-height:var(--lh-small);color:var(--muted);max-width:var(--measure-body)">There is no logo or wordmark. None was provided and none was invented. Wherever a mark would go, the name sets in plain Poppins 600, with a circular photographic avatar standing in at small sizes.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:var(--space-4)">
+        <div><img data-photo="data-photo" src="assets/burj-view.jpg" alt="Dubai skyline" style="display:block;width:100%;aspect-ratio:3/4;object-fit:cover" /><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px">BURJ-VIEW · CHROME + MOOD</div></div>
+        <div><img src="assets/worldskills-lyon-2024.jpg" alt="WorldSkills Lyon 2024" style="display:block;width:100%;aspect-ratio:3/4;object-fit:cover;object-position:50% 22%" /><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px">WORLDSKILLS-LYON-2024 · EVIDENCE</div></div>
+        <div><img data-photo="data-photo" src="assets/desert-dusk.jpg" alt="Desert camp at dusk" style="display:block;width:100%;aspect-ratio:3/4;object-fit:cover;object-position:50% 40%" /><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px">DESERT-DUSK · MOOD, UNUSED</div></div>
+        <div><img data-photo="data-photo" src="assets/portrait-mikael.jpg" alt="Portrait" style="display:block;width:100%;aspect-ratio:3/4;object-fit:cover;object-position:50% 28%" /><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px">PORTRAIT-MIKAEL · SPARE</div></div>
+      </div>
+    </section>
+
+    <section id="start" style="margin-bottom:var(--gap-section)" data-reveal="data-reveal">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-4);padding-bottom:var(--space-3);border-bottom:1px solid var(--ink);margin-bottom:var(--space-6)">
+        <h2 style="margin:0;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600">08 · Start here</h2>
+        <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint)">3 entry points</span>
+      </div>
+      <div style="border-top:1px solid var(--rule)">
+        <a href="foundations.dc.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:var(--space-6);padding:var(--pad-row) var(--pad-row-inline);border-bottom:1px solid var(--rule);transition:background var(--dur-pointer) var(--ease)" onmouseover="this.style.background='var(--raised)'" onmouseout="this.style.background='transparent'">
+          <span style="font-family:var(--font-mono);font-size:12px;color:var(--ink);word-break:break-all">foundations.dc.html</span>
+          <span style="font-size:12px;line-height:1.5;color:var(--muted)">The full foundations page. Thirteen documented sections, a live dark and light switch, and the animated load-balancing diagram. Needs an internet connection for fonts and its runtime.</span>
+        </a>
+        <a href="readme.md" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:var(--space-6);padding:var(--pad-row) var(--pad-row-inline);border-bottom:1px solid var(--rule);transition:background var(--dur-pointer) var(--ease)" onmouseover="this.style.background='var(--raised)'" onmouseout="this.style.background='transparent'">
+          <span style="font-family:var(--font-mono);font-size:12px;color:var(--ink);word-break:break-all">readme.md</span>
+          <span style="font-size:12px;line-height:1.5;color:var(--muted)">The design guide. Content fundamentals, visual foundations, iconography, and a manifest of everything in the system.</span>
+        </a>
+        <a href="SKILL.md" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:var(--space-6);padding:var(--pad-row) var(--pad-row-inline);border-bottom:1px solid var(--rule);transition:background var(--dur-pointer) var(--ease)" onmouseover="this.style.background='var(--raised)'" onmouseout="this.style.background='transparent'">
+          <span style="font-family:var(--font-mono);font-size:12px;color:var(--ink);word-break:break-all">SKILL.md</span>
+          <span style="font-size:12px;line-height:1.5;color:var(--muted)">Agent Skill front matter. Drop this folder into Claude Code and it registers as ledger-design.</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="rules" style="margin-bottom:var(--space-12)" data-reveal="data-reveal">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-4);padding-bottom:var(--space-3);border-bottom:1px solid var(--ink);margin-bottom:var(--space-6)">
+        <h2 style="margin:0;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600">09 · The absolutes</h2>
+        <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint)">Override any default</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:var(--space-3);max-width:var(--measure-body)">
+        <p style="margin:0;font-size:var(--size-small);line-height:var(--lh-small);color:var(--ink-soft)"><span style="font-family:var(--font-mono);font-size:11px;color:var(--faint);letter-spacing:0.04em">01</span> &nbsp;No em dashes in copy, under any condition. Use a comma, a period, a colon, or "and".</p>
+        <p style="margin:0;font-size:var(--size-small);line-height:var(--lh-small);color:var(--ink-soft)"><span style="font-family:var(--font-mono);font-size:11px;color:var(--faint);letter-spacing:0.04em">02</span> &nbsp;No serifed fonts. Poppins for titles, Roboto for body and UI, JetBrains Mono for code and metadata.</p>
+        <p style="margin:0;font-size:var(--size-small);line-height:var(--lh-small);color:var(--ink-soft)"><span style="font-family:var(--font-mono);font-size:11px;color:var(--faint);letter-spacing:0.04em">03</span> &nbsp;Code is always JetBrains Mono 600 with ligatures, always Dracula, always a dark card with window chrome, and it never adopts the page theme.</p>
+      </div>
+    </section>
+
+    <footer style="display:flex;justify-content:space-between;gap:var(--space-4);flex-wrap:wrap;padding-top:var(--space-4);border-top:1px solid var(--ink)">
+      <a href="mailto:mikaelrsimoes19@gmail.com" style="font-size:13px;font-weight:500">mikaelrsimoes19@gmail.com</a>
+      <span style="font-family:var(--font-mono);font-size:11px;color:var(--faint);letter-spacing:0.04em;text-transform:uppercase">Ledger v0.3 · No UI kit yet</span>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+(function () {
+  var shell = document.querySelector('[data-shell]');
+  var btns = document.querySelectorAll('[data-seg]');
+  function set(theme) {
+    if (theme === 'light') { shell.setAttribute('data-theme', 'light'); }
+    else { shell.removeAttribute('data-theme'); }
+    btns.forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.set === theme ? 'true' : 'false'); });
+  }
+  btns.forEach(function (b) { b.addEventListener('click', function () { set(b.dataset.set); }); });
+})();
+</script>
+
+</body>
+</html>

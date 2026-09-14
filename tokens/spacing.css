@@ -1,0 +1,32 @@
+/* Base 4. Every gap in the system is one of these eight steps. */
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-18: 72px;
+
+  --gap-icon-label: var(--space-1);
+  --gap-tag-inset: var(--space-2);
+  --gap-title-summary: var(--space-3);
+  --pad-row: var(--space-4);
+  --pad-row-inline: 14px;
+  --gap-gutter: var(--space-6);
+  --gap-head-content: var(--space-8);
+  --pad-rail: var(--space-12);
+  --gap-section: var(--space-18);
+
+  --radius-none: 0;
+  --radius-control: 4px;
+  --radius-card: 12px;
+  --radius-chip: 7px;
+  --radius-round: 50%;
+
+  --hairline: 1px;
+  --rail-width: 268px;
+  --breakpoint-stack: 620px;
+  --breakpoint-toc: 1180px;
+}

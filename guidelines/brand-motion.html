@@ -1,0 +1,18 @@
+<!-- @dsCard group="Brand" viewport="700x160" name="Motion" subtitle="Scroll-driven, reversible, native CSS" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>body{padding:16px;font-family:var(--font-body)}
+.lbl{font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px}
+.sw{height:44px;border:1px solid var(--rule)}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(78px,1fr));gap:10px}
+</style>
+</head>
+<body>
+<div style="display:flex;flex-direction:column;gap:10px">
+  <div><div style="font-size:13px;font-weight:500;color:var(--ink)">Section reveal</div><div class="lbl" style="margin-top:3px">OPACITY 0→1, TRANSLATEY 16PX→0 · VIEW() · ENTRY 0% COVER 26%</div></div><div><div style="font-size:13px;font-weight:500;color:var(--ink)">Read progress</div><div class="lbl" style="margin-top:3px">SCALEX 0→1 · SCROLL(ROOT) · 2PX INK, FIXED TOP</div></div><div><div style="font-size:13px;font-weight:500;color:var(--ink)">Rule draw</div><div class="lbl" style="margin-top:3px">SCALEX 0→1 · ORIGIN 0 50% · DIVIDERS ONLY</div></div><div><div style="font-size:13px;font-weight:500;color:var(--ink)">Pointer</div><div class="lbl" style="margin-top:3px">120MS LINEAR · BACKGROUND OR BORDER ONLY</div></div><div><div style="font-size:13px;font-weight:500;color:var(--ink)">Smooth scroll</div><div class="lbl" style="margin-top:3px">SCROLL-BEHAVIOR ON :ROOT · NEVER A JS MOMENTUM LIBRARY</div></div>
+  </div>
+</body>
+</html>

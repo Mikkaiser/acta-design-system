@@ -1,0 +1,34 @@
+<!-- @dsCard group="Components" viewport="700x210" name="Core" subtitle="Buttons, tags and the section head" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{padding:18px}</style>
+</head>
+<body>
+<div id="root"></div>
+<script>function ds(){var n=[].slice.call(arguments);for(var k in window){try{var v=window[k];if(v&&typeof v==='object'&&n.every(function(x){return typeof v[x]==='function'}))return v}catch(e){}}return {}}</script>
+<script type="text/babel">
+const { Button, Tag, SectionHead } = ds('Button', 'Tag', 'SectionHead');
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <div style={{display:'flex',flexDirection:'column',gap:16}}>
+    <SectionHead label="Selected work" meta="Four of eleven" style={{marginBottom:0}} />
+    <div style={{display:'flex',gap:12,flexWrap:'wrap',alignItems:'center'}}>
+      <Button variant="primary">Get in touch</Button>
+      <Button variant="secondary">Read the case</Button>
+      <Button variant="ghost">All posts</Button>
+      <Button variant="primary" disabled>Disabled</Button>
+    </div>
+    <div style={{display:'flex',gap:8,flexWrap:'wrap'}}>
+      <Tag>.NET</Tag><Tag>Next.js</Tag><Tag>Oracle</Tag><Tag selected>Selected</Tag>
+    </div>
+  </div>
+);
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!-- @dsCard group="Brand" viewport="700x200" name="Code card" subtitle="Dracula, theme-independent" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>body{padding:16px;font-family:var(--font-body)}
+.lbl{font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--faint);margin-top:6px}
+.sw{height:44px;border:1px solid var(--rule)}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(78px,1fr));gap:10px}
+</style>
+</head>
+<body>
+<div style="border-radius:12px;overflow:hidden;background:var(--code-bg);border:1px solid var(--code-chrome);box-shadow:var(--code-shadow)">
+    <div style="display:flex;align-items:center;gap:14px;padding:11px 14px">
+      <div style="display:flex;gap:8px"><span style="width:11px;height:11px;border-radius:50%;background:var(--code-light-close)"></span><span style="width:11px;height:11px;border-radius:50%;background:var(--code-light-min)"></span><span style="width:11px;height:11px;border-radius:50%;background:var(--code-light-max)"></span></div>
+      <span style="font-family:var(--font-mono);font-size:12px;color:var(--code-fg);background:var(--code-chrome);border-radius:7px;padding:5px 11px">score.action.ts</span>
+      <span style="font-family:var(--font-mono);font-size:12px;color:var(--code-comment);padding:5px 11px">schema.ts</span>
+    </div>
+    <div style="padding:2px 18px 16px"><pre data-code="data-code" style="margin:0;font-family:var(--font-mono);font-weight:600;font-size:13px;line-height:1.75;color:var(--code-fg)"><span style="color:var(--code-comment)">// revalidate after a score is filed
+</span><span style="color:var(--code-keyword)">export async function</span> <span style="color:var(--code-function)">fileScore</span>(<span style="color:var(--code-param);font-style:italic">input</span>) {
+  <span style="color:var(--code-keyword)">return</span> { ok: <span style="color:var(--code-literal)">true</span> };
+}</pre></div>
+  </div>
+</body>
+</html>
