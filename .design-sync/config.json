@@ -1,0 +1,37 @@
+{
+  "projectId": "bc77c093-dca0-4c52-899e-283ee0b9165a",
+  "pkg": "ledger-design-system",
+  "globalName": "Ledger",
+  "shape": "package",
+  "entry": "components/index.jsx",
+  "srcDir": "components",
+  "docsMap": {
+    "Button": "components/core/Button.prompt.md",
+    "Tag": "components/core/Tag.prompt.md",
+    "SectionHead": "components/core/SectionHead.prompt.md",
+    "Field": "components/forms/Field.prompt.md",
+    "CodeSnap": "components/content/CodeSnap.prompt.md",
+    "Syn": "components/content/CodeSnap.prompt.md",
+    "EntryRow": "components/content/EntryRow.prompt.md",
+    "Figure": "components/content/Figure.prompt.md",
+    "MoodImage": "components/content/Figure.prompt.md",
+    "Avatar": "components/content/Avatar.prompt.md",
+    "TocList": "components/navigation/TocList.prompt.md"
+  },
+  "guidelinesGlob": [
+    "readme.md"
+  ],
+  "componentSrcMap": {
+    "Syn": "components/content/CodeSnap.jsx",
+    "MoodImage": "components/content/Figure.jsx"
+  },
+  "overrides": {
+    "EntryRow": {
+      "cardMode": "column"
+    },
+    "CodeSnap": {
+      "cardMode": "column"
+    }
+  },
+  "readmeHeader": ".design-sync/conventions.md"
+}
