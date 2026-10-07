@@ -21,7 +21,7 @@ await page.evaluate(() => document.fonts.ready);
 await page.waitForTimeout(500);
 
 // Photography goes out as JPEG; everything else is flat UI and stays PNG.
-for (const id of ['cover', 'type', 'colors', 'components', 'photos']) {
+for (const id of ['og', 'cover', 'type', 'colors', 'components', 'photos']) {
   const file = id + (id === 'photos' ? '.jpg' : '.png');
   await page.locator('#' + id).screenshot(id === 'photos' ? { path: path.join(out, file), type: 'jpeg', quality: 85 } : { path: path.join(out, file) });
   console.log('wrote .github/images/' + file);

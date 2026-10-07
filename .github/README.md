@@ -6,7 +6,7 @@
 
 It ships as 11 React components styled entirely with CSS custom properties: no provider, no theme object, no class vocabulary. The same system is synced to Claude Design, so the design agent there builds with these exact components.
 
-[Brand book](../readme.md) · [Tokens](../tokens) · [Components](../components) · [Guideline cards](../guidelines)
+**[Documentation site](https://mikkaiser.github.io/acta-design-system/)** · [See it live on mikkaiser.com](https://mikkaiser.com) · [Brand book](../readme.md) · [Tokens](../tokens) · [Components](../components)
 
 ## Type
 
@@ -101,6 +101,7 @@ Style your own layout with the tokens (`var(--bg)`, `var(--space-6)`, `var(--fon
 | `guidelines/` | Foundation specimen cards shown in Claude Design |
 | `assets/` | Owner photography |
 | `.design-sync/` | Config, notes and previews for syncing to Claude Design |
+| `site/` | The documentation site, pre-rendered from the real components and deployed to GitHub Pages |
 | `.github/readme-images/` | The page and script that render the images in this README |
 
 To refresh the images after a change, run a Claude Design sync build (it produces `ds-bundle/`), then `node .github/readme-images/render.mjs`.

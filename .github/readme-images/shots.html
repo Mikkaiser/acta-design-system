@@ -10,6 +10,11 @@
   .shot { width: 1200px; background: var(--bg); color: var(--ink); padding: 56px; margin-bottom: 40px; }
   .mono { font-family: var(--font-mono); font-size: var(--size-micro); letter-spacing: var(--ls-micro); text-transform: uppercase; color: var(--faint); }
 
+  /* social card, 1200x630 */
+  #og { width: 1200px; height: 630px; padding: 64px 72px; display: grid; grid-template-columns: 1fr 360px; gap: 48px; align-items: end; margin-bottom: 40px; }
+  #og .name { font-family: var(--font-display); font-weight: 800; font-size: 168px; line-height: .88; letter-spacing: -0.04em; margin: 18px 0 26px; }
+  #og .lead { font-size: 24px; line-height: 1.45; letter-spacing: -0.01em; color: var(--muted); max-width: 26ch; margin: 0 0 30px; }
+
   /* cover */
   #cover { display: grid; grid-template-columns: 1fr 420px; gap: 48px; align-items: end; padding: 72px 56px 56px; }
   #cover .name { font-family: var(--font-display); font-weight: 800; font-size: 148px; line-height: .9; letter-spacing: -0.04em; margin: 0; }
@@ -49,6 +54,26 @@
 </style>
 </head>
 <body>
+
+<section id="og" style="background:var(--bg);color:var(--ink)">
+  <div>
+    <div class="mono">Design system · mikkaiser.com</div>
+    <h1 class="name">Acta</h1>
+    <p class="lead">Latin for &ldquo;things done&rdquo;. The design system behind mikkaiser.com.</p>
+    <div class="mono">Mikael Ribeiro Simoes · Mikkaiser</div>
+  </div>
+  <svg viewBox="0 0 360 500" width="360" height="500" aria-hidden="true">
+    <rect x="0" y="0" width="144" height="500" fill="var(--ink)"/>
+    <rect x="160" y="140" width="24" height="24" fill="var(--signal)"/>
+    <rect x="160" y="164" width="112" height="336" fill="var(--muted)"/>
+    <rect x="288" y="300" width="72" height="200" fill="var(--faint)"/>
+    <g stroke="var(--rule)" stroke-width="1">
+      <line x1="0" y1="220.5" x2="360" y2="220.5"/><line x1="0" y1="260.5" x2="360" y2="260.5"/>
+      <line x1="0" y1="300.5" x2="360" y2="300.5"/><line x1="0" y1="340.5" x2="360" y2="340.5"/>
+      <line x1="0" y1="380.5" x2="360" y2="380.5"/>
+    </g>
+  </svg>
+</section>
 
 <section class="shot" id="cover">
   <div>

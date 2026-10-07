@@ -1,0 +1,44 @@
+/* Page layout for the Acta docs site. Every value comes from the tokens in
+   styles.css; this file only arranges the rail and the content column. */
+html { -webkit-text-size-adjust: 100%; }
+body { overflow-x: hidden; }
+code { font-family: var(--font-mono); font-size: 0.92em; }
+
+.skip { position: absolute; left: -9999px; top: 0; }
+.skip:focus { left: var(--space-4); top: var(--space-4); z-index: 10; background: var(--ink); color: var(--on-ink); padding: var(--space-2) var(--space-3); }
+
+.shell { display: grid; grid-template-columns: var(--rail-width) minmax(0, 1fr); min-height: 100vh; }
+.rail { position: sticky; top: 0; align-self: start; height: 100vh; overflow-y: auto; padding: var(--pad-rail) var(--space-6); border-right: var(--hairline) solid var(--rule); }
+.content { padding: var(--pad-rail) var(--space-12) var(--space-12); max-width: 1080px; min-width: 0; }
+
+.spec-row { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: var(--space-8); align-items: baseline; padding: var(--space-6) 0; border-bottom: var(--hairline) solid var(--rule); }
+
+.rules { margin: 0; padding: 0; list-style: none; counter-reset: rule; border-top: var(--hairline) solid var(--rule); }
+.rules li { counter-increment: rule; display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: var(--space-6); padding: var(--pad-row) var(--pad-row-inline); border-bottom: var(--hairline) solid var(--rule); color: var(--muted); font-size: var(--size-body); line-height: var(--lh-body); }
+.rules li::before { content: "0" counter(rule); font-family: var(--font-mono); font-size: var(--size-meta); color: var(--faint); padding-top: 4px; }
+.rules b { color: var(--ink); font-weight: var(--weight-medium); }
+
+.table-wrap { overflow-x: auto; }
+.tokens { width: 100%; border-collapse: collapse; font-size: var(--size-small); }
+.tokens th { text-align: left; font-family: var(--font-mono); font-size: var(--size-micro); letter-spacing: var(--ls-micro); text-transform: uppercase; color: var(--faint); font-weight: var(--weight-body); padding: 0 var(--space-4) var(--space-3) 0; border-bottom: var(--hairline) solid var(--ink); }
+.tokens td { padding: var(--space-3) var(--space-4) var(--space-3) 0; border-bottom: var(--hairline) solid var(--rule); color: var(--muted); white-space: nowrap; }
+.tokens td:first-child { color: var(--ink); }
+.tokens code { color: inherit; font-variant-numeric: tabular-nums; }
+.sw { display: inline-block; width: 28px; height: 18px; border: var(--hairline) solid var(--rule); vertical-align: middle; margin-right: var(--space-3); }
+
+.two-col { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6); }
+.three-col { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-8); }
+
+.foot { border-top: var(--hairline) solid var(--rule); padding-top: var(--space-6); }
+.foot a { color: var(--ink); }
+
+@media (max-width: 1180px) {
+  .content { padding-inline: var(--space-8); }
+  .three-col { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 620px) {
+  .shell { grid-template-columns: minmax(0, 1fr); }
+  .rail { position: static; height: auto; border-right: 0; border-bottom: var(--hairline) solid var(--rule); padding: var(--space-8) var(--space-4); }
+  .content { padding: var(--space-8) var(--space-4) var(--space-12); }
+  .spec-row, .two-col, .three-col { grid-template-columns: minmax(0, 1fr); gap: var(--space-4); }
+}
