@@ -54,12 +54,11 @@ Photography is the one place Acta meets colour, so the treatment depends on the 
 
 ## Rules that never bend
 
-1. No em dashes in copy. Use a comma, a period, a colon, or "and".
-2. No serif fonts, and nothing outside the four families.
-3. Code is always `CodeSnap`: JetBrains Mono 600 with ligatures, Dracula, a dark card. It never takes the page theme.
-4. No gradients, patterns, transparency, blur or shadows. Depth is one background step.
-5. No icon set. Inline Unicode only: `↗` external, `↓` in-page, `·` between metadata.
-6. Sentence case everywhere. Uppercase only inside `SectionHead`, `Tag` and mono labels.
+1. No serif fonts, and nothing outside the four families.
+2. Code is always `CodeSnap`: JetBrains Mono 600 with ligatures, Dracula, a dark card. It never takes the page theme.
+3. No gradients, patterns, transparency, blur or shadows. Depth is one background step.
+4. No icon set. Inline Unicode only: `↗` external, `↓` in-page, `·` between metadata.
+5. Sentence case everywhere. Uppercase only inside `SectionHead`, `Tag` and mono labels.
 
 The [brand book](../readme.md) has the full reasoning: voice, spacing, motion, layout and imagery.
 
