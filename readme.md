@@ -6,7 +6,7 @@ Internally the system is called **Ledger**, after its organising idea: every pie
 
 ## Sources
 
-Extracted from `Mikael Ribeiro - Design System.dc.html` in this project, which is the living foundations page and the source of truth for every value here. Owner-supplied material: a LinkedIn profile export (`uploads/linkedin.pdf`), a written bio (`uploads/summary.txt`), and personal photography (`uploads/*.jpg`). No prior design system, brand guidelines, Figma file or codebase was provided, so the system was authored from scratch against the owner's stated preferences.
+Extracted from `foundations.dc.html` in this project, which is the living foundations page and the source of truth for every value here. Owner-supplied material: a LinkedIn profile export (`uploads/linkedin.pdf`), a written bio (`uploads/summary.txt`), and personal photography (`uploads/*.jpg`). No prior design system, brand guidelines, Figma file or codebase was provided, so the system was authored from scratch against the owner's stated preferences.
 
 There is **no logo or wordmark**. None was provided and none was invented. Wherever a mark would go, the name sets in plain Bricolage Grotesque 700. A circular photographic avatar stands in at small sizes.
 
@@ -22,12 +22,12 @@ There is **no logo or wordmark**. None was provided and none was invented. Where
 | `tokens/motion.css` | Scroll-driven keyframes, reduced-motion stop |
 | `tokens/base.css` | Resets, focus, photo and code treatments |
 | `components/core/` | Button, Tag, SectionHead |
-| `components/forms/` | Field, Textarea |
+| `components/forms/` | Field (input and textarea) |
 | `components/content/` | CodeSnap, EntryRow, Figure, Avatar |
 | `components/navigation/` | TocList |
 | `guidelines/` | Foundation specimen cards |
 | `assets/` | Photography |
-| `Mikael Ribeiro - Design System.dc.html` | The full foundations page, 13 sections |
+| `foundations.dc.html` | The full foundations page, 13 sections |
 
 ## Content fundamentals
 
@@ -82,9 +82,9 @@ Dark is the default and the backgrounds are very dark, Cursor-like, with small c
 
 **Imagery.** Photography is the one place this system meets colour, so treatment depends on the job the image is doing. Three tiers:
 
-1. **Chrome** — portraits, avatars, thumbnails. `grayscale(1) contrast(1.04)`, returning to full colour on hover over 300ms.
-2. **Evidence** — photography that proves something. Full colour, inside a 1px frame with 7px inset, caption required.
-3. **Mood** — atmosphere. Grayscale, unframed, uncaptioned, at most one per page.
+1. **Chrome**: portraits, avatars, thumbnails. `grayscale(1) contrast(1.04)`, returning to full colour on hover over 300ms.
+2. **Evidence**: photography that proves something. Full colour, inside a 1px frame with 7px inset, caption required.
+3. **Mood**: atmosphere. Grayscale, unframed, uncaptioned, at most one per page.
 
 Personal photographs live on About and Now, never inside a case study.
 

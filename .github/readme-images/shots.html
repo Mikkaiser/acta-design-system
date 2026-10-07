@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ledger README images</title>
+<!-- Rendered by render.mjs. Needs a design-sync build in ../../ds-bundle. -->
+<link rel="stylesheet" href="../../ds-bundle/styles.css">
+<style>
+  body { margin: 0; background: #000; }
+  .shot { width: 1200px; background: var(--bg); color: var(--ink); padding: 56px; margin-bottom: 40px; }
+  .mono { font-family: var(--font-mono); font-size: var(--size-micro); letter-spacing: var(--ls-micro); text-transform: uppercase; color: var(--faint); }
+
+  /* cover */
+  #cover { display: grid; grid-template-columns: 1fr 420px; gap: 48px; align-items: end; padding: 72px 56px 56px; }
+  #cover .name { font-family: var(--font-display); font-weight: 800; font-size: 148px; line-height: .9; letter-spacing: -0.04em; margin: 0; }
+  #cover .lead { font-size: var(--size-lead); line-height: var(--lh-lead); letter-spacing: var(--ls-lead); color: var(--muted); max-width: 30ch; margin: 24px 0 28px; }
+  #cover svg { display: block; }
+
+  /* type */
+  .trow { display: grid; grid-template-columns: 300px 1fr; gap: 32px; align-items: baseline; padding: 22px 0; border-bottom: 1px solid var(--rule); }
+  .trow:first-of-type { border-top: 1px solid var(--rule); }
+  .trow .spec { line-height: 1.9; }
+  .trow .spec b { display: block; color: var(--ink); font-weight: 400; letter-spacing: .12em; }
+
+  /* colour */
+  #colors { display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding: 0; }
+  .pal { padding: 48px; }
+  .pal.light { background: #FFFFFF; color: #000; }
+  .pal h3 { font-family: var(--font-display); font-weight: 700; font-size: 21px; letter-spacing: -0.025em; margin: 0 0 6px; }
+  .pal .mono { margin-bottom: 24px; }
+  .pal.light .mono { color: #737373; }
+  .sw { display: grid; grid-template-columns: 44px 1fr auto; gap: 16px; align-items: center; padding: 9px 0; border-top: 1px solid #2E2E2E; font-size: 14px; }
+  .pal.light .sw { border-top-color: #EBEBEB; }
+  .sw i { width: 44px; height: 28px; border: 1px solid #2E2E2E; }
+  .pal.light .sw i { border-color: #EBEBEB; }
+  .sw code { font-family: var(--font-mono); font-size: 12px; color: #8F8F8F; font-variant-numeric: tabular-nums; }
+  .pal.light .sw code { color: #737373; }
+
+  /* components */
+  #components .grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: 56px; }
+  #components .stack { display: grid; gap: 28px; align-content: start; }
+  #components .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+
+  /* photos */
+  #photos .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 56px; align-items: start; }
+  #photos .tier { display: grid; gap: 18px; align-content: start; }
+  #photos .tier h3 { font-family: var(--font-display); font-weight: 700; font-size: 20px; letter-spacing: -0.025em; margin: 0; }
+  #photos .tier p { margin: 0; font-size: var(--size-small); line-height: var(--lh-small); color: var(--muted); }
+</style>
+</head>
+<body>
+
+<section class="shot" id="cover">
+  <div>
+    <div class="mono">Design system · v1.0.0</div>
+    <h1 class="name">Ledger</h1>
+    <p class="lead">The design system behind mikkaiser.com. Monochrome and text-led: every piece of content is a row in a dated register.</p>
+    <div class="mono">11 components · dark and light · Bricolage Grotesque, Roboto, JetBrains Mono</div>
+  </div>
+  <svg viewBox="0 0 420 300" width="420" height="300" aria-hidden="true">
+    <rect x="0" y="0" width="168" height="300" fill="var(--ink)"/>
+    <rect x="184" y="72" width="24" height="24" fill="var(--signal)"/>
+    <rect x="184" y="96" width="132" height="204" fill="var(--muted)"/>
+    <rect x="332" y="168" width="88" height="132" fill="var(--faint)"/>
+    <g stroke="var(--rule)" stroke-width="1">
+      <line x1="0" y1="120.5" x2="420" y2="120.5"/><line x1="0" y1="152.5" x2="420" y2="152.5"/>
+      <line x1="0" y1="184.5" x2="420" y2="184.5"/><line x1="0" y1="216.5" x2="420" y2="216.5"/>
+      <line x1="0" y1="248.5" x2="420" y2="248.5"/>
+    </g>
+  </svg>
+</section>
+
+<section class="shot" id="type">
+  <div id="type-head"></div>
+  <div class="trow">
+    <div class="mono spec"><b>Display</b>Bricolage Grotesque 800<br>clamp(36px, 5.6vw, 62px) · −0.04em</div>
+    <div style="font-family:var(--font-display);font-weight:800;font-size:62px;line-height:1;letter-spacing:-0.04em">Hi, my name is Mikael</div>
+  </div>
+  <div class="trow">
+    <div class="mono spec"><b>Headings</b>Bricolage Grotesque 700<br>24 · 21 · 20 · 16px · −0.025em</div>
+    <div style="font-family:var(--font-display);font-weight:700;font-size:24px;line-height:1.15;letter-spacing:-0.025em">Workshop Management System</div>
+  </div>
+  <div class="trow">
+    <div class="mono spec"><b>Text</b>Roboto 400 · 500 buttons<br>lead 20 · body 15 · small 13px</div>
+    <div>
+      <div style="font-size:var(--size-lead);line-height:var(--lh-lead);letter-spacing:var(--ls-lead);color:var(--ink-soft);max-width:44ch">Six years across .NET, Node and the front ends on top of them.</div>
+      <div style="font-size:var(--size-body);line-height:var(--lh-body);color:var(--muted);max-width:60ch;margin-top:8px">What survives contact with a ten-year-old Oracle schema, and what you quietly give up.</div>
+    </div>
+  </div>
+  <div class="trow">
+    <div class="mono spec"><b>Mono</b>JetBrains Mono 400 · 600<br>labels 10px · meta 11px · stats 26px</div>
+    <div style="display:flex;gap:40px;align-items:baseline;flex-wrap:wrap">
+      <div><div style="font-family:var(--font-mono);font-weight:600;font-size:26px;line-height:1;font-variant-numeric:tabular-nums">6+</div><div class="mono" style="margin-top:8px">Years of software</div></div>
+      <div><div style="font-family:var(--font-mono);font-weight:600;font-size:26px;line-height:1;font-variant-numeric:tabular-nums">15</div><div class="mono" style="margin-top:8px">Microservices</div></div>
+      <div style="font-family:var(--font-mono);font-size:var(--size-meta);color:var(--faint)">03·26 · 8 min</div>
+    </div>
+  </div>
+  <div class="trow">
+    <div class="mono spec"><b>Accent</b>Poppins 600 · 14px<br>the AI agent's name only</div>
+    <div style="font-family:var(--font-title);font-weight:600;font-size:14px">Mikkaiser agent</div>
+  </div>
+</section>
+
+<section class="shot" id="colors">
+  <div class="pal dark">
+    <h3>Dark</h3><div class="mono">The default</div>
+    <div id="sw-dark"></div>
+  </div>
+  <div class="pal light">
+    <h3>Light</h3><div class="mono">data-theme="light" on the page</div>
+    <div id="sw-light"></div>
+  </div>
+</section>
+
+<section class="shot" id="components">
+  <div class="grid">
+    <div id="c-left"></div>
+    <div class="stack" id="c-right"></div>
+  </div>
+  <div id="c-code" style="margin-top:48px"></div>
+</section>
+
+<section class="shot" id="photos">
+  <div id="p-head"></div>
+  <div class="grid" id="p-grid"></div>
+</section>
+
+<script src="../../ds-bundle/_vendor/react.js"></script>
+<script src="../../ds-bundle/_vendor/react-dom.js"></script>
+<script src="../../ds-bundle/_ds_bundle.js"></script>
+<script>
+  var L = window.Ledger, h = React.createElement;
+  function mount(id, el) { ReactDOM.createRoot(document.getElementById(id)).render(el); }
+
+  var TOKENS = [
+    ['bg', '#0A0A0A', '#FFFFFF', 'Page'], ['raised', '#171717', '#FAFAFA', 'Hover step'], ['sunken', '#1F1F1F', '#F5F5F5', 'Disabled'],
+    ['rule', '#2E2E2E', '#EBEBEB', 'Hairlines'], ['faint', '#8F8F8F', '#737373', 'Mono meta'], ['muted', '#A1A1A1', '#525252', 'Secondary'],
+    ['ink-soft', '#D4D4D4', '#404040', 'Body copy'], ['ink', '#FFFFFF', '#000000', 'Headings, fills'], ['signal', '#FF6166', '#CC0000', 'Field errors only']
+  ];
+  ['dark', 'light'].forEach(function (t, k) {
+    mount('sw-' + t, h(React.Fragment, null, TOKENS.map(function (r) {
+      return h('div', { className: 'sw', key: r[0] }, h('i', { style: { background: r[k + 1] } }),
+        h('span', null, '--' + r[0], h('span', { style: { color: k ? '#737373' : '#8F8F8F', marginLeft: 10, fontSize: 12 } }, r[3])),
+        h('code', null, r[k + 1]));
+    })));
+  });
+
+  mount('type-head', h(L.SectionHead, { label: 'Type hierarchy', meta: 'Four families, as on mikkaiser.com' }));
+
+  mount('c-left', h('div', null,
+    h(L.SectionHead, { label: 'Selected work', meta: 'Four of eleven' }),
+    h('div', { style: { borderTop: 'var(--hairline) solid var(--rule)' } },
+      h(L.EntryRow, { date: '2025', kicker: 'ADVETI', title: 'Student Management Platform', summary: 'Training tracking and reporting for Emirates Skills and WorldSkills competitors. Next.js and MariaDB.' }),
+      h(L.EntryRow, { date: '2024', kicker: 'ADVETI', title: 'Institute service mesh', summary: 'Roughly 15 microservices over RabbitMQ, Docker and Kubernetes, with Grafana, Loki and Prometheus.' }),
+      h(L.EntryRow, { date: '03·26', duration: '8 min', title: 'Clean architecture in a government codebase', summary: 'What survives contact with a ten-year-old Oracle schema.' }))));
+
+  mount('c-right', h(React.Fragment, null,
+    h('div', { className: 'row' }, h(L.Button, { variant: 'primary' }, 'Get in touch'), h(L.Button, { variant: 'secondary' }, 'Read the case'), h(L.Button, { variant: 'ghost', href: '#' }, 'All posts ↓')),
+    h('div', { className: 'row', style: { gap: 8 } }, h(L.Tag, null, '.NET'), h(L.Tag, null, 'Next.js'), h(L.Tag, null, 'MariaDB'), h(L.Tag, { selected: true }, 'Kubernetes')),
+    h(L.Field, { id: 'email', label: 'Email', placeholder: 'you@company.com', helper: 'I reply within two working days.' }),
+    h(L.Field, { id: 'bad', label: 'Email', value: 'not-an-email', error: 'Enter a valid address.', onChange: function () {} }),
+    h(L.TocList, { activeId: 'b', items: [{ id: 'a', label: 'The schema is the contract' }, { id: 'b', label: 'Where the boundary lands' }, { id: 'c', label: 'What it buys you' }] })));
+
+  var S = L.Syn;
+  mount('c-code', h(L.CodeSnap, { tabs: ['score.action.ts', 'schema.ts'], activeTab: 0 },
+    h(S, { kind: 'comment' }, '// revalidate after a score is filed\n'),
+    h(S, { kind: 'keyword' }, 'export async function'), ' ', h(S, { kind: 'fn' }, 'fileScore'), '(', h(S, { kind: 'param', italic: true }, 'input'), ': ', h(S, { kind: 'type' }, 'ScoreInput'), h(S, null, ') {\n'),
+    h(S, null, '  '), h(S, { kind: 'keyword' }, 'const'), ' parsed = ', h(S, { kind: 'fn' }, 'scoreSchema'), '.', h(S, { kind: 'fn' }, 'parse'), '(', h(S, { kind: 'param', italic: true }, 'input'), h(S, null, ');\n'),
+    h(S, null, '  '), h(S, { kind: 'keyword' }, 'await'), ' db.', h(S, { kind: 'fn' }, 'insert'), '(scores).', h(S, { kind: 'fn' }, 'values'), h(S, null, '(parsed);\n'),
+    h(S, null, '  '), h(S, { kind: 'fn' }, 'revalidatePath'), '(', h(S, { kind: 'literal' }, "'/competitors'"), h(S, null, ');\n}')));
+
+  mount('p-head', h(L.SectionHead, { label: 'Photography', meta: 'Three tiers' }));
+  mount('p-grid', h(React.Fragment, null,
+    h('div', { className: 'tier' }, h('h3', null, 'Chrome'), h('div', { style: { display: 'flex', gap: 16, alignItems: 'flex-end' } },
+      h(L.Avatar, { src: '../../assets/burj-view.jpg', alt: '', size: 180 }), h(L.Avatar, { src: '../../assets/burj-view.jpg', alt: '', size: 56 })),
+      h('p', null, 'Avatar. Grayscale until hover, the face centred inside the circle.')),
+    h('div', { className: 'tier' }, h('h3', null, 'Evidence'),
+      h(L.Figure, { src: '../../assets/worldskills-lyon-2024.jpg', alt: 'WorldSkills Lyon 2024', position: '50% 22%', caption: 'WorldSkills Lyon, September 2024. Evidence keeps its colour.' })),
+    h('div', { className: 'tier' }, h('h3', null, 'Mood'),
+      h(L.MoodImage, { src: '../../assets/desert-dusk.jpg', alt: 'In the desert at dusk', position: '50% 30%' }),
+      h('p', null, 'MoodImage. Grayscale, unframed, one per page.'))));
+</script>
+</body>
+</html>
