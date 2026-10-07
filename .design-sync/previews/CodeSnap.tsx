@@ -1,5 +1,5 @@
 import React from 'react';
-import { CodeSnap, Syn } from 'ledger-design-system';
+import { CodeSnap, Syn } from 'mikkaiser-design-system';
 import { Ground } from './ground';
 
 export const ServerAction = () => (

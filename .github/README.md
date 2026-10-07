@@ -72,7 +72,7 @@ npm install github:Mikkaiser/mikkaiser-design-system
 ```
 
 ```jsx
-import { SectionHead, EntryRow, Button } from 'ledger-design-system';
+import { SectionHead, EntryRow, Button } from 'mikkaiser-design-system';
 
 export function SelectedWork() {
   return (

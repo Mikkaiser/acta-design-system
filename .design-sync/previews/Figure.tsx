@@ -1,5 +1,5 @@
 import React from 'react';
-import { Figure } from 'ledger-design-system';
+import { Figure } from 'mikkaiser-design-system';
 import { Ground } from './ground';
 import lyon from './assets/worldskills-lyon-2024.jpg';
 import dusk from './assets/desert-dusk.jpg';

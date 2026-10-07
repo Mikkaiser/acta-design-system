@@ -1,5 +1,5 @@
 import React from 'react';
-import { SectionHead } from 'ledger-design-system';
+import { SectionHead } from 'mikkaiser-design-system';
 import { Ground } from './ground';
 
 export const WithMeta = () => (

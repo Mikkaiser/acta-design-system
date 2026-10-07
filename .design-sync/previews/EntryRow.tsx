@@ -1,5 +1,5 @@
 import React from 'react';
-import { EntryRow } from 'ledger-design-system';
+import { EntryRow } from 'mikkaiser-design-system';
 import { Ground } from './ground';
 
 const set = { borderTop: '1px solid var(--rule)' } as const;

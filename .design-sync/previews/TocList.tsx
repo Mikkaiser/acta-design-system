@@ -1,5 +1,5 @@
 import React from 'react';
-import { TocList } from 'ledger-design-system';
+import { TocList } from 'mikkaiser-design-system';
 import { Ground } from './ground';
 
 const items = [
