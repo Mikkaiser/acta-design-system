@@ -1,8 +1,8 @@
-# Ledger Design System
+# Acta Design System
 
 The design system behind the personal portfolio and integrated blog of **Mikael Ribeiro Simoes** (mikkaiser), Senior Software Developer at Abu Dhabi Government / ADVETI. Brazilian, based in Abu Dhabi. WorldSkills experience. Blog at [techknowledge.blog](https://techknowledge.blog).
 
-Internally the system is called **Ledger**, after its organising idea: every piece of content is a row in a dated register, and a sticky rail carries the name, the map and the contact.
+The system is called **Acta**, Latin for "things done". Rome posted the *acta diurna*, a daily public record of what had actually happened, and that is the organising idea here: every piece of content is a dated record of work that shipped, set as a row in a register, and a sticky rail carries the name, the map and the contact. It is also the voice rule in one word: show what was done, never what could be done.
 
 ## Sources
 

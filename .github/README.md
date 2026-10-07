@@ -1,8 +1,8 @@
-<img src="images/cover.png" alt="Ledger: the design system behind mikkaiser.com" width="100%">
+<img src="images/cover.png" alt="Acta: the design system behind mikkaiser.com" width="100%">
 
-# Ledger
+# Acta
 
-**Ledger** is the design system behind [mikkaiser.com](https://mikkaiser.com), the portfolio and blog of Mikael Ribeiro (Mikkaiser), a senior software developer in Abu Dhabi. It is monochrome and text-led. Every piece of content is a row in a dated register, and a sticky rail carries the name, the map and the contact.
+**Acta** is the design system behind [mikkaiser.com](https://mikkaiser.com), the portfolio and blog of Mikael Ribeiro (Mikkaiser), a senior software developer in Abu Dhabi. The name is Latin for "things done", after the *acta diurna*, Rome's daily public record of what actually happened. It is monochrome and text-led: every piece of content is a dated record of work that shipped, and a sticky rail carries the name, the map and the contact.
 
 It ships as 11 React components styled entirely with CSS custom properties: no provider, no theme object, no class vocabulary. The same system is synced to Claude Design, so the design agent there builds with these exact components.
 
@@ -48,7 +48,7 @@ Strictly monochrome: ten neutrals and one signal. Hierarchy comes from weight, s
 
 ## Photography
 
-Photography is the one place Ledger meets colour, so the treatment depends on the job the image does.
+Photography is the one place Acta meets colour, so the treatment depends on the job the image does.
 
 <img src="images/photos.jpg" alt="Photography tiers: grayscale avatar, full-colour framed evidence figure, grayscale mood image" width="100%">
 

@@ -1,4 +1,4 @@
-// Shared preview scaffolding. Ledger is dark by default (tokens live on :root)
+// Shared preview scaffolding. Acta is dark by default (tokens live on :root)
 // and the light theme is a page-level switch ([data-theme="light"] anywhere
 // flips :root), so every cell sits on the system's own --bg rather than the
 // card page's white body.

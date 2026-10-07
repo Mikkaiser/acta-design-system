@@ -2,7 +2,7 @@
   "name": "mikkaiser-design-system",
   "version": "1.0.0",
   "private": true,
-  "description": "Ledger, the design system behind Mikael Ribeiro's portfolio and blog.",
+  "description": "Acta, the design system behind Mikael Ribeiro's portfolio and blog.",
   "type": "module",
   "module": "components/index.jsx",
   "types": "components/index.d.ts",

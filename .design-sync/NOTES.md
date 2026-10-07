@@ -1,4 +1,4 @@
-# design-sync notes: Ledger
+# design-sync notes: Acta
 
 Repo-specific facts a re-sync needs. Config lives in `config.json`; this file holds what config can't express.
 
@@ -18,7 +18,7 @@ The 15 `guidelines/*.html` foundation cards (`@dsCard` headers, link `../styles.
 
 ## Previews
 
-- `.design-sync/previews/ground.ts` wraps every cell in a `var(--bg)` block because the card page paints a white body and Ledger is dark by default. Keep using `<Ground>` in any new preview.
+- `.design-sync/previews/ground.ts` wraps every cell in a `var(--bg)` block because the card page paints a white body and Acta is dark by default. Keep using `<Ground>` in any new preview.
 - Light theme is page-level (`:root:has([data-theme="light"])`). A single light cell flips the whole card page, so previews carry NO light-theme cells. Don't add them back.
 - `.design-sync/previews/assets/*.jpg` are 640px copies of `assets/*.jpg` (the originals are 2-7 MB). They were downsampled with headless Chromium (`canvas.toDataURL`) because no image tool is installed. Re-run that if the source photos change.
 - All four photos are portraits of the owner (including `desert-dusk.jpg`). Never crop them to 16:9 in a preview; the system forbids it.

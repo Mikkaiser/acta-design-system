@@ -1,6 +1,6 @@
-# Building with Ledger
+# Building with Acta
 
-Ledger is the monochrome, text-led design system behind Mikael Ribeiro's portfolio and blog. Every component is a plain React function on `window.Ledger`; there is no provider, no theme object and no CSS class vocabulary. Styling is done entirely with the CSS custom properties below, applied as inline styles.
+Acta is the monochrome, text-led design system behind Mikael Ribeiro's portfolio and blog. Every component is a plain React function on `window.Acta`; there is no provider, no theme object and no CSS class vocabulary. Styling is done entirely with the CSS custom properties below, applied as inline styles.
 
 ## Setup
 
@@ -33,7 +33,7 @@ Read `_ds_bundle.css` for every token value and the base rules, `guidelines/read
 ## Idiomatic page fragment
 
 ```jsx
-const { SectionHead, EntryRow, Button } = window.Ledger;
+const { SectionHead, EntryRow, Button } = window.Acta;
 
 <main style={{ background: 'var(--bg)', color: 'var(--ink)', fontFamily: 'var(--font-body)', padding: 'var(--space-8)' }}>
   <SectionHead label="Selected work" meta="Four of eleven" />

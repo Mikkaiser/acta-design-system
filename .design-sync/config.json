@@ -1,7 +1,7 @@
 {
   "projectId": "bc77c093-dca0-4c52-899e-283ee0b9165a",
   "pkg": "mikkaiser-design-system",
-  "globalName": "Ledger",
+  "globalName": "Acta",
   "shape": "package",
   "entry": "components/index.jsx",
   "srcDir": "components",

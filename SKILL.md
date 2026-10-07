@@ -1,6 +1,6 @@
 ---
-name: ledger-design
-description: Use this skill to generate well-branded interfaces and assets for Mikael Ribeiro's portfolio and blog (Ledger design system), either for production or throwaway prototypes/mocks/etc. Contains essential design guidelines, colors, type, fonts, assets, and UI kit components for protoyping.
+name: acta-design
+description: Use this skill to generate well-branded interfaces and assets for Mikael Ribeiro's portfolio and blog (Acta design system), either for production or throwaway prototypes/mocks/etc. Contains essential design guidelines, colors, type, fonts, assets, and UI kit components for protoyping.
 user-invocable: true
 ---
 
