@@ -11,6 +11,7 @@ const SECTIONS = [
   { id: 'colour', label: 'Colour' },
   { id: 'components', label: 'Components' },
   { id: 'photography', label: 'Photography' },
+  { id: 'blog', label: 'Blog' },
   { id: 'install', label: 'Install' },
 ];
 
@@ -114,6 +115,111 @@ function ComponentDoc({ name, file, children, summary }) {
       <p style={{ ...small, maxWidth: 'var(--measure-body)', marginBottom: 'var(--space-6)' }}>{summary}</p>
       <div style={{ minWidth: 0 }}>{children}</div>
     </article>
+  );
+}
+
+function Specimen({ label, children }) {
+  return (
+    <figure className="specimen">
+      <figcaption style={{ ...mono, padding: 'var(--space-3) var(--space-4)', borderBottom: 'var(--hairline) solid var(--rule)' }}>{label}</figcaption>
+      <div className="specimen-body">{children}</div>
+    </figure>
+  );
+}
+
+function Anatomy({ items }) {
+  return (
+    <ol className="anatomy">
+      {items.map(([part, rule]) => (
+        <li key={part}><span><b>{part}</b> {rule}</span></li>
+      ))}
+    </ol>
+  );
+}
+
+const articleH2 = { fontFamily: 'var(--font-display)', fontWeight: 'var(--weight-heading)', fontSize: 'var(--size-heading)', lineHeight: 'var(--lh-heading)', letterSpacing: 'var(--ls-heading)', color: 'var(--ink)', margin: 'var(--space-8) 0 var(--space-3)', scrollMarginTop: 24 };
+const articleP = { fontSize: 'var(--size-body)', lineHeight: 'var(--lh-body)', color: 'var(--ink-soft)', margin: '0 0 var(--space-4)' };
+
+function BlogSection() {
+  const S = Syn;
+  const toc = [
+    { id: 'post-contract', label: 'The schema is the contract' },
+    { id: 'post-boundary', label: 'Where the boundary lands' },
+    { id: 'post-buys', label: 'What it buys you' },
+  ];
+  return (
+    <Section id="blog" label="Blog" meta="Planned">
+      <p style={{ ...body, marginBottom: 'var(--space-4)' }}>
+        The blog on mikkaiser.com is designed but not yet live. It needs no new components: the index is a set of post rows, and an article is a single 64ch column of text with the table of contents beside it. Everything below is built from the components above.
+      </p>
+      <p style={{ ...small, marginBottom: 'var(--space-8)' }}>The posts shown here are samples to demonstrate the layout.</p>
+
+      <h3 style={{ ...h3, marginBottom: 'var(--space-3)' }}>Post index</h3>
+      <p style={{ ...small, maxWidth: 'var(--measure-body)', marginBottom: 'var(--space-6)' }}>One row per post, newest first. The date gutter reads month·year, the reading time sits on the right, and a tag set filters by topic.</p>
+      <Specimen label="mikkaiser.com/blog · sample">
+        <SectionHead label="Writing" meta="Two posts · 2026" />
+        <div style={{ ...row, gap: 'var(--space-2)', marginBottom: 'var(--space-6)' }}>
+          <Tag selected>All</Tag><Tag>Architecture</Tag><Tag>Diagrams</Tag><Tag>Career</Tag>
+        </div>
+        <div style={{ borderTop: 'var(--hairline) solid var(--rule)' }}>
+          <EntryRow date="03·26" duration="8 min" kicker="Architecture" title="Clean architecture in a government codebase" href="#post-sample" summary="What survives contact with a ten-year-old Oracle schema, and what you quietly give up." />
+          <EntryRow date="01·26" duration="5 min" kicker="Diagrams" title="One idea per diagram" href="#post-sample" summary="If it needs a legend, it needs splitting." />
+        </div>
+      </Specimen>
+      <Anatomy items={[
+        ['Title.', 'Plain and declarative, sentence case. No colon subtitles, no questions.'],
+        ['Summary.', 'One sentence, occasionally two, in muted.'],
+        ['Kicker.', 'The post’s single topic, the same word as its filter tag.'],
+        ['Duration.', 'Reading time in mono. Its presence is what makes a row a post rather than a project.'],
+      ]} />
+
+      <h3 id="post-sample" style={{ ...h3, margin: 'var(--space-12) 0 var(--space-3)', scrollMarginTop: 24 }}>Article page</h3>
+      <p style={{ ...small, maxWidth: 'var(--measure-body)', marginBottom: 'var(--space-6)' }}>A single reading column with the table of contents beside it from 1180px, and above it on narrower screens. A 2px progress bar runs along the top as you read.</p>
+      <Specimen label="mikkaiser.com/blog/clean-architecture · sample">
+        <div aria-hidden="true" style={{ height: 'var(--progress-height)', background: 'var(--rule)', margin: 'calc(-1 * var(--space-6)) calc(-1 * var(--space-6)) var(--space-8)' }}>
+          <div style={{ width: '38%', height: '100%', background: 'var(--ink)' }} />
+        </div>
+        <div style={{ ...mono, display: 'flex', gap: 'var(--space-3)', flexWrap: 'wrap', fontVariantNumeric: 'tabular-nums' }}>
+          <span>03·26</span><span>·</span><span>8 min read</span><span>·</span><span>Architecture</span>
+        </div>
+        <h4 style={{ fontFamily: 'var(--font-display)', fontWeight: 'var(--weight-display)', fontSize: 'var(--size-page-title)', lineHeight: 'var(--lh-page-title)', letterSpacing: 'var(--ls-page-title)', color: 'var(--ink)', margin: 'var(--space-4) 0', maxWidth: '20ch' }}>Clean architecture in a government codebase</h4>
+        <p style={{ fontSize: 'var(--size-lead)', lineHeight: 'var(--lh-lead)', letterSpacing: 'var(--ls-lead)', color: 'var(--muted)', maxWidth: 'var(--measure-lead)', margin: '0 0 var(--space-8)' }}>What survives contact with a ten-year-old Oracle schema, and what you quietly give up.</p>
+        <div className="article">
+          <div className="article-toc">
+            <TocList items={toc} activeId="post-boundary" />
+          </div>
+          <div className="article-body">
+            <h5 id="post-contract" style={articleH2}>The schema is the contract</h5>
+            <p style={articleP}>Body copy runs at 15px on a 1.7 line height, in ink-soft, never wider than 64 characters. Headings inside an article use the 24px heading style and carry a 24px scroll margin so the table of contents lands them cleanly.</p>
+            <CodeSnap tabs={['score.repository.ts']}>
+              <S kind="keyword">export interface</S>{' '}<S kind="type">ScoreRepository</S><S>{' {\n'}</S>
+              <S>{'  '}</S><S kind="fn">findByCompetitor</S>{'('}<S kind="param" italic>id</S>{': '}<S kind="type">string</S>{'): '}<S kind="type">Promise</S>{'<'}<S kind="type">Score</S><S>{'[]>;\n}'}</S>
+            </CodeSnap>
+            <h5 id="post-boundary" style={articleH2}>Where the boundary lands</h5>
+            <p style={articleP}>Code always sits in a code card, full column width, scrolling sideways rather than wrapping. Evidence photography uses a framed, captioned figure; personal photos stay on About and Now.</p>
+            <div style={{ maxWidth: 280 }}>
+              <Figure src="assets/worldskills-lyon-2024.jpg" alt="Mikael Ribeiro at WorldSkills Lyon 2024" position="50% 22%" caption="Figures are captioned. A photograph without a caption is not evidence." />
+            </div>
+            <h5 id="post-buys" style={articleH2}>What it buys you</h5>
+            <p style={articleP}>A diagram, when a paragraph cannot carry the idea, is one canvas at 16:7 in the page palette, with signal reserved for failure. One idea per diagram.</p>
+            <div style={{ borderTop: 'var(--hairline) solid var(--rule)', marginTop: 'var(--space-8)' }}>
+              <div style={{ ...mono, padding: 'var(--space-4) 0 var(--space-2)' }}>Next post</div>
+              <EntryRow date="01·26" duration="5 min" title="One idea per diagram" href="#post-sample" summary="If it needs a legend, it needs splitting." style={{ paddingInline: 0 }} />
+            </div>
+            <div style={{ marginTop: 'var(--space-6)' }}><Button variant="ghost" href="#blog">All posts ↑</Button></div>
+          </div>
+        </div>
+      </Specimen>
+      <Anatomy items={[
+        ['Progress bar.', '2px of ink along the top edge, driven by scroll with no JavaScript, gone under reduced motion.'],
+        ['Meta line.', 'Date, reading time and topic in mono, separated by ·.'],
+        ['Title and lead.', 'Page title at up to 38px, then one lead sentence in muted at 20px.'],
+        ['Table of contents.', 'Only for three or more headings. Beside the text from 1180px, above it below that.'],
+        ['Body.', '15px Roboto at 64ch. Headings at 24px Bricolage 700.'],
+        ['Code, figures, diagrams.', 'CodeSnap for every snippet, Figure for evidence, one idea per diagram.'],
+        ['Ending.', 'The next post as a single row, then a way back to the index.'],
+      ]} />
+    </Section>
   );
 }
 
@@ -249,6 +355,8 @@ export function Page() {
             </div>
           </div>
         </Section>
+
+        <BlogSection />
 
         <Section id="install" label="Install" meta="React 18">
           <p style={{ ...body, marginBottom: 'var(--space-6)' }}>The package entry brings its own stylesheet, so tokens and fonts arrive with the first import. The components are plain JSX, so let your bundler compile the package, for example with <code>transpilePackages</code> in Next.js.</p>
