@@ -1,5 +1,5 @@
 import React from 'react';
-import { Field } from 'mikkaiser-design-system';
+import { Field } from 'acta-design-system';
 import { Ground } from './ground';
 
 export const Default = () => (

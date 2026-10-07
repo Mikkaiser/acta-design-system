@@ -1,5 +1,5 @@
 import React from 'react';
-import { CodeSnap, Syn } from 'mikkaiser-design-system';
+import { CodeSnap, Syn } from 'acta-design-system';
 import { Ground } from './ground';
 
 export const ServerAction = () => (

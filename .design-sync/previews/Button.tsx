@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'mikkaiser-design-system';
+import { Button } from 'acta-design-system';
 import { Ground, row } from './ground';
 
 export const Variants = () => (

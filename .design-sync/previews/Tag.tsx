@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tag } from 'mikkaiser-design-system';
+import { Tag } from 'acta-design-system';
 import { Ground } from './ground';
 
 const tags = { display: 'flex', gap: 8, flexWrap: 'wrap' } as const;

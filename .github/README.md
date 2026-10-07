@@ -68,11 +68,11 @@ The [brand book](../readme.md) has the full reasoning: voice, spacing, motion, l
 The package entry imports `styles.css` itself, so tokens and fonts arrive with the first component you import. React 18 is a peer dependency, and the components are plain JSX, so your bundler needs to compile this package (for example `transpilePackages` in Next.js).
 
 ```bash
-npm install github:Mikkaiser/mikkaiser-design-system
+npm install github:Mikkaiser/acta-design-system
 ```
 
 ```jsx
-import { SectionHead, EntryRow, Button } from 'mikkaiser-design-system';
+import { SectionHead, EntryRow, Button } from 'acta-design-system';
 
 export function SelectedWork() {
   return (

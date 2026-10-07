@@ -1,5 +1,5 @@
 import React from 'react';
-import { SectionHead } from 'mikkaiser-design-system';
+import { SectionHead } from 'acta-design-system';
 import { Ground } from './ground';
 
 export const WithMeta = () => (

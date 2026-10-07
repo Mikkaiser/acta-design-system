@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar } from 'mikkaiser-design-system';
+import { Avatar } from 'acta-design-system';
 import { Ground, row } from './ground';
 import portrait from './assets/burj-view.jpg';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { MoodImage } from 'mikkaiser-design-system';
+import { MoodImage } from 'acta-design-system';
 import { Ground } from './ground';
 import view from './assets/burj-view.jpg';
 import dusk from './assets/desert-dusk.jpg';
