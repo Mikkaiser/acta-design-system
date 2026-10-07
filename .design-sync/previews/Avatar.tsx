@@ -8,7 +8,7 @@ export const RailSize = () => (
     <div style={{ ...row, gap: 14 }}>
       <Avatar src={portrait} alt="Mikael Ribeiro" size={56} />
       <div>
-        <div style={{ fontFamily: 'var(--font-title)', fontWeight: 600, fontSize: 15, letterSpacing: '-0.01em' }}>Mikael Ribeiro</div>
+        <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 16, letterSpacing: '-0.025em' }}>Mikael Ribeiro</div>
         <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--faint)', marginTop: 3 }}>Senior software developer</div>
       </div>
     </div>

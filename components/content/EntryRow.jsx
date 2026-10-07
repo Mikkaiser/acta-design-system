@@ -25,7 +25,7 @@ export function EntryRow({ date, title, kicker, summary, duration, href = '#', s
       </div>
       <div style={{ minWidth: 0 }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 'var(--space-3)', flexWrap: 'wrap', marginBottom: '5px' }}>
-          <span style={{ fontFamily: 'var(--font-title)', fontWeight: 'var(--weight-medium)', fontSize: 'var(--size-entry-title)', lineHeight: 'var(--lh-entry-title)', letterSpacing: 'var(--ls-entry-title)', color: 'var(--ink)' }}>
+          <span style={{ fontFamily: 'var(--font-display)', fontWeight: 'var(--weight-heading)', fontSize: 'var(--size-entry-title)', lineHeight: 'var(--lh-entry-title)', letterSpacing: 'var(--ls-entry-title)', color: 'var(--ink)' }}>
             {title}
           </span>
           {kicker ? (

@@ -11,5 +11,5 @@ If the user invokes this skill without any other guidance, ask them what they wa
 Three rules in this system are absolute and override any default you might reach for:
 
 1. **No em dashes in copy, under any condition.** Use a comma, a period, a colon, or "and".
-2. **No serifed fonts.** Poppins for titles, Roboto for body and UI, JetBrains Mono for code and metadata.
+2. **No serifed fonts.** Bricolage Grotesque for display (800) and headings (700), Roboto for body and UI, JetBrains Mono for code and metadata. Poppins only for the AI agent's name label.
 3. **Code is always JetBrains Mono 600 with ligatures, always Dracula, always in a dark card with window chrome**, and it never adopts the page theme.

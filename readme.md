@@ -8,7 +8,7 @@ Internally the system is called **Ledger**, after its organising idea: every pie
 
 Extracted from `Mikael Ribeiro - Design System.dc.html` in this project, which is the living foundations page and the source of truth for every value here. Owner-supplied material: a LinkedIn profile export (`uploads/linkedin.pdf`), a written bio (`uploads/summary.txt`), and personal photography (`uploads/*.jpg`). No prior design system, brand guidelines, Figma file or codebase was provided, so the system was authored from scratch against the owner's stated preferences.
 
-There is **no logo or wordmark**. None was provided and none was invented. Wherever a mark would go, the name sets in plain Poppins 600. A circular photographic avatar stands in at small sizes.
+There is **no logo or wordmark**. None was provided and none was invented. Wherever a mark would go, the name sets in plain Bricolage Grotesque 700. A circular photographic avatar stands in at small sizes.
 
 ## Index
 
@@ -16,7 +16,7 @@ There is **no logo or wordmark**. None was provided and none was invented. Where
 | --- | --- |
 | `styles.css` | Global entry point, `@import` lines only |
 | `tokens/colors.css` | Monochrome scale, dark and light |
-| `tokens/typography.css` | Three families, nine type steps |
+| `tokens/typography.css` | Four families in the mikkaiser.com hierarchy |
 | `tokens/spacing.css` | Base-4 scale, radii, layout constants |
 | `tokens/code.css` | Dracula syntax + code card chrome |
 | `tokens/motion.css` | Scroll-driven keyframes, reduced-motion stop |
@@ -58,7 +58,7 @@ Examples of the register, verbatim from the system:
 
 Dark is the default and the backgrounds are very dark, Cursor-like, with small contrast steps between surfaces (`#0A0A0A` page, `#171717` raised, `#1F1F1F` sunken). Light inverts the same structure. Every text pair clears WCAG AA in both themes; `--faint` at 10–11px is the floor of the scale at 6.1:1 dark and 4.7:1 light.
 
-**Type.** No serifed fonts, ever. Poppins 600 names things, tracked tight (`-0.035em` at display, `-0.03em` at page title) because geometric sans needs more negative tracking than a serif would. Roboto carries body, UI and section heads. JetBrains Mono at 600 with `calt` and `liga` enabled sets every code snippet, and at 400 it carries anything countable: dates, durations, counts, version numbers, specification labels. Mono numerals are always `tabular-nums`.
+**Type.** No serifed fonts, ever. The hierarchy is the one on mikkaiser.com. Bricolage Grotesque names things: 800 at `-0.04em` for display (hero up to 62px, closing statements up to 48px, page titles, the footer brand), 700 at `-0.025em` for headings (24px dialogs, 21px cards, 20px rows, 16px for the owner's name). It is variable with an optical-size axis, so leave `font-optical-sizing` on `auto`. Roboto carries body, UI and section heads, with buttons at Medium 500, 14px. Poppins 600 survives only as the name label of the site's AI agent, never for headings. JetBrains Mono at 600 with `calt` and `liga` enabled sets every code snippet, and at 400 it carries anything countable: dates, durations, counts, version numbers, specification labels. Mono numerals are always `tabular-nums`.
 
 **Backgrounds.** Flat colour only. No gradients, no patterns, no textures, no full-bleed imagery behind text. Depth is exactly one background step, never a shadow.
 

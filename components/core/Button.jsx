@@ -2,7 +2,8 @@ import React from 'react';
 
 const BASE = {
   fontFamily: 'var(--font-body)',
-  fontSize: 'var(--size-small)',
+  fontSize: 'var(--size-button)',
+  fontWeight: 'var(--weight-medium)',
   lineHeight: 1,
   borderRadius: 'var(--radius-control)',
   whiteSpace: 'nowrap',
@@ -16,7 +17,6 @@ const VARIANTS = {
   primary: {
     background: 'var(--ink)',
     color: 'var(--on-ink)',
-    fontWeight: 'var(--weight-medium)',
     border: 'none',
     padding: '13px 20px'
   },

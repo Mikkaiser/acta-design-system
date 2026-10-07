@@ -4,14 +4,14 @@ Ledger is the monochrome, text-led design system behind Mikael Ribeiro's portfol
 
 ## Setup
 
-- Load `styles.css` once. It pulls in `_ds_bundle.css`, which holds every token, the Google Fonts import (Poppins, Roboto, JetBrains Mono) and the base resets (`body` background and colour, focus rings, the `[data-photo]` grayscale treatment, `[data-code]` ligatures). Without it every component renders unstyled.
+- Load `styles.css` once. It pulls in `_ds_bundle.css`, which holds every token, the Google Fonts import (Bricolage Grotesque, Roboto, JetBrains Mono, Poppins) and the base resets (`body` background and colour, focus rings, the `[data-photo]` grayscale treatment, `[data-code]` ligatures). Without it every component renders unstyled.
 - **Dark is the default.** Tokens live on `:root` with `color-scheme: dark`. Light mode is a page-level switch: put `data-theme="light"` on the `<html>` or `<body>` element and the whole page inverts. It cannot be applied to a subtree (the selector is `:root:has([data-theme="light"])`), so never theme one card differently from the page.
 - Set page and section backgrounds with `var(--bg)`; never hard-code `#000`, `#fff` or any hue.
 
 ## Tokens (the whole styling vocabulary)
 
 - **Colour** (monochrome by rule, one signal): `--bg`, `--raised`, `--sunken`, `--rule`, `--faint`, `--muted`, `--ink-soft`, `--ink`, `--ink-hover`, `--on-ink`, `--signal`. Semantic aliases: `--surface-page`, `--surface-hover`, `--surface-disabled`, `--border-hairline`, `--border-strong`, `--text-heading`, `--text-body`, `--text-secondary`, `--text-meta`, `--text-error`. `--signal` is for field errors only.
-- **Type**: families `--font-title` (Poppins, names things), `--font-body` (Roboto, body and UI), `--font-mono` (JetBrains Mono, anything countable: dates, counts, labels, code). Weights `--weight-body` 400, `--weight-medium` 500, `--weight-title` 600, `--weight-code` 600. Steps: `--size-display`, `--size-page-title`, `--size-entry-title`, `--size-lead`, `--size-body` 15px, `--size-small` 13px, `--size-meta` 11px, `--size-micro` 10px, `--size-code`, `--size-section-head` 10px, each with a matching `--lh-*` and, where tracked, `--ls-*`. Measures: `--measure-body` 64ch, `--measure-lead` 44ch, `--measure-display` 22ch.
+- **Type**: families `--font-display` (Bricolage Grotesque, names things: 800 display, 700 headings), `--font-body` (Roboto, body and UI), `--font-mono` (JetBrains Mono, anything countable: dates, counts, labels, code), `--font-title` (Poppins 600, the AI agent's name label only). Weights `--weight-body` 400, `--weight-medium` 500, `--weight-title` 600, `--weight-heading` 700, `--weight-display` 800, `--weight-code` 600. Steps: `--size-display`, `--size-display-2`, `--size-display-3`, `--size-page-title`, `--size-heading` 24px, `--size-h3` 21px, `--size-entry-title` 20px, `--size-button` 14px, `--size-lead`, `--size-body` 15px, `--size-small` 13px, `--size-meta` 11px, `--size-micro` 10px, `--size-code`, `--size-section-head` 10px, each with a matching `--lh-*` and, where tracked, `--ls-*`. Measures: `--measure-body` 64ch, `--measure-lead` 44ch, `--measure-display` 15ch.
 - **Space** (base 4): `--space-1` 4px, `--space-2` 8px, `--space-3` 12px, `--space-4` 16px, `--space-6` 24px, `--space-8` 32px, `--space-12` 48px, `--space-18` 72px. Named uses: `--pad-row`, `--pad-row-inline`, `--gap-gutter`, `--gap-head-content`, `--gap-section`, `--pad-rail`, `--rail-width` 268px.
 - **Shape**: `--radius-control` 4px (buttons, inputs), `--radius-card` 12px (code card only), `--radius-chip` 7px, `--radius-round` 50% (avatars), `--hairline` 1px. No other radius, no shadows except `--code-shadow` on the code card.
 - **Motion**: `--dur-pointer` 120ms and `--ease` linear for hover; `--dur-photo` 300ms for photographs. Nothing scales, lifts or moves on hover.
@@ -19,7 +19,7 @@ Ledger is the monochrome, text-led design system behind Mikael Ribeiro's portfol
 ## Hard rules
 
 1. No em dashes in any copy. Use a comma, a period, a colon, or "and".
-2. No serif fonts, no fonts outside the three families.
+2. No serif fonts, no fonts outside the four families. Poppins is for the AI agent's name label only.
 3. Code is always `CodeSnap` with `Syn` runs: JetBrains Mono 600, Dracula colours, dark card with window chrome. It never adopts the page theme.
 4. No gradients, patterns, transparency or blur. Depth is one background step (`--raised`), never a shadow.
 5. No icon set. Use inline Unicode at the type's size: `↗` on external links, `↓` on in-page jumps, `·` between mono metadata.

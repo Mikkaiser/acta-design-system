@@ -1,6 +1,9 @@
-/* Three families, no serif ever. Poppins names things, Roboto is what you scan,
-   JetBrains Mono is anything countable and every code snippet. */
+/* Four families, no serif ever, in the hierarchy of mikkaiser.com.
+   Bricolage Grotesque names things (800 display, 700 headings), Roboto is what
+   you scan, JetBrains Mono is anything countable and every code snippet.
+   Poppins 600 is kept for one job: the name label of the site's AI agent. */
 :root {
+  --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
   --font-title: 'Poppins', sans-serif;
   --font-body: 'Roboto', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
@@ -8,19 +11,35 @@
   --weight-body: 400;
   --weight-medium: 500;
   --weight-title: 600;
+  --weight-heading: 700;
+  --weight-display: 800;
   --weight-code: 600;
 
-  --size-display: clamp(32px, 5.6vw, 60px);
-  --lh-display: 1.04;
-  --ls-display: -0.035em;
+  /* Display: Bricolage 800 */
+  --size-display: clamp(36px, 5.6vw, 62px);
+  --lh-display: 1;
+  --ls-display: -0.04em;
+
+  --size-display-2: clamp(28px, 4.6vw, 48px);
+  --lh-display-2: 1.02;
+
+  --size-display-3: clamp(26px, 3.4vw, 40px);
 
   --size-page-title: clamp(24px, 3.4vw, 38px);
   --lh-page-title: 1.08;
-  --ls-page-title: -0.03em;
+  --ls-page-title: -0.04em;
 
-  --size-entry-title: clamp(18px, 2.2vw, 24px);
+  /* Headings: Bricolage 700 */
+  --size-heading: 24px;
+  --size-h3: 21px;
+  --lh-heading: 1.15;
+  --ls-heading: -0.025em;
+
+  --size-entry-title: 20px;
   --lh-entry-title: 1.2;
-  --ls-entry-title: -0.02em;
+  --ls-entry-title: -0.025em;
+
+  --size-button: 14px;
 
   --size-section-head: 10px;
   --ls-section-head: 0.18em;
@@ -44,5 +63,5 @@
 
   --measure-body: 64ch;
   --measure-lead: 44ch;
-  --measure-display: 22ch;
+  --measure-display: 15ch;
 }
