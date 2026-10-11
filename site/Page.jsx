@@ -187,12 +187,19 @@ function Article() {
   const S = Syn;
   const active = useActiveHeading(ARTICLE_TOC.map((t) => t.id));
   return (
-    <div className="art">
-      <article style={{ minWidth: 0 }}>
+    <article className="art">
+      <header className="art__head">
         <div className="art__meta">14 March 2026 · 8 min · Architecture</div>
         <h3>Clean architecture in a government codebase</h3>
         <p className="art__lead">What survives contact with a ten-year-old Oracle schema, and what you quietly give up.</p>
+      </header>
 
+      <div className="art__toc" data-toclist="data-toclist">
+        <TocList items={ARTICLE_TOC} activeId={active} />
+        <div className="art__note"><Spec lines={['4 SECTIONS · 8 MIN', 'ACTIVE MARK FOLLOWS SCROLL', 'BESIDE THE ARTICLE FROM 1180px,', 'UNDER THE LEAD BELOW THAT']} /></div>
+      </div>
+
+      <div className="art__body">
         <h4 id="a-contract">The schema is the contract</h4>
         <p>Every layered-architecture diagram assumes you own the data model. In a system that has been running since before you arrived, you do not. The schema is the contract, and the domain has to be reconstructed around it rather than derived from it.</p>
         <p>The pragmatic version keeps the boundary at the repository and lets <code className="icode" data-code="data-code">Entity Framework</code> map to views instead of tables. Reads go through projections, writes go through stored procedures that already encode two years of business rules nobody documented.</p>
@@ -223,16 +230,11 @@ function Article() {
         <p style={{ marginBottom: 28 }}>Two years in, the boundary has held. The parts that broke were the ones where we let a controller reach past it because a deadline made the shortcut look cheap.</p>
 
         <div className="art__end">
-          <Button variant="primary" href="#article">Read next ↗</Button>
+          <Button variant="primary" href="#article">Read next</Button>
           <Button variant="secondary" href="#rows">All posts</Button>
         </div>
-      </article>
-
-      <div className="art__toc" data-toclist="data-toclist">
-        <TocList items={ARTICLE_TOC} activeId={active} />
-        <div className="art__note"><Spec lines={['4 SECTIONS · 8 MIN', 'ACTIVE MARK FOLLOWS SCROLL', 'BESIDE THE TEXT FROM 1180px,', 'ABOVE IT BELOW THAT']} /></div>
       </div>
-    </div>
+    </article>
   );
 }
 

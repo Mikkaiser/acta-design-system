@@ -68,7 +68,7 @@ Dark is the default and the backgrounds are very dark, Cursor-like, with small c
 
 **Cards.** There is no generic card. Content sits in rows divided by hairlines, or in grid cells divided by hairlines. The only true card in the system is the code snap.
 
-**Layout.** A 268px sticky rail that never scrolls away, holding the name, the site map, the theme switch and the contact. Content is a single fluid column beside it. The rail goes static below 620px. An article's table of contents sits beside the text from 1180px and above it below that.
+**Layout.** A 268px sticky rail that never scrolls away, holding the name, the site map, the theme switch and the contact. Content is a single fluid column beside it. The rail goes static below 620px. An article's table of contents sits beside the whole article from 1180px, level with the meta line, and between the lead and the text below that. It ends with a mono count of sections and minutes.
 
 **Hover.** One background step (`--raised`) on rows, or a border colour change on controls, over 120ms linear. Nothing scales. Nothing lifts. Nothing changes size on hover, ever.
 
