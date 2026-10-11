@@ -10,7 +10,7 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin" />
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Poppins:wght@600&family=Roboto:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 <script src="./image-slot.js"></script>
 <style>
   *{box-sizing:border-box}
@@ -38,7 +38,7 @@
   [data-toc]:hover{color:var(--ink);border-color:var(--ink)}
   [data-toc][aria-current="true"]{color:var(--ink);border-color:var(--ink);font-weight:500}
   @media (min-width:1180px){
-    [data-artgrid]{grid-template-columns:minmax(0,68ch) minmax(0,196px)}
+    [data-artgrid]{grid-template-columns:minmax(0,64ch) 220px;gap:48px}
     [data-toclist]{position:sticky;top:24px;order:0}
   }
   input:focus,textarea:focus{border-color:var(--ink);outline:2px solid var(--ink);outline-offset:2px}
@@ -76,7 +76,7 @@
     <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px">
       <div data-photo="data-photo" style="position:relative;width:56px;height:56px;flex:0 0 auto;border-radius:50%;overflow:hidden"><img src="images/burj-view.jpg" alt="Mikael Ribeiro" style="position:absolute;width:248%;height:auto;left:-121%;top:-36%;display:block" /></div>
       <div style="min-width:0">
-        <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:22px;line-height:1.15;letter-spacing:-0.02em">Mikael Ribeiro</div>
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:21px;line-height:1.15;letter-spacing:-0.025em">Mikael Ribeiro</div>
         <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint);letter-spacing:0.04em">@mikkaiser</div>
       </div>
     </div>
@@ -116,15 +116,15 @@
       <button type="button" data-seg="data-seg" aria-pressed="{{ isDark }}" onClick="{{ setDark }}">Dark</button>
       <button type="button" data-seg="data-seg" aria-pressed="{{ isLight }}" onClick="{{ setLight }}">Light</button>
     </div>
-    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint);margin-top:12px;letter-spacing:0.04em">v0.3 · Abu Dhabi UTC+4</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint);margin-top:12px;letter-spacing:0.04em">v1.0 · Abu Dhabi UTC+4</div>
   </aside>
 
   <main style="padding:clamp(24px,3.5vw,44px);min-width:0">
 
     <section style="margin-bottom:clamp(40px,6vw,72px)" data-reveal="data-reveal">
       <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--faint);margin-bottom:14px">Acta · Design system</div>
-      <h1 style="margin:0 0 18px;font-family:'Poppins',sans-serif;font-weight:600;font-size:clamp(32px,5.6vw,60px);line-height:1.04;letter-spacing:-0.035em;max-width:22ch">The parts this site is built from.</h1>
-      <p style="margin:0;font-size:15px;line-height:1.7;color:var(--ink-soft);max-width:64ch">Every token, type step and component state used across the portfolio and the blog. Poppins for names and titles, Roboto for everything you scan, JetBrains Mono for anything countable. Monochrome throughout: no hue carries meaning, so hierarchy comes from weight, size and a single background step. Dark is the default; every token has a light counterpart and the rail switches between them.</p>
+      <h1 style="margin:0 0 18px;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(36px,5.6vw,62px);line-height:1;letter-spacing:-0.04em;max-width:15ch">The parts this site is built from.</h1>
+      <p style="margin:0;font-size:15px;line-height:1.7;color:var(--ink-soft);max-width:64ch">Every token, type step and component state used across the portfolio and the blog. Bricolage Grotesque for names and titles, Roboto for everything you scan, JetBrains Mono for anything countable. Monochrome throughout: no hue carries meaning, so hierarchy comes from weight, size and a single background step. Dark is the default; every token has a light counterpart and the rail switches between them.</p>
     </section>
 
     <section id="color" style="margin-bottom:clamp(40px,6vw,72px)" data-reveal="data-reveal">
@@ -200,29 +200,29 @@
     <section id="type" style="margin-bottom:clamp(40px,6vw,72px)" data-reveal="data-reveal">
       <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding-bottom:10px;border-bottom:1px solid var(--ink);margin-bottom:22px">
         <h2 style="margin:0;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600">02 · Typography</h2>
-        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint)">Poppins · Roboto · JetBrains Mono</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint)">Bricolage · Roboto · JetBrains Mono · Poppins</span>
       </div>
 
       <div style="display:flex;flex-direction:column;gap:0;border-top:1px solid var(--rule)">
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:6px 24px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--rule)">
-          <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:clamp(32px,5.6vw,60px);line-height:1.04;letter-spacing:-0.035em;min-width:0">Display</div>
-          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.7;color:var(--faint);letter-spacing:0.04em">POPPINS 600<br />clamp(32px, 5.6vw, 60px)<br />LH 1.04 · LS −0.035em<br />max 22ch</div>
+          <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(36px,5.6vw,62px);line-height:1;letter-spacing:-0.04em;min-width:0">Display</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.7;color:var(--faint);letter-spacing:0.04em">BRICOLAGE GROTESQUE 800<br />clamp(36px, 5.6vw, 62px)<br />LH 1 · LS −0.04em<br />max 15ch</div>
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:6px 24px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--rule)">
-          <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:clamp(24px,3.4vw,38px);line-height:1.08;letter-spacing:-0.03em;min-width:0">Page title</div>
-          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.7;color:var(--faint);letter-spacing:0.04em">POPPINS 600<br />clamp(24px, 3.4vw, 38px)<br />LH 1.08 · LS −0.03em</div>
+          <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(24px,3.4vw,38px);line-height:1.08;letter-spacing:-0.04em;min-width:0">Page title</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.7;color:var(--faint);letter-spacing:0.04em">BRICOLAGE GROTESQUE 800<br />clamp(24px, 3.4vw, 38px)<br />LH 1.08 · LS −0.04em</div>
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:6px 24px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--rule)">
-          <div style="font-family:'Poppins',sans-serif;font-weight:500;font-size:clamp(18px,2.2vw,24px);line-height:1.2;letter-spacing:-0.02em;min-width:0">Entry title</div>
-          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.7;color:var(--faint);letter-spacing:0.04em">POPPINS 500<br />clamp(18px, 2.2vw, 24px)<br />LH 1.2 · LS −0.02em</div>
+          <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:20px;line-height:1.2;letter-spacing:-0.025em;min-width:0">Entry title</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.7;color:var(--faint);letter-spacing:0.04em">BRICOLAGE GROTESQUE 700<br />20px · the owner’s name 16px<br />LH 1.2 · LS −0.025em</div>
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:6px 24px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--rule)">
           <div style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;min-width:0">Section head</div>
           <div style="font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.7;color:var(--faint);letter-spacing:0.04em">ROBOTO 600<br />10px · LS 0.18em · upper<br />sits on a 1px ink rule</div>
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:6px 24px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--rule)">
-          <div style="font-family:'Poppins',sans-serif;font-weight:400;font-size:20px;line-height:1.5;letter-spacing:-0.01em;min-width:0">Lead paragraph sets in Poppins at twenty over 1.5.</div>
-          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.7;color:var(--faint);letter-spacing:0.04em">POPPINS 400<br />20px / 1.5 · LS −0.01em<br />max 44ch · one per page</div>
+          <div style="font-weight:400;font-size:20px;line-height:1.5;letter-spacing:-0.01em;min-width:0">Lead paragraph sets in Roboto at twenty over 1.5.</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.7;color:var(--faint);letter-spacing:0.04em">ROBOTO 400<br />20px / 1.5 · LS −0.01em<br />max 44ch · one per page</div>
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:6px 24px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--rule)">
           <div style="font-size:15px;line-height:1.7;color:var(--ink-soft);min-width:0">Body copy sets in Roboto at fifteen over 1.7, capped near sixty-four characters so the measure stays readable next to a wide rail.</div>
@@ -237,8 +237,8 @@
           <div style="font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.7;color:var(--faint);letter-spacing:0.04em">JETBRAINS MONO 400<br />11px · Faint<br />tabular-nums · dates,<br />counts, versions, labels</div>
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:6px 24px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--rule)">
-          <div data-code="data-code" style="font-family:'JetBrains Mono',monospace;font-weight:600;font-size:13px;line-height:1.65;color:var(--ink);min-width:0">t =&gt; t.Id != id &amp;&amp; x &lt;= y</div>
-          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.7;color:var(--faint);letter-spacing:0.04em">JETBRAINS MONO 600<br />13px / 1.65 · calt + liga<br />every snippet. Ligatures on,<br />so =&gt; != &lt;= render as one mark.</div>
+          <div data-code="data-code" style="font-family:'JetBrains Mono',monospace;font-weight:600;font-size:13px;line-height:1.75;color:var(--ink);min-width:0">t =&gt; t.Id != id &amp;&amp; x &lt;= y</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.7;color:var(--faint);letter-spacing:0.04em">JETBRAINS MONO 600<br />13px / 1.75 · calt + liga<br />every snippet. Ligatures on,<br />so =&gt; != &lt;= render as one mark.</div>
         </div>
       </div>
     </section>
@@ -274,8 +274,10 @@
           <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
             <div style="width:52px;height:34px;border:1px solid var(--rule);flex:0 0 auto"></div>
             <div style="width:52px;height:34px;border:1px solid var(--rule);border-radius:4px;flex:0 0 auto"></div>
+            <div style="width:52px;height:34px;border:1px solid var(--rule);border-radius:7px;flex:0 0 auto"></div>
+            <div style="width:52px;height:34px;border:1px solid var(--rule);border-radius:12px;flex:0 0 auto"></div>
             <div style="width:34px;height:34px;border:1px solid var(--rule);border-radius:50%;flex:0 0 auto"></div>
-            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint);letter-spacing:0.04em">0 · 4 · 50% (portraits only)</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--faint);letter-spacing:0.04em">0 · 4 · 7 chip · 12 card · 50% portraits</span>
           </div>
         </div>
 
@@ -284,7 +286,7 @@
           <div style="display:flex;flex-direction:column;gap:11px">
             <p style="margin:0;font-size:13px;line-height:1.6;color:var(--ink-soft)"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint)">01</span> &nbsp;The rail never scrolls away. It carries the name, the map and the contact.</p>
             <p style="margin:0;font-size:13px;line-height:1.6;color:var(--ink-soft)"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint)">02</span> &nbsp;Every entry is a row with a mono date gutter. Work and posts share the row.</p>
-            <p style="margin:0;font-size:13px;line-height:1.6;color:var(--ink-soft)"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint)">03</span> &nbsp;Poppins for names and titles. Roboto for what you scan. JetBrains Mono for what you count.</p>
+            <p style="margin:0;font-size:13px;line-height:1.6;color:var(--ink-soft)"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint)">03</span> &nbsp;Bricolage Grotesque for names and titles. Roboto for what you scan. JetBrains Mono for what you count.</p>
             <p style="margin:0;font-size:13px;line-height:1.6;color:var(--ink-soft)"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint)">04</span> &nbsp;No shadows. Boundaries are 1px rules, depth is one background step.</p>
             <p style="margin:0;font-size:13px;line-height:1.6;color:var(--ink-soft)"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint)">05</span> &nbsp;Nothing is coloured except a field error. Emphasis is weight and size.</p>
           </div>
@@ -301,9 +303,9 @@
       <p style="margin:0 0 20px;font-size:13px;line-height:1.6;color:var(--muted);max-width:64ch">Live specimens respond to the pointer. The matrix renders each state statically so it can be checked without hovering, and scrolls sideways when the pane is narrow. Minimum target 44px tall on touch.</p>
 
       <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:26px">
-        <a href="#" style="background:var(--ink);color:var(--on-ink);font-size:13px;font-weight:500;padding:13px 20px;border-radius:4px;white-space:nowrap;flex:0 0 auto;transition:background 120ms" style-hover="background:var(--ink-hover)" style-active="background:var(--ink)">Primary</a>
-        <a href="#" style="border:1px solid var(--rule);color:var(--ink);font-size:13px;padding:12px 19px;border-radius:4px;white-space:nowrap;flex:0 0 auto;transition:border-color 120ms,background 120ms" style-hover="border-color:var(--ink)" style-active="background:var(--raised);border-color:var(--ink)">Secondary</a>
-        <a href="#" style="color:var(--ink);font-size:13px;padding-bottom:2px;border-bottom:1px solid var(--rule);white-space:nowrap;flex:0 0 auto;transition:border-color 120ms,color 120ms" style-hover="border-color:var(--ink)" style-active="color:var(--muted);border-color:var(--muted)">Ghost</a>
+        <a href="#" style="background:var(--ink);color:var(--on-ink);font-size:14px;font-weight:500;line-height:1;padding:13px 20px;border-radius:4px;white-space:nowrap;flex:0 0 auto;transition:background 120ms" style-hover="background:var(--ink-hover)" style-active="background:var(--ink)">Primary</a>
+        <a href="#" style="border:1px solid var(--rule);color:var(--ink);font-size:14px;font-weight:500;line-height:1;padding:12px 19px;border-radius:4px;white-space:nowrap;flex:0 0 auto;transition:border-color 120ms,background 120ms" style-hover="border-color:var(--ink)" style-active="background:var(--raised);border-color:var(--ink)">Secondary</a>
+        <a href="#" style="color:var(--ink);font-size:14px;font-weight:500;padding-bottom:2px;border-bottom:1px solid var(--rule);white-space:nowrap;flex:0 0 auto;transition:border-color 120ms,color 120ms" style-hover="border-color:var(--ink)" style-active="color:var(--muted);border-color:var(--muted)">Ghost</a>
       </div>
 
       <sc-if value="{{ showStates }}" hint-placeholder-val="{{ true }}">
@@ -315,23 +317,23 @@
             <div style="padding:10px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);background:var(--raised)"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted)">Focus</span></div>
             <div style="padding:10px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);background:var(--raised)"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted)">Disabled</span></div>
 
-            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;background:var(--ink);color:var(--on-ink);font-size:13px;font-weight:500;padding:13px 20px;border-radius:4px;white-space:nowrap">Primary</span></div>
-            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;background:var(--ink-hover);color:var(--on-ink);font-size:13px;font-weight:500;padding:13px 20px;border-radius:4px;white-space:nowrap">Primary</span></div>
-            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;background:var(--ink);color:var(--on-ink);font-size:13px;font-weight:500;padding:13px 20px;border-radius:4px;white-space:nowrap;transform:translateY(1px)">Primary</span></div>
-            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;background:var(--ink);color:var(--on-ink);font-size:13px;font-weight:500;padding:13px 20px;border-radius:4px;white-space:nowrap;outline:2px solid var(--ink);outline-offset:2px">Primary</span></div>
-            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;background:var(--sunken);color:var(--muted);font-size:13px;font-weight:500;padding:13px 20px;border-radius:4px;white-space:nowrap;cursor:not-allowed">Primary</span></div>
+            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;background:var(--ink);color:var(--on-ink);font-size:14px;font-weight:500;line-height:1;padding:13px 20px;border-radius:4px;white-space:nowrap">Primary</span></div>
+            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;background:var(--ink-hover);color:var(--on-ink);font-size:14px;font-weight:500;line-height:1;padding:13px 20px;border-radius:4px;white-space:nowrap">Primary</span></div>
+            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;background:var(--ink);color:var(--on-ink);font-size:14px;font-weight:500;line-height:1;padding:13px 20px;border-radius:4px;white-space:nowrap;">Primary</span></div>
+            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;background:var(--ink);color:var(--on-ink);font-size:14px;font-weight:500;line-height:1;padding:13px 20px;border-radius:4px;white-space:nowrap;outline:2px solid var(--ink);outline-offset:2px">Primary</span></div>
+            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;background:var(--sunken);color:var(--muted);font-size:14px;font-weight:500;line-height:1;padding:13px 20px;border-radius:4px;white-space:nowrap;cursor:not-allowed">Primary</span></div>
 
-            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;border:1px solid var(--rule);color:var(--ink);font-size:13px;padding:12px 19px;border-radius:4px;white-space:nowrap">Secondary</span></div>
-            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;border:1px solid var(--ink);color:var(--ink);font-size:13px;padding:12px 19px;border-radius:4px;white-space:nowrap">Secondary</span></div>
-            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;border:1px solid var(--ink);background:var(--raised);color:var(--ink);font-size:13px;padding:12px 19px;border-radius:4px;white-space:nowrap">Secondary</span></div>
-            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;border:1px solid var(--rule);color:var(--ink);font-size:13px;padding:12px 19px;border-radius:4px;white-space:nowrap;outline:2px solid var(--ink);outline-offset:2px">Secondary</span></div>
-            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;border:1px solid var(--rule);color:var(--faint);font-size:13px;padding:12px 19px;border-radius:4px;white-space:nowrap;cursor:not-allowed">Secondary</span></div>
+            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;border:1px solid var(--rule);color:var(--ink);font-size:14px;font-weight:500;line-height:1;padding:12px 19px;border-radius:4px;white-space:nowrap">Secondary</span></div>
+            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;border:1px solid var(--ink);color:var(--ink);font-size:14px;font-weight:500;line-height:1;padding:12px 19px;border-radius:4px;white-space:nowrap">Secondary</span></div>
+            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;border:1px solid var(--ink);background:var(--raised);color:var(--ink);font-size:14px;font-weight:500;line-height:1;padding:12px 19px;border-radius:4px;white-space:nowrap">Secondary</span></div>
+            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;border:1px solid var(--rule);color:var(--ink);font-size:14px;font-weight:500;line-height:1;padding:12px 19px;border-radius:4px;white-space:nowrap;outline:2px solid var(--ink);outline-offset:2px">Secondary</span></div>
+            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;border:1px solid var(--rule);color:var(--faint);font-size:14px;font-weight:500;line-height:1;padding:12px 19px;border-radius:4px;white-space:nowrap;cursor:not-allowed">Secondary</span></div>
 
-            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;color:var(--ink);font-size:13px;padding-bottom:2px;border-bottom:1px solid var(--rule);white-space:nowrap">Ghost</span></div>
-            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;color:var(--ink);font-size:13px;padding-bottom:2px;border-bottom:1px solid var(--ink);white-space:nowrap">Ghost</span></div>
-            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;color:var(--muted);font-size:13px;padding-bottom:2px;border-bottom:1px solid var(--muted);white-space:nowrap">Ghost</span></div>
-            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;color:var(--ink);font-size:13px;padding-bottom:2px;border-bottom:1px solid var(--rule);white-space:nowrap;outline:2px solid var(--ink);outline-offset:3px">Ghost</span></div>
-            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;color:var(--faint);font-size:13px;padding-bottom:2px;border-bottom:1px solid transparent;white-space:nowrap;cursor:not-allowed">Ghost</span></div>
+            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;color:var(--ink);font-size:14px;font-weight:500;padding-bottom:2px;border-bottom:1px solid var(--rule);white-space:nowrap">Ghost</span></div>
+            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;color:var(--ink);font-size:14px;font-weight:500;padding-bottom:2px;border-bottom:1px solid var(--ink);white-space:nowrap">Ghost</span></div>
+            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;color:var(--muted);font-size:14px;font-weight:500;padding-bottom:2px;border-bottom:1px solid var(--muted);white-space:nowrap">Ghost</span></div>
+            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;color:var(--ink);font-size:14px;font-weight:500;padding-bottom:2px;border-bottom:1px solid var(--rule);white-space:nowrap;outline:2px solid var(--ink);outline-offset:3px">Ghost</span></div>
+            <div style="padding:16px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)"><span style="display:inline-block;color:var(--faint);font-size:14px;font-weight:500;padding-bottom:2px;border-bottom:1px solid transparent;white-space:nowrap;cursor:not-allowed">Ghost</span></div>
           </div>
         </div>
       </sc-if>
@@ -424,7 +426,7 @@
           <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint);font-variant-numeric:tabular-nums;padding-top:4px">2025</div>
           <div style="min-width:0">
             <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:5px">
-              <span style="font-family:'Poppins',sans-serif;font-weight:500;font-size:clamp(18px,2.2vw,24px);line-height:1.2;letter-spacing:-0.02em">Student Management Platform</span>
+              <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:20px;line-height:1.2;letter-spacing:-0.025em">Student Management Platform</span>
               <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--faint)">ADVETI</span>
             </div>
             <p style="margin:0;font-size:13px;line-height:1.55;color:var(--muted);max-width:60ch">Training tracking, performance monitoring and reporting for Emirates Skills and WorldSkills competitors. Next.js and MariaDB.</p>
@@ -434,7 +436,7 @@
           <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint);font-variant-numeric:tabular-nums;padding-top:4px">2023</div>
           <div style="min-width:0">
             <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:5px">
-              <span style="font-family:'Poppins',sans-serif;font-weight:500;font-size:clamp(18px,2.2vw,24px);line-height:1.2;letter-spacing:-0.02em">SotreqLink</span>
+              <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:20px;line-height:1.2;letter-spacing:-0.025em">SotreqLink</span>
               <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--faint)">Radix · hover state</span>
             </div>
             <p style="margin:0;font-size:13px;line-height:1.55;color:var(--muted);max-width:60ch">Roughly 15 microservices over RabbitMQ, Docker and Kubernetes, with Grafana, Loki and Prometheus for observability.</p>
@@ -447,7 +449,7 @@
         <a href="#" style="display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:clamp(10px,1.6vw,20px);align-items:baseline;padding:13px 14px;border-bottom:1px solid var(--rule);transition:background 120ms" style-hover="background:var(--raised)">
           <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint);font-variant-numeric:tabular-nums">03·26</div>
           <div style="min-width:0">
-            <div style="font-family:'Poppins',sans-serif;font-weight:500;font-size:clamp(16px,1.9vw,20px);line-height:1.25;letter-spacing:-0.015em;margin-bottom:3px">Clean architecture in a government codebase</div>
+            <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:20px;line-height:1.2;letter-spacing:-0.025em;margin-bottom:3px">Clean architecture in a government codebase</div>
             <div style="font-size:12px;line-height:1.5;color:var(--muted);max-width:58ch">What survives contact with a ten-year-old Oracle schema.</div>
           </div>
           <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint);white-space:nowrap">8 min</div>
@@ -455,7 +457,7 @@
         <a href="#" style="display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:clamp(10px,1.6vw,20px);align-items:baseline;padding:13px 14px;border-bottom:1px solid var(--rule);background:var(--raised)">
           <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint);font-variant-numeric:tabular-nums">01·26</div>
           <div style="min-width:0">
-            <div style="font-family:'Poppins',sans-serif;font-weight:500;font-size:clamp(16px,1.9vw,20px);line-height:1.25;letter-spacing:-0.015em;margin-bottom:3px">Preparing for WorldSkills as an expert</div>
+            <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:20px;line-height:1.2;letter-spacing:-0.025em;margin-bottom:3px">Preparing for WorldSkills as an expert</div>
             <div style="font-size:12px;line-height:1.5;color:var(--muted);max-width:58ch">Hover state. Coaching the module you once competed in.</div>
           </div>
           <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint);white-space:nowrap">6 min</div>
@@ -608,16 +610,16 @@
         <div data-artgrid="data-artgrid">
         <article style="min-width:0">
           <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:14px;font-variant-numeric:tabular-nums">14 March 2026 · 8 min · Architecture</div>
-          <h3 style="margin:0 0 16px;font-family:'Poppins',sans-serif;font-weight:600;font-size:clamp(24px,3.4vw,38px);line-height:1.08;letter-spacing:-0.03em">Clean architecture in a government codebase</h3>
-          <p style="margin:0 0 22px;font-family:'Poppins',sans-serif;font-weight:400;font-size:20px;line-height:1.5;letter-spacing:-0.01em;max-width:44ch">What survives contact with a ten-year-old Oracle schema, and what you quietly give up.</p>
+          <h3 style="margin:0 0 16px;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(24px,3.4vw,38px);line-height:1.08;letter-spacing:-0.04em">Clean architecture in a government codebase</h3>
+          <p style="margin:0 0 22px;font-weight:400;font-size:20px;line-height:1.5;letter-spacing:-0.01em;max-width:44ch">What survives contact with a ten-year-old Oracle schema, and what you quietly give up.</p>
 
-          <h4 id="a-contract" style="margin:0 0 12px;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;scroll-margin-top:24px">The schema is the contract</h4>
+          <h4 id="a-contract" style="margin:0 0 12px;font-family:'Bricolage Grotesque',sans-serif;font-size:24px;line-height:1.15;letter-spacing:-0.025em;font-weight:700;scroll-margin-top:24px">The schema is the contract</h4>
 
           <p style="margin:0 0 18px;font-size:15px;line-height:1.7;color:var(--ink-soft)">Every layered-architecture diagram assumes you own the data model. In a system that has been running since before you arrived, you do not. The schema is the contract, and the domain has to be reconstructed around it rather than derived from it.</p>
 
           <p style="margin:0 0 18px;font-size:15px;line-height:1.7;color:var(--ink-soft)">The pragmatic version keeps the boundary at the repository and lets <code data-code="data-code" style="font-family:'JetBrains Mono',monospace;font-weight:600;font-size:13px;background:#111216;color:#F8F8F2;border:1px solid #232428;border-radius:4px;padding:2px 6px">Entity Framework</code> map to views instead of tables. Reads go through projections, writes go through stored procedures that already encode two years of business rules nobody documented.</p>
 
-          <h4 id="a-boundary" style="margin:32px 0 12px;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;scroll-margin-top:24px">Where the boundary lands</h4>
+          <h4 id="a-boundary" style="margin:32px 0 12px;font-family:'Bricolage Grotesque',sans-serif;font-size:24px;line-height:1.15;letter-spacing:-0.025em;font-weight:700;scroll-margin-top:24px">Where the boundary lands</h4>
 
           <figure style="margin:0 0 18px;border-radius:12px;overflow:hidden;background:#111216;border:1px solid #232428;box-shadow:0 14px 40px rgba(0,0,0,0.32)">
             <div style="display:flex;align-items:center;gap:16px;padding:13px 16px;flex-wrap:wrap">
@@ -645,7 +647,7 @@
             </div>
           </figure>
 
-          <h4 id="a-buys" style="margin:32px 0 12px;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;scroll-margin-top:24px">What it buys you</h4>
+          <h4 id="a-buys" style="margin:32px 0 12px;font-family:'Bricolage Grotesque',sans-serif;font-size:24px;line-height:1.15;letter-spacing:-0.025em;font-weight:700;scroll-margin-top:24px">What it buys you</h4>
 
           <ul style="margin:0 0 18px;padding-left:20px;font-size:15px;line-height:1.7;color:var(--ink-soft)">
             <li style="margin-bottom:7px">The domain type never sees an Oracle column name.</li>
@@ -654,7 +656,7 @@
           </ul>
 
           <blockquote style="margin:0 0 18px;padding-left:18px;border-left:2px solid var(--ink)">
-            <p style="margin:0;font-family:'Poppins',sans-serif;font-weight:400;font-size:19px;line-height:1.55;letter-spacing:-0.01em;color:var(--ink)">You are not refactoring towards a diagram. You are buying the ability to change one thing without reading everything.</p>
+            <p style="margin:0;font-weight:400;font-size:19px;line-height:1.55;letter-spacing:-0.01em;color:var(--ink)">You are not refactoring towards a diagram. You are buying the ability to change one thing without reading everything.</p>
           </blockquote>
 
           <div style="margin:0 0 10px;position:relative;width:100%;aspect-ratio:16/9">
@@ -662,13 +664,13 @@
           </div>
           <div style="font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:22px;padding-left:11px;border-left:2px solid var(--rule)">The read path after the change. Writes still land in the procedures on the right.</div>
 
-          <h4 id="a-after" style="margin:32px 0 12px;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;scroll-margin-top:24px">Two years on</h4>
+          <h4 id="a-after" style="margin:32px 0 12px;font-family:'Bricolage Grotesque',sans-serif;font-size:24px;line-height:1.15;letter-spacing:-0.025em;font-weight:700;scroll-margin-top:24px">Two years on</h4>
 
           <p style="margin:0 0 28px;font-size:15px;line-height:1.7;color:var(--ink-soft)">Two years in, the boundary has held. The parts that broke were the ones where we let a controller reach past it because a deadline made the shortcut look cheap.</p>
 
           <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;padding-top:20px;border-top:1px solid var(--rule)">
-            <a href="#" style="background:var(--ink);color:var(--on-ink);font-size:13px;font-weight:500;padding:13px 20px;border-radius:4px;white-space:nowrap;flex:0 0 auto;transition:background 120ms" style-hover="background:var(--ink-hover)">Read next ↗</a>
-            <a href="#" style="border:1px solid var(--rule);color:var(--ink);font-size:13px;padding:12px 19px;border-radius:4px;white-space:nowrap;flex:0 0 auto;transition:border-color 120ms" style-hover="border-color:var(--ink)">All posts</a>
+            <a href="#" style="background:var(--ink);color:var(--on-ink);font-size:14px;font-weight:500;line-height:1;padding:13px 20px;border-radius:4px;white-space:nowrap;flex:0 0 auto;transition:background 120ms" style-hover="background:var(--ink-hover)">Read next ↗</a>
+            <a href="#" style="border:1px solid var(--rule);color:var(--ink);font-size:14px;font-weight:500;line-height:1;padding:12px 19px;border-radius:4px;white-space:nowrap;flex:0 0 auto;transition:border-color 120ms" style-hover="border-color:var(--ink)">All posts</a>
           </div>
         </article>
 
