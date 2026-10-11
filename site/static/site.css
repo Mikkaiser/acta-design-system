@@ -128,7 +128,7 @@ body { overflow-x: hidden; }
 .art__end { display: flex; gap: var(--space-3); flex-wrap: wrap; align-items: center; padding-top: 20px; border-top: var(--hairline) solid var(--rule); }
 .art__note { margin-top: var(--space-4); padding-top: 13px; border-top: var(--hairline) solid var(--rule); }
 @media (min-width: 1180px) {
-  .art { grid-template-columns: minmax(0, var(--measure-body)) 220px; grid-template-areas: "head toc" "body toc"; column-gap: var(--space-12); }
+  .art { grid-template-columns: minmax(0, 9fr) minmax(0, 4fr); grid-template-areas: "head toc" "body toc"; column-gap: var(--space-12); }
   .art__toc { position: sticky; top: var(--space-6); margin-bottom: 0; }
 }
 
