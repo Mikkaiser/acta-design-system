@@ -9,6 +9,7 @@ const NAV = [
   { group: 'Foundations', items: [['colour', 'Colour'], ['type', 'Typography'], ['space', 'Space & rules']] },
   { group: 'Components', items: [['buttons', 'Buttons'], ['links', 'Links & tags'], ['fields', 'Form fields'], ['rows', 'Entry rows'], ['media', 'Media'], ['code', 'Code']] },
   { group: 'Patterns', items: [['article', 'Article'], ['motion', 'Motion'], ['diagrams', 'Diagrams'], ['audit', 'Contrast audit']] },
+  { group: 'Use', items: [['install', 'Install']] },
 ];
 const NUMBER = Object.fromEntries(NAV.flatMap((g) => g.items).map(([id, label], i) => [id, { n: String(i + 1).padStart(2, '0'), label }]));
 const PORTRAIT = 'assets/burj-view.jpg';
@@ -520,6 +521,38 @@ export function Page() {
             ))}
           </div>
           <p className="intro" style={{ margin: '20px 0 0' }}>The rule token never carries text. Because the palette has no hue, no state depends on colour perception alone. Every state also changes weight, fill or border. Both themes clear 4.5:1 on every pair above.</p>
+        </Section>
+
+        <Section id="install" meta="React 18 · npm">
+          <p className="intro">The package entry brings its own stylesheet, so the tokens and the fonts arrive with the first import. The components are plain JSX, so let your bundler compile the package, for example with <code className="icode" data-code="data-code">transpilePackages</code> in Next.js.</p>
+          <CodeSnap tabs={['terminal']} style={{ marginBottom: 'var(--space-6)' }}>
+            <S kind="fn">npm</S>{' install '}<S kind="literal">{`github:${REPO.slug}`}</S>
+          </CodeSnap>
+          <CodeSnap tabs={['SelectedWork.jsx']}>
+            <S kind="keyword">import</S>{' { SectionHead, EntryRow } '}<S kind="keyword">from</S>{' '}<S kind="literal">{"'acta-design-system'"}</S>{';\n\n'}
+            <S kind="keyword">export function</S>{' '}<S kind="fn">SelectedWork</S>{'() {\n  '}
+            <S kind="keyword">return</S>{' (\n    <>\n      <'}<S kind="type">SectionHead</S>{' '}<S kind="param" italic>label</S>{'='}<S kind="literal">"Selected work"</S>{' '}<S kind="param" italic>meta</S>{'='}<S kind="literal">"Four of eleven"</S>{' />\n      <'}
+            <S kind="type">EntryRow</S>{' '}<S kind="param" italic>date</S>{'='}<S kind="literal">"2025"</S>{' '}<S kind="param" italic>title</S>{'='}<S kind="literal">"Student Management Platform"</S>{' '}<S kind="param" italic>kicker</S>{'='}<S kind="literal">"ADVETI"</S>{' />\n    </>\n  );\n}'}
+          </CodeSnap>
+          <div className="cols" style={{ '--col': '240px', gap: 'clamp(24px, 3vw, 40px)', marginTop: 'clamp(24px, 3vw, 32px)' }}>
+            <div>
+              <div className="label">What arrives</div>
+              <Spec lines={['ELEVEN COMPONENTS', 'TOKENS · FONTS · BASE STYLES', 'ONE IMPORT, NO PROVIDER']} />
+            </div>
+            <div>
+              <div className="label">Rules</div>
+              <Numbered items={[
+                'Import from the package root; the stylesheet comes with it.',
+                'Theme with data-theme="light" on the root. Dark needs nothing.',
+                'Change a value in the tokens, never inline on a component.',
+              ]} />
+            </div>
+            <div>
+              <div className="label">Source</div>
+              <p style={{ margin: '0 0 12px', fontSize: 'var(--size-small)', lineHeight: 'var(--lh-small)', color: 'var(--ink-soft)' }}>Every component ships with a usage guide next to its source.</p>
+              <a className="mono-link" href={REPO.url}>Repository ↗</a>
+            </div>
+          </div>
         </Section>
 
         <footer className="foot">
